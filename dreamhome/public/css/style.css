@@ -1,0 +1,90 @@
+/*WELCOME PAGE*/
+.font-dream { font-family: 'Comfortaa', cursive; }
+        .font-home { font-family: 'Montserrat', sans-serif; }
+        
+.nav-link {
+            letter-spacing: 0.15em;
+            font-size: 10px;
+        }
+
+.bg-overlay {
+            background-color: #2d4a53;
+            mix-blend-mode: multiply;
+            opacity: 0.55;
+        }
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background-color: #0a1518; 
+    color: white; 
+}
+        
+.font-dream { 
+    font-family: 'Comfortaa', cursive; }
+        
+.glass-card {
+     background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    }
+.data-label { 
+    text-transform: uppercase; 
+    letter-spacing: 0.15em; 
+    font-size: 10px; 
+    color: #6b7280; 
+    margin-bottom: 4px; 
+    display: block; }
+        /* Fixed "aerial" typo to "rem" */
+.data-value { 
+    font-size: 1.125rem; 
+    font-weight: 500; 
+    color: #d1dcd5; }
+/* Update your input and select block with these additions */
+input, select { 
+    background: rgba(255, 255, 255, 0.05) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+    color: white !important; 
+    outline: none;
+    
+    /* ADD THESE LINES */
+    appearance: none;           /* Removes default browser styling (arrows, boxes) */
+    -webkit-appearance: none;    /* For Safari/Chrome */
+    -moz-appearance: none;       /* For Firefox */
+    border-radius: 8px;          /* Optional: fits the glass look better */
+    padding: 10px 15px;         /* Gives the text some breathing room */
+}
+
+/* Fix for the dropdown options specifically */
+select option {
+    background-color: #0a1518; /* Matches your body background */
+    color: white;
+}
+
+
+        body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
+        .font-dream { font-family: 'Comfortaa', cursive; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .data-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; font-weight: 700; }
+        .data-value { font-size: 1.1rem; color: #f8fafc; font-weight: 400; }
+
+
+         body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
+        .font-dream { font-family: 'Comfortaa', cursive; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        input, select, textarea { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; outline: none; }
+        input:focus, select:focus { border-color: #fbbf24 !important; }
+
+
+         body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
+        .font-dream { font-family: 'Comfortaa', cursive; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        input, select { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; outline: none; }
+        input:focus { border-color: #fbbf24 !important; }
+
+          .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .font-dream { font-family: 'Comfortaa', cursive; }
+        body { background-color: #0f172a; color: white; font-family: 'Montserrat', sans-serif; }
