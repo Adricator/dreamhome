@@ -19,7 +19,7 @@ use Symfony\Component\Console\Interaction\Interaction;
 /**
  * Maps a command input into an object (DTO).
  */
-#[\Attribute(\Attribute::TARGET_PARAMETER | \Attribute::TARGET_PROPERTY)]
+#[\Attribute(\Attribute::TARGET_PARAMETER | \Attribute::TARGET_PRERTY)]
 final class MapInput
 {
     /**

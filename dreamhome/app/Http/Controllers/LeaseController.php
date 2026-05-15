@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lease;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreLeaseRequest;
 use App\Http\Requests\UpdateLeaseRequest;
 

@@ -32,8 +32,8 @@ final class CliRequest extends Request
     // Methods below allow to populate a profile, thus enable search and filtering
     public function getUri(): string
     {
-        if ($this->server->has('SYMFONY_CLI_BINARY_NAME')) {
-            $binary = $this->server->get('SYMFONY_CLI_BINARY_NAME').' console';
+        if ($this->server->has('SYMFONY_CL_BINARY_NAME')) {
+            $binary = $this->server->get('SYMFONY_CL_BINARY_NAME').' console';
         } else {
             $binary = $this->server->get('argv')[0];
         }

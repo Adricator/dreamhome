@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-    Schema::create('branches', function (Blueprint $table) {
-    $table->string('branch_id')->primary();
-    $table->text('street');
-    $table->text('area');
-    $table->text('city');
-    $table->text('postcode');
-    $table->string('telephone_no');
-    $table->string('fax_no')->nullable();
-});
+        Schema::create('branches', function (Blueprint $table) {
+        $table->string('branch_id')->primary();
+        $table->text('street');
+        $table->text('area');
+        $table->text('city');
+        $table->text('postcode');
+        $table->string('telephone_no');
+        $table->string('fax_no')->nullable();
+        $table->string('manager_id')->nullable(); //references staff_id(staff_id)
+    });
     }
 
     /**

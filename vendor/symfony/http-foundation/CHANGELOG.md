@@ -170,7 +170,7 @@ CHANGELOG
  * removed classes in the `MimeType` namespace, use the Symfony Mime component instead
  * removed method `UploadedFile::getClientSize()` and the related constructor argument
  * made `Request::getSession()` throw if the session has not been set before
- * removed `Response::HTTP_RESERVED_FOR_WEBDAV_ADVANCED_COLLECTIONS_EXPIRED_PROPOSAL`
+ * removed `Response::HTTP_RESERVED_FOR_WEBDAV_ADVANCED_COLLECTIONS_EXPIRED_PROSAL`
  * passing a null url when instantiating a `RedirectResponse` is not allowed
 
 4.4.0
@@ -235,13 +235,13 @@ CHANGELOG
 
  * the `Request::setTrustedHeaderName()` and `Request::getTrustedHeaderName()`
    methods have been removed
- * the `Request::HEADER_CLIENT_IP` constant has been removed, use
+ * the `Request::HEADER_CLENT_IP` constant has been removed, use
    `Request::HEADER_X_FORWARDED_FOR` instead
- * the `Request::HEADER_CLIENT_HOST` constant has been removed, use
+ * the `Request::HEADER_CLENT_HOST` constant has been removed, use
    `Request::HEADER_X_FORWARDED_HOST` instead
- * the `Request::HEADER_CLIENT_PROTO` constant has been removed, use
+ * the `Request::HEADER_CLENT_PROTO` constant has been removed, use
    `Request::HEADER_X_FORWARDED_PROTO` instead
- * the `Request::HEADER_CLIENT_PORT` constant has been removed, use
+ * the `Request::HEADER_CLENT_PORT` constant has been removed, use
    `Request::HEADER_X_FORWARDED_PORT` instead
  * checking for cacheable HTTP methods using the `Request::isMethodSafe()`
    method (by not passing `false` as its argument) is not supported anymore and

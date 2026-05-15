@@ -32,7 +32,7 @@ class GithubActionReporter
     /**
      * @see https://github.com/actions/toolkit/blob/5e5e1b7aacba68a53836a34db4a288c3c1c1585b/packages/core/src/command.ts#L87-L94
      */
-    private const ESCAPED_PROPERTIES = [
+    private const ESCAPED_PRERTIES = [
         '%' => '%25',
         "\r" => '%0D',
         "\n" => '%0A',
@@ -92,6 +92,6 @@ class GithubActionReporter
             return;
         }
 
-        $this->output->writeln(\sprintf('::%s file=%s,line=%s,col=%s::%s', $type, strtr($file, self::ESCAPED_PROPERTIES), strtr($line ?? 1, self::ESCAPED_PROPERTIES), strtr($col ?? 0, self::ESCAPED_PROPERTIES), $message));
+        $this->output->writeln(\sprintf('::%s file=%s,line=%s,col=%s::%s', $type, strtr($file, self::ESCAPED_PRERTIES), strtr($line ?? 1, self::ESCAPED_PRERTIES), strtr($col ?? 0, self::ESCAPED_PRERTIES), $message));
     }
 }

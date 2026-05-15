@@ -11,24 +11,39 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('leases', function (Blueprint $table) {
-    $table->string('lease_id')->primary();
+        Schema::create('leases', function (Blueprint $table) {
+            $table->string('lease_id')->primary();
 
-    $table->string('property_id');
-    $table->string('client_id');
-    $table->string('staff_id');
+            $table->string('property_id');
+            $table->string('client_id');
+            $table->string('staff_id');
 
-    $table->date('payment_method');
-    $table->decimal('deposit', 10, 2);
-    $table->boolean('deposit_paid');
+            $table->string('payment_method'); // Changed from date to string
+            $table->decimal('deposit', 10, 2);
+            $table->boolean('deposit_paid')->default(false);
 
-    $table->date('start_date');
-    $table->date('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('duration_months');
 
-    $table->integer('duration_months');
+            // Foreign Key Constraints
+            $table->foreign('property_id')
+                ->references('property_id')
+                ->on('properties')
+                ->onDelete('cascade');
 
-    $table->timestamps();
-});
+            $table->foreign('client_id')
+                ->references('client_id')
+                ->on('clients')
+                ->onDelete('cascade');
+
+            $table->foreign('staff_id')
+                ->references('staff_id')
+                ->on('staff')
+                ->onDelete('cascade');
+
+            $table->timestamps();
+        });
     }
 
     /**

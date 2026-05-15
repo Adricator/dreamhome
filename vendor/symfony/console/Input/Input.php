@@ -19,7 +19,7 @@ use Symfony\Component\Console\Exception\RuntimeException;
  *
  * Three concrete classes are provided by default:
  *
- *  * `ArgvInput`: The input comes from the CLI arguments (argv)
+ *  * `ArgvInput`: The input comes from the CL arguments (argv)
  *  * `StringInput`: The input is provided as a string
  *  * `ArrayInput`: The input is provided as an array
  *

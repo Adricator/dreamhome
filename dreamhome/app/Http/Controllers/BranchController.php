@@ -14,8 +14,10 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $branches = Branch::all();
-        return view('branches.index', compact('branches'));
+        // $branches = Branch::all();
+        // return view('branches.index', compact('branches'));
+        $branches = Branch::with('manager')->get();
+        return view('branches.index', compact('branches')); 
     }
 
     /**

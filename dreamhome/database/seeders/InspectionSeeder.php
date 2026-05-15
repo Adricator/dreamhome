@@ -13,43 +13,35 @@ class InspectionSeeder extends Seeder
     public function run(): void
     {
         Inspection::create([
-            'inspection_id' => 'INS001',
-            'property_id' => 'PROP001',
-            'staff_id' => 'ST001',
+            'inspection_no' => 1,
+            'property_id' => 'PR001',
+            'staff_id' => 'ST0001',
             'date' => '2024-05-01',
             'comment' => 'passed'
         ]);
 
         Inspection::create([
-            'inspection_id' => 'INS002',
-            'property_id' => 'PROP002',
-            'staff_id' => 'ST002',
+            'inspection_no' => 1,
+            'property_id' => 'PR002',
+            'staff_id' => 'ST0002',
             'date' => '2024-05-02',
             'comment' => 'failed'
         ]);
 
         Inspection::create([
-            'inspection_id' => 'INS003',
-            'property_id' => 'PROP003',
-            'staff_id' => 'ST003',
+            'inspection_no' => 1,
+            'property_id' => 'PR003',
+            'staff_id' => 'ST0003',
             'date' => '2024-05-03',
             'comment' => 'passed'
         ]);
 
         Inspection::create([
-            'inspection_id' => 'INS004',
-            'property_id' => 'PROP004',
-            'staff_id' => 'ST004',
+            'inspection_no' => 1,
+            'property_id' => 'PR004',
+            'staff_id' => 'ST0004',
             'date' => '2024-05-04',
             'comment' => 'failed'
-        ]);
-
-        Inspection::create([
-            'inspection_id' => 'INS005',
-            'property_id' => 'PROP005',
-            'staff_id' => 'ST005',
-            'date' => '2024-05-05',
-            'comment' => 'passed'
         ]);
     }
 }

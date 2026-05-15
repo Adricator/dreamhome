@@ -14,7 +14,7 @@ class ClientSeeder extends Seeder
     public function run(): void
     {
         Client::create([
-            'client_id' => 'CLI001',
+            'client_id' => 'CL001',
             'first_name' => 'Emily',
             'last_name' => 'Davis',
             'address' => '34 High Street, London',
@@ -25,7 +25,7 @@ class ClientSeeder extends Seeder
         ]);
 
         Client::create([
-            'client_id' => 'CLI002',
+            'client_id' => 'CL002',
             'first_name' => 'James',
             'last_name' => 'Miller',
             'address' => '56 Market Street, Manchester',
@@ -36,7 +36,7 @@ class ClientSeeder extends Seeder
         ]);
 
         Client::create([
-            'client_id' => 'CLI003',
+            'client_id' => 'CL003',
             'first_name' => 'Olivia',
             'last_name' => 'Wilson',
             'address' => '78 Princes Street, Edinburgh',
@@ -47,7 +47,7 @@ class ClientSeeder extends Seeder
         ]);
         
         Client::create([
-            'client_id' => 'CLI004',
+            'client_id' => 'CL004',
             'first_name' => 'Liam',
             'last_name' => 'Johnson',
             'address' => '12 Broad Street, Birmingham',
@@ -58,7 +58,7 @@ class ClientSeeder extends Seeder
         ]);
 
         Client::create([
-            'client_id' => 'CLI005',
+            'client_id' => 'CL005',
             'first_name' => 'Sophia',
             'last_name' => 'Brown',
             'address' => '90 Park Lane, Leeds',

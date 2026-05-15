@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,28 +14,26 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-{
-  $this->call([
-    // 1. Level One: Independent tables (Foundation)
-    BranchSeeder::class,        
-    OwnerSeeder::class,  
-    ClientSeeder::class,        
+    {
+        $this->call([
+            BranchSeeder::class,        
+            StaffSeeder::class,
+            ClientSeeder::class,
+            RegistrationSeeder::class,
+            OwnerSeeder::class,
+            NextOfKinSeeder::class,
+            PropertySeeder::class,
+            InspectionSeeder::class,
+            AdvertisementSeeder::class,
+            LeaseSeeder::class,
+            PaymentSeeder::class,
+            ViewingSeeder::class,
+         
+        ]);
 
-    // 2. Level Two: Depends on Branches
-    StaffSeeder::class,         
-    // ManagerSeeder::class, (If you have one, place it here)
-    
-    // 3. Level Three: Depends on Staff, Owners, and Branches
-    PropertySeeder::class,      
-
-    // 4. Level Four: Depends on Properties and Clients
-    AdvertisementSeeder::class,
-    LeaseSeeder::class,
-    InspectionSeeder::class,
-    ViewingSeeder::class,
-    
-    // 5. Specialized Staff roles
-    SecretarySeeder::class,
-]);
+        // Step C: Now that the staff exists, assign the managers to the branches
+        Branch::where('branch_id', 'BR001')->update(['manager_id' => 'ST0001']);
+        Branch::where('branch_id', 'BR002')->update(['manager_id' => 'ST0002']);
+        Branch::where('branch_id', 'BR003')->update(['manager_id' => 'ST0003']);
     }
 }       

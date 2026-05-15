@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB;
 class Staff extends Model
 {
     /** @use HasFactory<\Database\Factories\StaffFactory> */
@@ -17,16 +17,6 @@ class Staff extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id');
-    }
-
-    public function manager()
-    {
-        return $this->hasOne(Manager::class, 'staff_id');
-    }
-
-    public function secretary()
-    {
-        return $this->hasOne(Secretary::class, 'staff_id');
     }
 
     public function nextOfKin()

@@ -60,7 +60,7 @@ use Symfony\Contracts\Service\ResetInterface;
  *
  * It is the main entry point of a Console application.
  *
- * This class is optimized for a standard CLI environment.
+ * This class is optimized for a standard CL environment.
  *
  * Usage:
  *

@@ -12,17 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('next_of_kin', function (Blueprint $table) {
-    $table->string('staff_id');
-    $table->string('full_name');
-    $table->string('relationship');
-    $table->text('address');
-    $table->string('telephone_no');
-});
+            $table->string('staff_id');
+            $table->string('full_name');
+            $table->string('relationship');
+            $table->text('address');
+            $table->string('telephone_no')->unique();
+        });
+
+        Schema::table('staff', function (Blueprint $table) {
+            $table->foreign('staff_id')->references('staff_id')->on('staff');
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('next_of_kin');

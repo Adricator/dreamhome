@@ -28,7 +28,7 @@ class AdvertisementSeeder extends Seeder
         ]);
         Advertisement::create([
             'ad_id' => 'AD003',
-            'property_id' => '',
+            'property_id' => 'PR001',
             'media_source' => 'Online',
             'date_advertised' => '2024-06-10',
             'cost' => 450.00                        

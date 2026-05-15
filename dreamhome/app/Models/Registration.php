@@ -25,4 +25,24 @@ class Registration extends Model
     {
         return $this->belongsTo(Staff::class, 'staff_id');
     }
+    protected $table = 'registrations';
+
+    // 1. Tell Laravel the primary key is NOT 'id'
+    protected $primaryKey = 'client_id';
+
+    // 2. Tell Laravel the primary key is NOT an incrementing integer
+    public $incrementing = false;
+
+    // 3. Tell Laravel the primary key is a string
+    protected $keyType = 'string';
+
+    // Ensure timestamps are disabled if you aren't using them
+    // public $timestamps = false;
+
+    protected $fillable = [
+        'client_id', 
+        'staff_id', 
+        'branch_id', 
+        'date_joined'
+    ];
 }

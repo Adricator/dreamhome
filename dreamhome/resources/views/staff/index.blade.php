@@ -6,7 +6,8 @@
     <title>Staff - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 </head>
 <body class="text-white min-h-screen"> <!-- Added a dark bg for the glass effect -->
     

@@ -14,14 +14,12 @@ class Lease extends Model
     protected $keyType = 'string';
     public $timestamps = false;
 
-    public function property()
-    {
-        return $this->belongsTo(Property::class, 'property_id');
+    public function property() {
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
     }
 
-    public function client()
-    {
-        return $this->belongsTo(Client::class, 'client_id');
+    public function client() {
+        return $this->belongsTo(Client::class, 'client_id', 'client_id');
     }
 
     public function staff()

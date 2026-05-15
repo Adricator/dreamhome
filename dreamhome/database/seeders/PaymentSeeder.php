@@ -14,14 +14,14 @@ class PaymentSeeder extends Seeder
     public function run(): void
     {
         Payment::create([
-            'payment_id' => 'PAY001',
+            'payment_no' => '1',
             'lease_id' => 'LE001',
             'payment_date' => '2023-01-01',
             'amount' => 1200.00,
             'payment_method' => 'credit_card'
         ]);
         Payment::create([
-            'payment_id' => 'PAY002',
+            'payment_no' => '2',
             'lease_id' => 'LE002',
             'payment_date' => '2023-02-01',
             'amount' => 1300.00,

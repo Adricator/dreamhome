@@ -16,7 +16,7 @@ render(<<<'HTML'
         <div class="px-1 bg-green-300 text-black">by ⚙️ Configured</div>
         <div class="px-1 mt-1 bg-blue-300 text-black">{{ $version }}</div>
         <em class="ml-1">
-            Create portable PHP CLI applications w/ PHP Micro
+            Create portable PHP CL applications w/ PHP Micro
         </em>
     </div>
 HTML);
