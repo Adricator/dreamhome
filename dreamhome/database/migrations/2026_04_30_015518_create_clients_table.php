@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-     Schema::create('clients', function (Blueprint $table) {
-    $table->string('client_id')->primary();
-    $table->string('first_name');
-    $table->string('last_name');
-    $table->text('address');
-    $table->string('telephone_no');
-    $table->text('email')->nullable();
-    $table->string('prefer_type')->nullable();
-    $table->decimal('max_rent',10,2)->nullable();
-});
+        Schema::create('clients', function (Blueprint $table) {
+            $table->string('client_id')->primary();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->text('address');
+            $table->string('telephone_no');
+            $table->text('email')->nullable();
+            $table->string('prefer_type')->nullable();
+            $table->decimal('max_rent',10,2)->nullable();
+        });
     }
 
     /**

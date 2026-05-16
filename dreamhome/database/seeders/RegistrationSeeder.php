@@ -15,29 +15,29 @@ class RegistrationSeeder extends Seeder
     {
         Registration::create([
             'client_id' => 'CL001',
-            'staff_id' => 'ST001',
+            'staff_id' => 'ST0001',
             'branch_id' => 'BR001',
             'date_joined' => '2020-01-15'
         ]);
 
         Registration::create([
-            'client_id' => 'CL001',
-            'staff_id' => 'ST002',
+            'client_id' => 'CL002',
+            'staff_id' => 'ST0002',
             'branch_id' => 'BR002',
             'date_joined' => '2021-06-10'
         ]);
 
         Registration::create([
-            'client_id' => 'CL001',
-            'staff_id' => 'ST003',
+            'client_id' => 'CL003',
+            'staff_id' => 'ST0003',
             'branch_id' => 'BR003',
             'date_joined' => '2022-02-20'
         ]);
 
         Registration::create([
-            'client_id' => 'CL001',
-            'staff_id' => 'ST004',
-            'branch_id' => 'BR004',
+            'client_id' => 'CL004',
+            'staff_id' => 'ST0004',
+            'branch_id' => 'BR003',
             'date_joined' => '2019-08-01'
         ]);
 

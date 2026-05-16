@@ -1,0 +1,989 @@
+/* INDEX */
+/* ========================================
+   MAIN LAYOUT
+======================================== */
+
+.branches-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.branches-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.branches-title {
+    margin-bottom: 1rem;
+
+    font-size: 3rem;
+    color: #d1dcd5;
+
+    font-family: 'Comfortaa', cursive;
+    line-height: 1;
+}
+
+/* ========================================
+   SEARCH FORM
+======================================== */
+
+.branch-search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.branch-search-input {
+    width: 16rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.branch-search-input::placeholder {
+    color: #9ca3af;
+}
+
+.branch-search-button {
+    padding: 0.5rem 1rem;
+
+    background-color: #0891b2;
+    color: white;
+
+    border: none;
+    border-radius: 0.5rem;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+}
+
+.branch-search-button:hover {
+    background-color: #06b6d4;
+}
+
+/* ========================================
+   CREATE BUTTON
+======================================== */
+
+.new-branch-button {
+    padding: 0.5rem 1.5rem;
+
+    border: 1px solid white;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    transition: all 0.3s ease;
+}
+
+.new-branch-button:hover {
+    background-color: white;
+    color: black;
+}
+
+/* ========================================
+   GRID LAYOUT
+======================================== */
+
+.branches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* ========================================
+   BRANCH CARD
+======================================== */
+
+.branch-card {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1.5rem;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+
+    transition: all 0.3s ease;
+}
+
+.branch-card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ========================================
+   CARD TOP
+======================================== */
+
+.branch-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 1rem;
+}
+
+.branch-id-badge {
+    padding: 0.25rem 0.75rem;
+
+    background-color: rgba(6, 182, 212, 0.2);
+    color: #67e8f9;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+/* ========================================
+   BRANCH INFO
+======================================== */
+
+.branch-info {
+    margin-bottom: 1rem;
+}
+
+.branch-city {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+.branch-area {
+    margin-top: 0.25rem;
+
+    color: #22d3ee;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* ========================================
+   DETAILS
+======================================== */
+
+.branch-details {
+    display: grid;
+    gap: 0.75rem;
+
+    margin: 1rem 0;
+    padding: 1rem 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.branch-label {
+    display: block;
+    margin-bottom: 0.25rem;
+
+    color: #6b7280;
+
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.branch-value {
+    font-size: 0.9rem;
+    color: #e5e7eb;
+}
+
+/* ========================================
+   MANAGER FOOTER
+======================================== */
+.branch-index-manager {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.branch-manager-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #6b7280;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.branch-manager-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.branch-manager-name {
+    color: #e5e7eb;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.branch-manager-id {
+    color: rgb(34, 211, 238);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+/* ========================================
+   ACTIONS
+======================================== */
+
+.branch-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.branch-links {
+    display: flex;
+    gap: 1rem;
+}
+
+/* ========================================
+   LINKS
+======================================== */
+
+.view-link,
+.edit-link,
+.delete-link {
+    background: none;
+    border: none;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+.view-link {
+    color: #22d3ee;
+}
+
+.view-link:hover {
+    color: white;
+}
+
+.edit-link {
+    color: white;
+}
+
+.edit-link:hover {
+    color: #22d3ee;
+}
+
+.delete-link {
+    color: #f87171;
+}
+
+.delete-link:hover {
+    color: #dc2626;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .branches-title {
+        font-size: 3rem;
+    }
+
+    .branch-search-input {
+        width: 100%;
+    }
+
+    .branch-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+/* SHOW */
+/* ========================================
+   SHOW PAGE MAIN
+======================================== */
+
+.branch-show-main {
+    max-width: 896px;
+    margin: auto auto;
+    padding: 1.5rem 1.5rem;
+}
+
+/* ========================================
+   BACK LINK
+======================================== */
+
+.branch-back-container {
+    margin-bottom: 2rem;
+}
+
+.branch-back-link {
+    color: #22d3ee;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
+    transition: color 0.3s ease;
+}
+
+.branch-back-link:hover {
+    color: white;
+}
+
+/* ========================================
+   MAIN CARD
+======================================== */
+
+.branch-show-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 2.5rem;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+}
+
+/* ========================================
+   STATUS BADGE
+======================================== */
+
+.branch-status-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    padding: 0.5rem 2rem;
+
+    background-color: #06b6d4;
+    color: black;
+
+    border-bottom-left-radius: 1rem;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.branch-show-header {
+    margin-bottom: 3rem;
+}
+
+.branch-profile-label {
+    display: block;
+    font-weight: 700;
+    color: #6b7280;
+    opacity:1;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.branch-show-title {
+    margin-top: 0.5rem;
+    font-family: 'Comfortaa', cursive;
+    font-size: 3rem;
+
+    color: #d1dcd5;
+}
+
+.branch-show-subtitle {
+    margin-top: 0.5rem;
+
+    color: #9ca3af;
+
+    font-size: 0.875rem;
+
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+/* ========================================
+   GRID
+======================================== */
+
+.branch-show-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* ========================================
+   LEFT SECTION
+======================================== */
+
+.branch-show-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ========================================
+   LABELS
+======================================== */
+
+.branch-section-label {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* ========================================
+   ADDRESS
+======================================== */
+
+.branch-address {
+    margin-top: 0.5rem;
+
+    color: white;
+
+    font-size: 1.5rem;
+    font-weight: 300;
+
+    line-height: 1.7;
+}
+
+.branch-address-highlight {
+    color: #22d3ee;
+}
+
+/* ========================================
+   MANAGER DETAILS (Horizontal Layout)
+======================================== */
+.branch-show-manager{
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.branch-show-manager-label{
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgb(107, 114, 128);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.branch-show-manager-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.branch-show-manager-name{
+    color: rgb(248, 250, 252);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.branch-show-manager-id{
+    color: rgb(34, 211, 238);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+/* ========================================
+   CONTACT GRID
+======================================== */
+
+.branch-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.branch-contact-text {
+    margin-top: 0.25rem;
+
+    color: white;
+
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.branch-contact-muted {
+    margin-top: 0.25rem;
+
+    color: rgba(255, 255, 255, 0.6);
+
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* ========================================
+   MANAGEMENT CARD
+======================================== */
+
+.branch-management-card {
+    padding: 2rem;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.branch-management-area {
+    margin-top: 0.25rem;
+
+    color: #22d3ee;
+
+    font-size: 1.5rem;
+}
+
+.branch-management-description {
+    padding-top: 1.5rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.branch-management-description p {
+    color: #6b7280;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    line-height: 1.8;
+}
+
+.branch-management-description span {
+    color: white;
+}
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.branch-show-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 2rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.branch-edit-button {
+    display: inline-block;
+
+    padding: 0.75rem 2rem;
+
+    background-color: white;
+    color: black;
+
+    border-radius: 0.5rem;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    transition: all 0.3s ease;
+}
+
+.branch-edit-button:hover {
+    background-color: #22d3ee;
+}
+
+.branch-delete-button {
+    background: none;
+    border: none;
+
+    color: #ef4444;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+.branch-delete-button:hover {
+    color: #f87171;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .branch-show-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .branch-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .branch-show-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .branch-show-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* EDIT */
+/* ========================================
+   FORM PAGE MAIN
+======================================== */
+
+.branch-form-main {
+    max-width: 896px;
+    margin: auto auto;
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+/* ========================================
+   FORM CARD
+======================================== */
+
+.branch-form-card {
+    padding: 2.5rem;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 1.5rem;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.branch-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+}
+
+.branch-form-title {
+    font-family: 'Comfortaa', cursive;
+
+    font-size: 2.5rem;
+    color: #d1dcd5;
+}
+
+.branch-form-subtitle {
+    margin-top: 0.5rem;
+
+    color: #f59e0b;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.branch-id-pill {
+    padding: 0.5rem 1rem;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+/* ========================================
+   FORM
+======================================== */
+
+.branch-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ========================================
+   GRID
+======================================== */
+
+.branch-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.branch-two-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* ========================================
+   FORM SECTION
+======================================== */
+
+.branch-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.branch-section-title {
+    color: #9ca3af;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* ========================================
+   INPUT GROUP
+======================================== */
+
+.branch-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.branch-input-label {
+    margin-left: 0.5rem;
+
+    color: #6b7280;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+}
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.branch-input,
+.branch-textarea {
+    width: 100%;
+
+    padding: 1rem;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+
+    color: white;
+
+    transition: all 0.3s ease;
+}
+
+.branch-input:focus,
+.branch-textarea:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 1px #f59e0b;
+}
+
+.branch-textarea {
+    resize: vertical;
+    min-height:57.6px;
+    max-height:155px;
+}
+
+/* ========================================
+   BRANCH ID SECTION
+======================================== */
+
+.branch-id-section {
+    padding-top: 2rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.branch-id-title {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.branch-id-note {
+    margin-top: 0.25rem;
+    margin-left: 0.5rem;
+
+    color: #6b7280;
+
+    font-size: 10px;
+}
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.branch-form-actions {
+    display: flex;
+    gap: 1rem;
+
+    padding-top: 1rem;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.branch-submit-button {
+    padding: 1rem 2.5rem;
+
+    background-color: #f59e0b;
+    color: black;
+
+    border: none;
+    border-radius: 0.5rem;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.branch-submit-button:hover {
+    background-color: #fbbf24;
+}
+
+.branch-back-button {
+    display: flex;
+    align-items: center;
+
+    padding: 1rem 2.5rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    transition: all 0.3s ease;
+}
+
+.branch-back-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .branch-form-grid,
+    .branch-two-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .branch-form-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .branch-form-actions {
+        flex-direction: column;
+    }
+
+    .branch-form-title {
+        font-size: 2rem;
+    }
+}

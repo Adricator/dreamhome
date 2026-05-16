@@ -6,7 +6,8 @@
     <title>Staff Profile - {{ $staff->first_name }} {{ $staff->last_name }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center">
 

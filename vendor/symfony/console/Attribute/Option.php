@@ -20,7 +20,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\String\UnicodeString;
 
-#[\Attribute(\Attribute::TARGET_PARAMETER | \Attribute::TARGET_PROPERTY)]
+#[\Attribute(\Attribute::TARGET_PARAMETER | \Attribute::TARGET_PRERTY)]
 class Option
 {
     private const ALLOWED_TYPES = ['string', 'bool', 'int', 'float', 'array'];

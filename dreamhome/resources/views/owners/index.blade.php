@@ -6,25 +6,27 @@
     <title>Owners - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 </head>
 <body class="text-white min-h-screen">
 
-    <header class="relative z-50 w-full pt-8 flex justify-center">
-            <nav class="inline-flex items-center bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-12 py-3">
-                <div class="flex items-left gap-10 text-white uppercase font-bold nav-link">
-                    <a href="{{ url('/') }}" class="hover:text-gray-300 transition">Home</a>
-                    <a href="{{ route('branches.index') }}" class="hover:text-gray-300 transition">Branches</a>
-                    <a href="{{ route('staff.index') }}" class="hover:text-gray-300 transition">Staff</a>
-                    <a href="{{ route('properties.index') }}" class="hover:text-gray-300 transition">Properties</a>
-                    <a href="{{ route('owners.index') }}" class="text-cyan-400 transition">Owners</a>
-                    <a href="{{ url('/inspections') }}" class="hover:text-gray-300 transition">Inspections</a>
-                    <a href="{{ route('clients.index') }}" class="hover:text-gray-300 transition">Clients</a>
-                    <a href="{{ url('/viewings') }}" class="hover:text-gray-300 transition">Viewings</a>
-                    <a href="{{ url('/leases') }}" class="hover:text-gray-300 transition">Leases</a>
-                </div>
-            </nav>
-        </header>
+    <header class="navbar-container">
+        <nav class="navbar">
+            <div class="navbar-links">
+                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ route('branches.index') }}" >Branches</a>
+                <a href="{{ route('staff.index') }}">Staff</a>
+                <a href="{{ route('properties.index') }}">Properties</a>
+                <a href="{{ route('owners.index') }}" class="active">Owners</a>
+                <a href="{{ url('/inspections') }}">Inspections</a>
+                <a href="{{ url('/clients') }}" >Clients</a>
+                <a href="{{ url('/viewings') }}">Viewings</a>
+                <a href="{{ url('/leases') }}">Leases</a>
+            </div>
+        </nav>
+    </header>
+
         <main class="max-w-7xl mx-auto px-6 py-12">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
             <div>

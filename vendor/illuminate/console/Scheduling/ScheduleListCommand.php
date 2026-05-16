@@ -111,7 +111,7 @@ class ScheduleListCommand extends Command
     }
 
     /**
-     * Render the scheduled tasks information formatted for the CLI.
+     * Render the scheduled tasks information formatted for the CL.
      *
      * @param  \Illuminate\Support\Collection  $events
      * @param  \DateTimeZone  $timezone

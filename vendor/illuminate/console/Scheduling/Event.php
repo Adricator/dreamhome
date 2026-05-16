@@ -599,7 +599,7 @@ class Event
             $container->bound(HttpClient::class) => $container->make(HttpClient::class),
             default => new HttpClient([
                 'connect_timeout' => 10,
-                'crypto_method' => STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
+                'crypto_method' => STREAM_CRYPTO_METHOD_TLSv1_2_CLENT,
                 'timeout' => 30,
             ]),
         };

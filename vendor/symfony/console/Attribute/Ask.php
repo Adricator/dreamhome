@@ -19,7 +19,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[\Attribute(\Attribute::TARGET_PARAMETER | \Attribute::TARGET_PROPERTY)]
+#[\Attribute(\Attribute::TARGET_PARAMETER | \Attribute::TARGET_PRERTY)]
 class Ask implements InteractiveAttributeInterface
 {
     public ?\Closure $normalizer;

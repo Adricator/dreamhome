@@ -6,6 +6,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\SearchController;
 
 
@@ -19,6 +20,8 @@ Route::resource('staff', StaffController::class);
 Route::resource('properties', PropertyController::class);
 Route::resource('owners', OwnerController::class);
 Route::resource('clients', ClientController::class);
+Route::resource('inspections', InspectionController::class);
+
 
 
 // Route to view a specific property and its advertisements
@@ -28,6 +31,8 @@ Route::get('/staff/{staff_id}', [StaffController::class, 'show'])->name('staff.s
 Route::get('/owners/{owner_id}', [OwnerController::class, 'show'])->name('owners.show');
 Route::get('/clients/{client_id}', [ClientController::class, 'show'])->name('clients.show');
 Route::get('/search/results', [SearchController::class, 'search'])->name('search.results');
+Route::get('/inspections', [InspectionController::class, 'show'])->name('properties.show');
+
 
 
 
@@ -70,3 +75,5 @@ Route::get('/clients', [ClientController::class, 'index'])->name('clients.index'
 Route::get('/viewings', [ViewingController::class, 'index'])->name('viewings.index');
 Route::get('/leases', [LeaseController::class, 'index'])->name('leases.index');
 Route::get('/search', [SearchController::class, 'index'])->name('search.page');
+
+Route::get('/inspections/{property_id}/{inspection_date}/edit', [InspectionController::class, 'edit'])->name('inspections.edit');

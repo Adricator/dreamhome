@@ -19,7 +19,7 @@ namespace Symfony\Contracts\Service\Attribute;
  *
  * @author Alexander M. Turek <me@derrabus.de>
  */
-#[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_PROPERTY)]
+#[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_PRERTY)]
 final class Required
 {
 }

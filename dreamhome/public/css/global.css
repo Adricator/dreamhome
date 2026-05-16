@@ -1,0 +1,81 @@
+body {
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0f172a;
+    color: white;
+}
+
+.font-dream {
+    font-family: 'Comfortaa', cursive;
+}
+
+.font-home {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-link {
+    letter-spacing: 0.15em;
+    font-size: 10px;
+}
+
+.bg-overlay {
+    background-color: #2d4a53;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.data-label {
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.data-value {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #f8fafc;
+}
+
+/* ========================================
+   FORM ELEMENTS
+======================================== */
+
+input,
+select,
+textarea {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #fbbf24 !important;
+}
+
+/* Dropdown Options */
+
+select option {
+    background-color: #0a1518;
+    color: white;
+}
