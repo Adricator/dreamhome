@@ -61,10 +61,12 @@ class PropertyController extends Controller
         return redirect()->route('properties.index')->with('success', 'Property created successfully.');
     }
 
-    public function edit(Property $property)
+    public function edit($property_id)
     {
+        $property = Property::where('property_id', $property_id)->firstOrFail();
         $owners = Owner::all();
         $branches = Branch::all();
+
         return view('properties.edit', compact('property', 'owners', 'branches'));
     }
 

@@ -8,72 +8,67 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ViewingController;
+use App\Http\Controllers\LeaseController;
 
+use Illuminate\Support\Facades\Auth;
 
-// 1. Landing Page
+/*
+|--------------------------------------------------------------------------
+| Public Frontend Routes (No Authentication Required)
+|--------------------------------------------------------------------------
+*/
+
+// Root URL points directly to the login interface
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) { // <-- Changed from auth()->check()
+        return redirect()->route('dashboard');
+    }
+    
+    return redirect()->route('login');
 })->name('home');
-// Public viewing for the property list, search, and filter
-Route::resource('branches', BranchController::class);
-Route::resource('staff', StaffController::class);
-Route::resource('properties', PropertyController::class);
-Route::resource('owners', OwnerController::class);
-Route::resource('clients', ClientController::class);
-Route::resource('inspections', InspectionController::class);
 
-
-
-// Route to view a specific property and its advertisements
-Route::get('/properties/{property_id}', [PropertyController::class, 'show'])->name('properties.show');
-Route::get('/branches/{branch_id}', [BranchController::class, 'show'])->name('branches.show');
-Route::get('/staff/{staff_id}', [StaffController::class, 'show'])->name('staff.show');
-Route::get('/owners/{owner_id}', [OwnerController::class, 'show'])->name('owners.show');
-Route::get('/clients/{client_id}', [ClientController::class, 'show'])->name('clients.show');
+// Search Engine Routes
+Route::get('/search', [SearchController::class, 'index'])->name('search.page');
 Route::get('/search/results', [SearchController::class, 'search'])->name('search.results');
-Route::get('/inspections', [InspectionController::class, 'show'])->name('properties.show');
-
-
-
-
-
-
-
-
-
-// Restricted routes for staff/admin
-Route::middleware(['auth'])->group(function () {
-    Route::delete('/properties/{id}', [PropertyController::class, 'destroy'])->name('properties.destroy');
-});
-
-
-
-// Add these (or your actual logic)
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-
-// 3. Client Registration / Preferences
-// Pointing to a custom registration form for client preferences
+// Client Portal Preference Submission
 Route::get('/register-preferences', function () {
     return view('client_preferences'); 
 })->name('register.preferences');
 
-// 4. Dream Home Entity Routes
-// These routes handle the various tables in your property management system
-Route::get('/branches', [BranchController::class, 'index'])->name('branches.index');
-Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
-Route::get('/owners', [OwnerController::class, 'index'])->name('owners.index');
-Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
-Route::get('/inspections', [InspectionController::class, 'index'])->name('inspections.index');
-Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
-Route::get('/viewings', [ViewingController::class, 'index'])->name('viewings.index');
-Route::get('/leases', [LeaseController::class, 'index'])->name('leases.index');
-Route::get('/search', [SearchController::class, 'index'])->name('search.page');
 
-Route::get('/inspections/{property_id}/{inspection_date}/edit', [InspectionController::class, 'edit'])->name('inspections.edit');
+/*
+|--------------------------------------------------------------------------
+| Secure Management Routes (Requires Admin/Staff Login)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+
+    // Main App Dashboard Window
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Standard CRUD Resources (Scoped to use custom column parameters)
+    Route::resource('branches', BranchController::class)->parameters(['branches' => 'branch_id']);
+    Route::resource('staff', StaffController::class)->parameters(['staff' => 'staff_id']);
+    Route::resource('properties', PropertyController::class)->parameters(['properties' => 'property_id']);
+    Route::resource('owners', OwnerController::class)->parameters(['owners' => 'owner_id']);
+    Route::resource('clients', ClientController::class)->parameters(['clients' => 'client_id']);
+    Route::resource('inspections', InspectionController::class);
+
+    // Contextual Composite Key Mapping for Inspections Edit Window
+    Route::get('/inspections/{property_id}/{inspection_date}/edit', [InspectionController::class, 'edit'])->name('inspections.edit');
+
+    // Read-Only System Trackers
+    Route::get('/viewings', [ViewingController::class, 'index'])->name('viewings.index');
+    Route::get('/leases', [LeaseController::class, 'index'])->name('leases.index');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Laravel Breeze Authentication Handlers (Login, Registration, Logouts)
+|--------------------------------------------------------------------------
+*/
+require __DIR__.'/auth.php';

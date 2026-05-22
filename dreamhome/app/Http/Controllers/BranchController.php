@@ -9,28 +9,29 @@ use App\Http\Requests\UpdateBranchRequest;
 
 class BranchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        // $branches = Branch::all();
-        // return view('branches.index', compact('branches'));
-        $branches = Branch::with('manager')->get();
+        $search = $request->input('search');
+        $query = Branch::with('manager');
+
+        if (!empty($search)) {
+            $query->where(function($q) use ($search) {
+                // Adjust 'branch_id' and 'city' to match your actual column names
+                $q->where('branch_id', 'ILIKE', "%{$search}%")
+                ->orWhere('city', 'ILIKE', "%{$search}%");
+            });
+        }
+
+        $branches = $query->get();
+
         return view('branches.index', compact('branches')); 
     }
-
-    /**
-     * Show the form for creating a new branch.
-     */
     public function create()
     {
         return view('branches.create');
     }
 
-    /**
-     * Store a newly created branch in the database.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([

@@ -6,102 +6,200 @@
     <title>Staff Profile - {{ $staff->first_name }} {{ $staff->last_name }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/staff.css') }}">
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center">
+<body style="flex-direction: column; align-items: center; justify-content: center;">
 
-    <main class="w-full max-w-3xl px-6 py-12">
-        <!-- Profile Header -->
-        <div class="flex flex-col md:flex-row items-center gap-8 mb-10">
-            <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-cyan-500 to-amber-500 flex items-center justify-center text-4xl font-bold border-4 border-white/10 shadow-2xl">
-                {{ substr($staff->first_name, 0, 1) }}{{ substr($staff->last_name, 0, 1) }}
-            </div>
-            <div class="text-center md:text-left">
-                <h1 class="font-dream text-5xl text-[#d1dcd5] mb-2">{{ $staff->first_name }} {{ $staff->last_name }}</h1>
-                <div class="flex flex-wrap justify-center md:justify-start gap-3">
-                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-4 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest">
-                        {{ $staff->position }}
-                    </span>
-                    <span class="bg-white/5 text-gray-400 border border-white/10 px-4 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest">
-                        ID: {{ $staff->staff_id }}
-                    </span>
-                </div>
+<main class="profile-container">
+    <div class="profile-header">
+        <div class="avatar-circle">
+            {{ substr($staff->first_name, 0, 1) }}{{ substr($staff->last_name, 0, 1) }}
+        </div>
+        <div class="header-details">
+            <h1 class="profile-name">{{ $staff->first_name }} {{ $staff->last_name }}</h1>
+            <div class="badge-group">
+                <span class="badge badge-primary">
+                    {{ $staff->position }}
+                </span>
+                <span class="badge badge-secondary">
+                    ID: {{ $staff->staff_id }}
+                </span>
             </div>
         </div>
+    </div>
 
-        <!-- Detailed Information Card -->
-        <div class="glass-card rounded-[2.5rem] p-10 space-y-10">
-            
-            <!-- Grid 1: Professional & Compensation -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="space-y-6">
+    <div class="glass-card">
+        
+    <div class="main-split-layout">
+
+        <div class="staff-metrics-section">
+            <h2 class="section-title">Staff Details</h2>
+            <div class="grid-two-col">
+                
+                <div class="info-group">
                     <div>
-                        <p class="data-label">Salary</p>
-                        <p class="data-value text-2xl font-light text-amber-400">₱{{ number_format($staff->salary, 2) }}</p>
+                        <p class="data-label">Position Type</p>
+                        <p class="data-value text-capitalize text-highlight">{{ $staff->position }}</p>
                     </div>
                     <div>
                         <p class="data-label">Date Joined</p>
                         <p class="data-value">{{ \Carbon\Carbon::parse($staff->date_joined)->format('M d, Y') }}</p>
                     </div>
                     <div>
-                        <p class="data-label">Branch Assignment</p>
+                        <p class="data-label">
+                            @if(strtolower($staff->position) === 'manager')
+                                Managed Branch
+                            @else
+                                Branch Assignment
+                            @endif
+                        </p>
                         <p class="data-value">{{ $staff->branch_id }}</p>
+                    </div>
+                    <div>
+                        <p class="data-label">Gender</p>
+                        <p class="data-value text-capitalize">{{ $staff->sex }}</p>
                     </div>
                 </div>
 
-                <div class="space-y-6">
+                <div class="info-group">
+                    <div>
+                        <p class="data-label">Salary</p>
+                        <p class="data-value text-highlight">₱{{ number_format($staff->salary, 2) }}</p>
+                    </div>
                     <div>
                         <p class="data-label">Contact Number</p>
                         <p class="data-value">{{ $staff->telephone_no }}</p>
                     </div>
                     <div>
-                        <p class="data-label">Position Type</p>
-                        <p class="data-value">{{ $staff->position }}</p>
+                        <p class="data-label">Insurance (NIN)</p>
+                        <p class="data-value font-mono">{{ $staff->nin }}</p>
                     </div>
                     <div>
-                        <p class="data-label">Insurance (NIN)</p>
-                        <p class="data-value font-mono tracking-tighter">{{ $staff->nin }}</p>
+                        <p class="data-label">Date of Birth</p>
+                        <p class="data-value">{{ \Carbon\Carbon::parse($staff->dob)->format('M d, Y') }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="role-details-section">
+            <h2 class="section-title">
+                @if(strtolower($staff->position) === 'manager')
+                    Manager Details
+                @elseif(strtolower($staff->position) === 'secretary')
+                    Secretary Details
+                @elseif(strtolower($staff->position) === 'supervisor')
+                    Supervisor Details
+                @elseif(strtolower($staff->position) === 'staff')
+                Supervised By
+                @endif
+            </h2>
+
+            <div class="info-group">
+
+                @if(strtolower($staff->position) === 'manager')
+
+                    <div>
+                        <p class="data-label">Car Allowance</p>
+                        <p class="data-value">
+                            ₱{{ number_format($staff->car_allowance ?? 0, 2) }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="data-label">Bonus</p>
+                        <p class="data-value">
+                            ₱{{ number_format($staff->performance_bonus ?? 0, 2) }}
+                        </p>
+                    </div>
+
+                @elseif(strtolower($staff->position) === 'secretary')
+
+                    <div>
+                        <p class="data-label">Typing Speed</p>
+                        <p class="data-value">
+                            {{ $staff->typing_speed_wpm ?? 'N/A' }} WPM
+                        </p>
+                    </div>
+                    <div>
+                        <p class="data-label">Supervisor</p>
+                        <p class="data-value">
+                            {{ $staff->supervised_by ?? 'Not Assigned' }}
+                        </p>
+                    </div>
+
+                @elseif(strtolower($staff->position) === 'staff')
+                    <div>
+                        <p class="data-label">Supervisor</p>
+                        <p class="data-value">
+                            {{ $staff->supervised_by ?? 'Not Assigned' }}
+                        </p>
+                    </div>
+
+                @endif
+
+            </div>
+        </div>
+            
+    </div>
+
+    <div class="nok-dropdown-wrapper">
+        <details class="nok-accordion">
+            <summary class="nok-summary-header">
+                <span class="nok-summary-title">Next of Kin Contact Information</span>
+                <span class="nok-arrow-icon">▼</span>
+            </summary>
+            
+            <div class="nok-dropdown-content">
+                <div class="grid-three-col">
+                    <div>
+                        <p class="data-label">Full Name</p>
+                        <p class="data-value">{{ $staff->nextOfKin->full_name ?? 'Not Assigned' }}</p>
+                    </div>
+                    <div>
+                        <p class="data-label">Relationship</p>
+                        <p class="data-value text-capitalize">{{ $staff->nextOfKin->relationship ?? '—' }}</p>
+                    </div>
+                    <div>
+                        <p class="data-label">Emergency Contact</p>
+                        <p class="data-value font-mono">{{ $staff->nextOfKin->telephone_no ?? '—' }}</p>
                     </div>
                 </div>
             </div>
+        </details>
+    </div>
+    
+    <hr class="divider">
 
-            <hr class="border-white/10">
-
-            <!-- Grid 2: Personal Details -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <p class="data-label">Gender</p>
-                    <p class="data-value capitalize">{{ $staff->sex }}</p>
-                </div>
-                <div>
-                    <p class="data-label">Date of Birth</p>
-                    <p class="data-value">{{ \Carbon\Carbon::parse($staff->dob)->format('M d, Y') }}</p>
-                </div>
-                 <div>
-                    <p class="data-label">Properties Managed</p>
-                    <p class="data-value">{{ $staff->properties->count() }} Listings</p>
-                </div>
-            </div>
-
-            <!-- Action Bar -->
-            <div class="flex flex-wrap gap-4 pt-4">
-                <a href="{{ route('staff.edit', $staff->staff_id) }}" class="bg-amber-500 hover:bg-amber-400 text-black px-8 py-3 text-[10px] font-bold uppercase tracking-widest transition-all rounded-full">
-                    Edit Staff Member
-                </a>
-                <a href="{{ route('staff.index') }}" class="border border-white/20 hover:bg-white/5 px-8 py-3 text-[10px] font-bold uppercase tracking-widest transition-all rounded-full">
-                    Return to Directory
-                </a>
-                
-                <form action="{{ route('staff.destroy', $staff->staff_id) }}" method="POST" onsubmit="return confirm('Archive this staff record?');" class="ml-auto">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="text-red-400 hover:text-red-500 text-[10px] uppercase font-bold tracking-widest px-4 py-3">
-                        Delete Record
-                    </button>
-                </form>
-            </div>
+    <div class="grid-three-col">
+         <div>
+            <p class="data-label">Properties Managed</p>
+            <p class="data-value">{{ $staff->properties->count() }} Listings</p>
         </div>
-    </main>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="action-bar">
+        <a href="{{ route('staff.edit', ['staff_id' => $staff->staff_id]) }}" class="btn btn-filled">
+            Edit Staff Member
+        </a>
+        <a href="{{ route('staff.index') }}" class="btn btn-outlined">
+            Return to Directory
+        </a>
+        
+        <form action="{{ route('staff.destroy', $staff->staff_id) }}" method="POST" onsubmit="return confirm('Archive this staff record?');" class="delete-form">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn-delete">
+                Delete Record
+            </button>
+        </form>
+    </div>
+</div>
+</main>
 </body>
 </html>

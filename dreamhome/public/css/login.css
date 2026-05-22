@@ -1,0 +1,137 @@
+/* public/css/login.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.font-dream {
+    font-family: 'Comfortaa', cursive;
+}
+
+.font-home {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    color:white;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h2 {
+    color: #22d3ee;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #666666;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input:focus {
+    border-color: #3490dc;
+    outline: none;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 11px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.forgot-password {
+    color: #3490dc;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #3490dc;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-submit:hover {
+    background-color: #2779bd;
+}
+
+.error-list {
+    background-color: #fdf2f2;
+    border: 1px solid #f8b4b4;
+    color: #9b1c1c;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    list-style-position: inside;
+    font-size: 14px;
+}
