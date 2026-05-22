@@ -7,9 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Viewing extends Model
 {
-    /** @use HasFactory<\Database\Factories\ViewingFactory> */
     use HasFactory;
+
     public $timestamps = false;
+    protected $primaryKey = null;
+    public $incrementing = false;
+
+    protected $fillable = [
+        'client_id',
+        'property_id',
+        'view_date',
+        'staff_id',
+    ];
 
     public function client()
     {
@@ -26,4 +35,3 @@ class Viewing extends Model
         return $this->belongsTo(Staff::class, 'staff_id');
     }
 }
-
