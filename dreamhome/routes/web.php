@@ -8,6 +8,8 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ViewingController;
+use App\Http\Controllers\LeaseController;
 
 
 // 1. Landing Page

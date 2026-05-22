@@ -3,13 +3,13 @@
         {
             "ssh": "Disabled",
             "previewLimit": 50,
-            "server": "localhost",
+            "server": "127.0.0.1",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "pgsql",
-            "password": "110804",
+            "name": "dreamhome",
+            "password": "Joshua2004",
             "username": "postgres",
-            "database": "postgres",
+            "database": "dreamhome",
             "connectionTimeout": 30
         }
     ]
