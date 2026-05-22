@@ -1,0 +1,1015 @@
+/* ========================================
+   MAIN
+======================================== */
+
+.staff-main {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.staff-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.staff-header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.staff-title {
+    margin-bottom: 1rem;
+    line-height: 1;
+    font-family: 'Comfortaa', cursive;
+    font-size: 3rem;
+
+    color: #d1dcd5;
+}
+
+/* ========================================
+   SEARCH
+======================================== */
+
+.staff-search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.staff-search-input {
+    width: 16rem;
+    line-height: 1.25rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.staff-search-input::placeholder {
+    color: #9ca3af;
+}
+
+.staff-search-input:focus {
+    outline: none;
+    border-color: #22d3ee;
+    box-shadow: 0 0 0 1px #22d3ee;
+}
+
+.staff-search-button {
+    padding: 0.5rem 1rem;
+    line-height: 1rem;
+    background-color: #0891b2;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.staff-search-button:hover {
+    background-color: #06b6d4;
+}
+
+/* ========================================
+   CREATE BUTTON
+======================================== */
+
+.staff-create-button {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius:0.5em;
+    transition: all 0.3s ease;
+}
+
+.staff-create-button:hover {
+    background: white;
+    color: black;
+}
+
+/* ========================================
+   GRID
+======================================== */
+
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* ========================================
+   CARD
+======================================== */
+
+.staff-card {
+    padding: 1.5rem;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+
+    transition: all 0.3s ease;
+}
+
+.staff-card:hover {
+    border-color: rgba(34, 211, 238, 0.5);
+}
+
+/* ========================================
+   CARD TOP
+======================================== */
+
+.staff-card-top {
+    margin-bottom: 1rem;
+}
+
+.staff-id-badge {
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    color: #9ca3af;
+    font-size: 10px;
+
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+/* ========================================
+   STAFF INFO
+======================================== */
+
+.staff-info {
+    margin-bottom: 1.5rem;
+}
+
+.staff-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    letter-spacing: -0.03em;
+}
+
+.staff-position {
+    margin-top: 0.25rem;
+
+    color: #22d3ee;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* ========================================
+   DETAILS
+======================================== */
+
+.staff-details {
+    margin-bottom: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    color: #d1d5db;
+
+    font-size: 0.875rem;
+}
+
+.staff-detail-row {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 0.25rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.staff-detail-label {
+    color: #6b7280;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+}
+
+.staff-detail-value {
+    color: #e5e7eb;
+}
+
+.staff-detail-value-hl{
+    color: rgb(34, 211, 238);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.staff-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.staff-view-link,
+.staff-edit-link {
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    transition: color 0.3s ease;
+}
+
+.staff-view-link {
+    color: #22d3ee;
+}
+
+.staff-view-link:hover {
+    color: white;
+}
+
+.staff-edit-link {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.staff-edit-link:hover {
+    color: white;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1200px) {
+
+    .staff-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+
+    .staff-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .staff-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .staff-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-title {
+        font-size: 2.25rem;
+    }
+
+    .staff-search-input {
+        width: 100%;
+    }
+}
+
+/* SHOW */
+
+/* Container Layout */
+.profile-container {
+    width: 100%;
+    max-width: 58rem; /* 768px - equivalent to max-w-3xl */
+    margin: 0 auto;
+    padding: 3rem 1.5rem; /* py-12 px-6 */
+    box-sizing: border-box;
+}
+
+/* Profile Header Section */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; /* gap-8 */
+    margin-bottom: 2rem; /* mb-10 */
+}
+
+@media (min-width: 768px) {
+    .profile-header {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* Avatar Styling */
+.avatar-circle {
+    width: 7rem; /* w-32 */
+    height: 7rem; /* h-32 */
+    border-radius: 50%;
+    background: linear-gradient(to top right, #06b6d4, #f59e0b); /* cyan-500 to amber-500 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700;
+    line-height: 2.5rem;
+    border: 4px solid rgba(255, 255, 255, 0.1); /* border-white/10 */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    color: #ffffff;
+}
+
+/* Text Element Layouts */
+.header-details {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .header-details {
+        text-align: left;
+    }
+}
+
+.profile-name {
+    font-family: 'Comfortaa', cursive;
+    line-height: 1;
+    font-size: 3rem; /* text-5xl approximate */
+    color: #d1dcd5;
+    margin: 0 0 0.5rem 0;
+}
+
+/* Badge Management */
+.badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem; /* gap-3 */
+}
+
+@media (min-width: 768px) {
+    .badge-group {
+        justify-content: flex-start;
+    }
+}
+
+.badge {
+    padding: 0.25rem 1rem; /* py-1 px-4 */
+    border-radius: 9999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.badge-primary {
+    background-color: rgba(6, 182, 212, 0.2); /* cyan-500/20 */
+    color: #22d3ee; /* cyan-400 */
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.badge-secondary {
+    background-color: rgba(255, 255, 255, 0.05); /* white/5 */
+    color: #9ca3af; /* gray-400 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Content Structural Cards (Glassmorphism UI) */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03); /* Adjust to match your project's current glass spec */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2.5rem; /* rounded-[2.5rem] */
+    padding: 2.5rem; /* p-10 */
+}
+
+/* Grid Framework layouts */
+.grid-two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.grid-three-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid-two-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-three-col {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* space-y-6 equivalent inside column fields */
+}
+
+/* Consistent Data Typography */
+.data-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4); /* Custom project label styling */
+    margin: 0 0 0.25rem 0;
+}
+
+.data-value {
+    font-size: 1.125rem;
+    line-height: 2rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.text-highlight {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 300; /* font-light */
+    color: #fbbf24; /* amber-400 */
+}
+
+.font-mono {
+    font-family: monospace;
+    letter-spacing: -0.05em;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* border-white/10 */
+    margin: 1.5rem 0; /* matches layout breaks */
+}
+
+/* Action Operations Bar */
+.action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem; /* gap-4 */
+    padding-top: 1rem; /* pt-4 */
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem; /* py-3 px-8 */
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-filled {
+    background-color: #f59e0b; /* amber-500 */
+    color: #000000;
+    border: none;
+}
+
+.btn-filled:hover {
+    background-color: #fbbf24; /* amber-400 */
+}
+
+.btn-outlined {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-outlined:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.delete-form {
+    margin-left: auto;
+}
+
+@media (max-width: 640px) {
+    .delete-form {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: #f87171; /* text-red-400 */
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-delete:hover {
+    color: #ef4444; /* text-red-500 */
+}
+
+.main-split-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-columns: 60% 40%;
+    gap: 2.5rem;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #22d3ee;
+    margin: 0 0 1.5rem 0;
+    font-weight:700;
+}
+
+.role-details-section {
+    width: 100%;
+}
+
+.nok-dropdown-wrapper {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Base Accordion Box Styling */
+.nok-accordion {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Interactive click bar */
+.nok-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none; /* Hides default native browser disclosure triangle */
+    user-select: none;
+}
+
+/* Hide fallback marker for Webkit browsers (Safari/Chrome) */
+.nok-summary-header::-webkit-details-marker {
+    display: none;
+}
+
+.nok-summary-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #22d3ee;
+}
+
+.nok-arrow-icon {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    transition: transform 0.3s ease;
+}
+
+/* Highlight box on hover */
+.nok-summary-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* CSS Animation Rule: Rotates icon arrow cleanly when panel opens */
+.nok-accordion[open] .nok-arrow-icon {
+    transform: rotate(180deg);
+    color: #22d3ee; /* Matches your accent theme hue */
+}
+
+/* Reveals information grid interior area */
+.nok-dropdown-content {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* EDIT */
+
+/* Container Layout */
+.form-container {
+    width: 100%;
+    max-width: 56rem; /* 896px - equivalent to max-w-4xl */
+    margin: 0 auto;
+    padding: 4rem 1.5rem; /* py-16 px-6 */
+    box-sizing: border-box;
+}
+
+/* Base Glassmorphic Container Spec */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03); /* Adjust parameters matching core app workspace */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem; /* rounded-3xl */
+    padding: 2.5rem; /* p-10 */
+}
+
+/* Subtle Amber Accent Outline Variant */
+.border-accent {
+    border-color: rgba(245, 158, 11, 0.2); /* border-amber-500/20 */
+}
+
+/* Header Section Formatting */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem; /* mb-10 */
+}
+
+.page-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem;
+    color: #d1dcd5;
+    margin: 0;
+}
+
+.subtitle {
+    color: #f59e0b; /* text-amber-500 */
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem; /* mt-2 */
+    font-weight: 700;
+}
+
+.status-badge {
+    font-size: 10px;
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+    background-color: rgba(255, 255, 255, 0.05); /* bg-white/5 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em; /* tracking-tighter */
+    color: #ffffff;
+}
+
+/* Form Mechanics & Internal Alignment Structure */
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space-y-8 equivalent */
+}
+
+.field-set {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* space-y-4 elements clustering */
+}
+
+/* Responsive Structural Grids */
+.grid-two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; /* gap-8 */
+}
+
+.grid-input-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; /* gap-4 */
+}
+
+@media (min-width: 768px) {
+    .grid-two-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-two-col.gap-6 {
+        gap: 1.5rem; /* Variant override for section footer grids */
+    }
+}
+
+/* Input Form Controls Styling */
+.form-control {
+    width: 100%;
+    padding: 1rem; /* p-4 */
+    border-radius: 0.75rem; /* rounded-xl */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05); /* Match consistent design syntax fields */
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: rgba(245, 158, 11, 0.5); /* Subtle amber glow effect on text inputs */
+}
+
+.select-menu {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/* Section Group Captions */
+.group-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af; /* text-gray-400 */
+    font-weight: 700;
+}
+
+.block-label {
+    display: block;
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.form-footer-section {
+    padding-top: 2rem; /* pt-8 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* border-white/10 */
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* space-y-1 fields structural grouping */
+}
+
+.field-caption {
+    font-size: 9px;
+    color: #6b7280; /* text-gray-500 */
+    text-transform: uppercase;
+    margin-left: 0.5rem; /* ml-2 */
+}
+
+/* Action Execution Section Button Triggers */
+.form-actions {
+    display: flex;
+    gap: 1rem; /* gap-4 */
+    padding-top: 1rem; /* pt-4 */
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0.5rem; /* rounded-lg */
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: #f59e0b; /* amber-500 */
+    color: #000000;
+    padding: 1rem 2.5rem; /* py-4 px-10 */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #fbbf24; /* amber-400 */
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 2.5rem; /* py-4 px-10 */
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* CREATE */
+/* Unique Component Wrapper */
+.create-container {
+    width: 100%;
+    max-width: 56rem; /* 896px - equivalent to max-w-4xl */
+    margin: 0 auto;
+    padding: 4rem 1.5rem; /* py-16 px-6 */
+    box-sizing: border-box;
+}
+
+/* Glassmorphic Container Core Base */
+.create-container .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem; /* rounded-3xl */
+    padding: 2.5rem; /* p-10 */
+}
+
+/* Specific Border Variant for Creation Module */
+.create-container .cyan-accent {
+    border-color: rgba(6, 182, 212, 0.2); /* border-cyan-500/20 */
+}
+
+/* Header UI Elements */
+.creation-header {
+    margin-bottom: 2.5rem; /* mb-10 */
+}
+
+.creation-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2.25rem; /* text-4xl */
+    color: #d1dcd5;
+    margin: 0;
+}
+
+.creation-subtitle {
+    color: #22d3ee; /* text-cyan-400 */
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem; /* mt-2 */
+    font-weight: 700;
+}
+
+/* Form Structural Layout Classes */
+.creation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space-y-8 */
+}
+
+.input-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* space-y-4 elements separation */
+}
+
+/* Grid Layout Frameworks */
+.layout-double-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; /* gap-8 */
+}
+
+.layout-split-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; /* gap-4 */
+}
+
+.layout-triple-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* gap-6 */
+}
+
+@media (min-width: 768px) {
+    .layout-double-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .layout-triple-column {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Unique Input Element Variables */
+.form-entry-field {
+    width: 100%;
+    padding: 1rem; /* p-4 */
+    border-radius: 0.75rem; /* rounded-xl */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.form-entry-field:focus {
+    border-color: rgba(6, 182, 212, 0.5); /* Soft cyan aura focus signature */
+}
+
+.select-dropdown-native {
+    background-color: #0f172a; /* Custom bg override specified from tailwind draft */
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/* Input Section Titles and Field Metadata formatting */
+.fieldset-heading {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af; /* text-gray-400 */
+    font-weight: 700;
+}
+
+.creation-footer-divider {
+    padding-top: 2rem; /* pt-8 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* border-white/10 */
+}
+
+.stacked-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* space-y-1 elements spacing */
+}
+
+.meta-caption {
+    font-size: 9px;
+    color: #6b7280; /* text-gray-500 */
+    text-transform: uppercase;
+    margin-left: 0.5rem; /* ml-2 */
+}
+
+/* Execution Button Control Elements */
+.execution-row {
+    display: flex;
+    gap: 1rem; /* gap-4 */
+    padding-top: 1rem; /* pt-4 */
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0.5rem; /* rounded-lg */
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+.action-btn-submit {
+    background-color: #06b6d4; /* cyan-500 */
+    color: #000000;
+    padding: 1rem 2.5rem; /* py-4 px-10 */
+    border: none;
+}
+
+.action-btn-submit:hover {
+    background-color: #22d3ee; /* cyan-400 */
+}
+
+.action-btn-cancel {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 2.5rem; /* py-4 px-10 */
+}
+
+.action-btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+

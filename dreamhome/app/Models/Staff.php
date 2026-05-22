@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Staff extends Model
+
+class Staff extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\StaffFactory> */
     use HasFactory;
@@ -33,13 +36,31 @@ class Staff extends Model
         'staff_id',
         'first_name',
         'last_name',
+        'branch_id',
+        'supervised_by',
         'address',
         'telephone_no',
+        'email',
         'sex',
         'dob',
         'nin',
         'position',
         'salary',
-        'date_joined',
+        'date_hired',
+        'car_allowance',
+        'performance_bonus',
+        'password',
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed', // Ensures Laravel automatically handles secure password hashing
+        ];
+    }
 }

@@ -54,25 +54,19 @@ class OwnerController extends Controller
             ->with('success', 'Owner registered successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Owner $owner)
+    public function show($owner_id)
     {
+        $owner = Owner::where('owner_id', $owner_id)->firstOrFail();
+        
         return view('owners.show', compact('owner'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Owner $owner)
+    public function edit($owner_id)
     {
+        $owner = Owner::where('owner_id', $owner_id)->firstOrFail();
         return view('owners.edit', compact('owner'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Owner $owner)
     {
         $validated = $request->validate([

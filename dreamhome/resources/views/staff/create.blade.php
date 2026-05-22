@@ -7,74 +7,65 @@
     <title>Add Staff - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-    <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
-        .font-dream { font-family: 'Comfortaa', cursive; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        input, select { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; outline: none; }
-        input:focus { border-color: #22d3ee !important; } /* Cyan focus for Create */
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/staff.css') }}">
 </head>
-<body>
-
-    <main class="max-w-4xl mx-auto px-6 py-16">
-        <div class="glass-card rounded-3xl p-10 border-cyan-500/20">
-            <div class="mb-10">
-                <h1 class="font-dream text-4xl text-[#d1dcd5]">add new staff</h1>
-                <p class="text-cyan-400 text-[10px] uppercase tracking-widest mt-2 font-bold">Enter the details of the new team member</p>
+<body style="background-color: #0a1518; ">
+    <main class="create-container">
+        <div class="glass-card cyan-accent">
+            <div class="creation-header">
+                <h1 class="creation-title">add new staff</h1>
+                <p class="creation-subtitle">Enter the details of the new team member</p>
             </div>
 
-            <form action="{{ route('staff.store') }}" method="POST" class="space-y-8">
+            <form action="{{ route('staff.store') }}" method="POST" class="creation-form">
                 @csrf
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Identity Section -->
-                    <div class="space-y-4">
-                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Staff Identity</label>
-                        <input type="text" name="staff_id" placeholder="Staff ID (e.g., SL21)" class="w-full p-4 rounded-xl">
-                        <div class="grid grid-cols-2 gap-4">
-                            <input type="text" name="first_name" placeholder="First Name" class="w-full p-4 rounded-xl">
-                            <input type="text" name="last_name" placeholder="Last Name" class="w-full p-4 rounded-xl">
+                <div class="layout-double-column">
+                    <div class="input-fieldset">
+                        <label class="fieldset-heading">Staff Identity</label>
+                        <input type="text" name="staff_id" placeholder="Staff ID (e.g., SL21)" class="form-entry-field">
+                        <div class="layout-split-pair">
+                            <input type="text" name="first_name" placeholder="First Name" class="form-entry-field">
+                            <input type="text" name="last_name" placeholder="Last Name" class="form-entry-field">
                         </div>
                     </div>
 
-                    <!-- Job Section -->
-                    <div class="space-y-4">
-                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Employment Details</label>
-                        <input type="text" name="position" placeholder="Position (e.g., Manager)" class="w-full p-4 rounded-xl">
-                        <div class="grid grid-cols-2 gap-4">
-                            <input type="number" step="0.01" name="salary" placeholder="Monthly Salary" class="w-full p-4 rounded-xl">
-                            <input type="date" name="date_joined" class="w-full p-4 rounded-xl">
+                    <div class="input-fieldset">
+                        <label class="fieldset-heading">Employment Details</label>
+                        <input type="text" name="position" placeholder="Position (e.g., Manager)" class="form-entry-field">
+                        <div class="layout-split-pair">
+                            <input type="number" step="0.01" name="salary" placeholder="Monthly Salary" class="form-entry-field">
+                            <input type="date" name="date_joined" class="form-entry-field">
                         </div>
                     </div>
                 </div>
 
-                <!-- Additional Info -->
-                <div class="pt-8 border-t border-white/10">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="space-y-1">
-                            <span class="text-[9px] text-gray-500 uppercase ml-2">NIN</span>
-                            <input type="text" name="nin" placeholder="Insurance No" class="w-full p-4 rounded-xl">
+                <div class="creation-footer-divider">
+                    <div class="layout-triple-column">
+                        <div class="stacked-input-group">
+                            <span class="meta-caption">NIN</span>
+                            <input type="text" name="nin" placeholder="Insurance No" class="form-entry-field">
                         </div>
-                        <div class="space-y-1">
-                            <span class="text-[9px] text-gray-500 uppercase ml-2">Sex</span>
-                            <select name="sex" class="w-full p-4 rounded-xl bg-[#0f172a] ">
-                                <option value="male" class="bg-[#0f172a]">Male</option>
-                                <option value="female" class="bg-[#0f172a]">Female</option>
+                        <div class="stacked-input-group">
+                            <span class="meta-caption">Sex</span>
+                            <select name="sex" class="form-entry-field select-dropdown-native">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
                             </select>
                         </div>
-                        <div class="space-y-1">
-                            <span class="text-[9px] text-gray-500 uppercase ml-2">Branch</span>
-                            <input type="text" name="branch_id" placeholder="B00x" class="w-full p-4 rounded-xl">
+                        <div class="stacked-input-group">
+                            <span class="meta-caption">Branch</span>
+                            <input type="text" name="branch_id" placeholder="B00x" class="form-entry-field">
                         </div>
                     </div>
                 </div>
 
-                <div class="flex gap-4 pt-4">
-                    <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-black px-10 py-4 text-xs font-bold uppercase tracking-widest transition-all rounded-lg">
+                <div class="execution-row">
+                    <button type="submit" class="action-btn action-btn-submit">
                         Register Staff
                     </button>
-                    <a href="{{ route('staff.index') }}" class="border border-white/20 hover:bg-white/5 px-10 py-4 text-xs font-bold uppercase tracking-widest transition-all rounded-lg flex items-center">
+                    <a href="{{ route('staff.index') }}" class="action-btn action-btn-cancel">
                         Back to List
                     </a>
                 </div>
