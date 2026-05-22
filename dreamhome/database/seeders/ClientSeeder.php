@@ -21,7 +21,8 @@ class ClientSeeder extends Seeder
             'telephone_no' => '+447911987654',
             'email' => 'emily.davis@example.com',
             'prefer_type' => 'apartment',
-            'max_rent' => 1200.00
+            'max_rent' => 1200.00,
+            'password' => 'dreamhome123'
         ]);
 
         Client::create([
@@ -32,7 +33,8 @@ class ClientSeeder extends Seeder
             'telephone_no' => '+447922876543',
             'email' => 'james.miller@example.com',
             'prefer_type' => 'house',
-            'max_rent' => 1500.00
+            'max_rent' => 1500.00,
+            'password' => 'dreamhome123'
         ]);
 
         Client::create([
@@ -43,7 +45,8 @@ class ClientSeeder extends Seeder
             'telephone_no' => '+447933765432',
             'email' => 'olivia.wilson@example.com',
             'prefer_type' => 'apartment',
-            'max_rent' => 1000.00
+            'max_rent' => 1000.00,
+            'password' => 'dreamhome123'
         ]);
         
         Client::create([
@@ -54,7 +57,8 @@ class ClientSeeder extends Seeder
             'telephone_no' => '+447944654321',
             'email' => 'liam.johnson@example.com',
             'prefer_type' => 'house',
-            'max_rent' => 1800.00
+            'max_rent' => 1800.00,
+            'password' => 'dreamhome123'
         ]);
 
         Client::create([
@@ -65,7 +69,8 @@ class ClientSeeder extends Seeder
             'telephone_no' => '+447955543210',
             'email' => 'sophia.brown@example.com',
             'prefer_type' => 'apartment',
-            'max_rent' => 1100.00
+            'max_rent' => 1100.00,
+            'password' => 'dreamhome123'
         ]);
     }
 }

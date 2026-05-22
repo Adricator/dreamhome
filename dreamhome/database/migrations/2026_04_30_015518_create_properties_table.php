@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('postcode');
 
-            $table->string('type');
+            $table->enum('type',['studio','house','condo','apartment','flat']);
             $table->integer('rooms');
             $table->decimal('monthly_rent', 10, 2);
 
@@ -38,7 +38,7 @@ return new class extends Migration
 
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

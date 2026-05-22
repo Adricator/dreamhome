@@ -21,27 +21,27 @@ class PropertyController extends Controller
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
-                $q->where('street', 'LIKE', "%{$search}%")
-                  ->orWhere('city', 'LIKE', "%{$search}%")
-                  ->orWhere('area', 'LIKE', "%{$search}%")
-                  ->orWhere('postcode', 'LIKE', "%{$search}%")
-                  ->orWhere('property_id', 'LIKE', "%{$search}%");
+                $q->where('street', 'ILIKE', "%{$search}%")
+                  ->orWhere('city', 'ILIKE', "%{$search}%")
+                  ->orWhere('area', 'ILIKE', "%{$search}%")
+                  ->orWhere('postcode', 'ILIKE', "%{$search}%")
+                  ->orWhere('property_id', 'ILIKE', "%{$search}%");
             });
         }
 
         // 2. Handle Status Filtering
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
+        if ($request->filled('type')) {
+            $query->where('type', $request->input('type'));
         }
 
         // 3. Handle Type Filtering
-        if ($request->filled('type')) {
-            $query->where('type', $request->type);
+        if ($request->filled('status')) {
+            $query->where('status', $request->input('status'));
         }
 
         // Get results with pagination (10 per page)
         // withQueryString ensures filters stay active when clicking page 2, 3, etc.
-        $properties = $query->paginate(10)->withQueryString();
+        $properties = $query->get();
 
         return view('properties.index', compact('properties'));
     }
