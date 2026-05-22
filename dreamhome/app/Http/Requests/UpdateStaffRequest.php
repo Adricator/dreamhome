@@ -21,7 +21,7 @@ class UpdateStaffRequest extends FormRequest
             'first_name'   => 'required|string|max:255',
             'last_name'    => 'required|string|max:255',
             'sex'          => 'required|in:male,female',
-            'position'     => 'required|string|max:255',
+            'position'     => 'required|in:manager,supervisor,secretary,staff',
             'salary'       => 'required|numeric',
             'telephone_no' => 'required|string',
             'branch_id'    => 'required|exists:branches,branch_id',
