@@ -15,7 +15,7 @@
     <header class="navbar-container">
         <nav class="navbar">
             <div class="navbar-links">
-                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ route('dashboard') }}">Home</a>
                 <a href="{{ route('branches.index') }}">Branches</a>
                 <a href="{{ route('staff.index') }}">Staff</a>
                 <a href="{{ route('properties.index') }}">Properties</a>
@@ -26,6 +26,12 @@
                 <a href="{{ url('/leases') }}">Leases</a>
             </div>
         </nav>
+        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+            @csrf
+            <button type="submit" class="logout-link-btn">
+                Log Out
+            </button>
+        </form>
     </header>
     
     <main>

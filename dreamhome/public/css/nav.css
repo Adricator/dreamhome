@@ -1,24 +1,21 @@
 .navbar-container {
-    position: relative;
-    z-index: 50;
-    width: 100%;
-    padding-top: 2rem;
-
+    position: relative;        /* Crucial: Sets the boundary so the logout form can anchor to it */
     display: flex;
-    justify-content: center;
+    justify-content: center;   /* Keeps the navigation capsule dead-center on the screen */
+    align-items: center;       
+    padding: 2rem 0rem 0rem 0rem;
+    min-height: 70px;          
 }
 
 .navbar {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-
+    justify-content: center;
     padding: 12px 48px;
-
     background: rgba(255, 255, 255, 0.10);
     backdrop-filter: blur(16px);
-
     border: 1px solid rgba(255, 255, 255, 0.20);
-    border-radius: 999px;
+    border-radius: 999px;      /* Creates your clean capsule shape */
 }
 
 .navbar-links {
@@ -29,14 +26,11 @@
 
 .navbar-links a {
     text-decoration: none;
-
     color: white;
-
     text-transform: uppercase;
     font-weight: 700;
     font-size: 10px;
     letter-spacing: 0.15em;
-
     transition: color 0.3s ease;
 }
 
@@ -46,4 +40,30 @@
 
 .navbar-links a.active {
     color: #22d3ee;
+}
+
+.logout-form {
+    position: absolute;
+    right: 4rem;               
+    top: 2rem; /* Matches the 2rem top padding of your container */
+    margin: 0;
+}
+
+.logout-link-btn {
+    background: none;
+    border: 1px solid rgba(255, 75, 75, 0.4); 
+    color: #ff4b4b;                           
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.logout-link-btn:hover {
+    background-color: #ff4b4b;
+    color: #ffffff;
+    border-color: #ff4b4b;
+    box-shadow: 0 4px 12px rgba(255, 75, 75, 0.2);
 }
