@@ -9,8 +9,12 @@ class Viewing extends Model
 {
     use HasFactory;
 
+    protected $table = 'viewings';
+
     public $timestamps = false;
+
     protected $primaryKey = null;
+
     public $incrementing = false;
 
     protected $fillable = [
@@ -22,16 +26,16 @@ class Viewing extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class, 'client_id');
+        return $this->belongsTo(Client::class, 'client_id', 'client_id');
     }
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'property_id');
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
     }
 
     public function staff()
     {
-        return $this->belongsTo(Staff::class, 'staff_id');
+        return $this->belongsTo(Staff::class, 'staff_id', 'staff_id');
     }
 }
