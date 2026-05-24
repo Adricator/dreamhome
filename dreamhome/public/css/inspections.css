@@ -245,6 +245,10 @@
     color: #ef4444;
 }
 
+.inspection-delete-form {
+    margin-left: auto;
+}
+
 .inspection-empty {
     grid-column: 1 / -1;
     padding: 2rem;
@@ -517,15 +521,4 @@
     .inspection-danger-btn {
         width: 100%;
     }
-}
-
-.inspection-actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.inspection-delete-form {
-    margin-left: auto;
 }

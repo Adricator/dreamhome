@@ -2,27 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Viewing extends Model
 {
-    use HasFactory;
-
     protected $table = 'viewings';
-
-    public $timestamps = false;
-
-    protected $primaryKey = 'id';
-
-    public $incrementing = true;
 
     protected $fillable = [
         'client_id',
         'property_id',
         'view_date',
         'staff_id',
-        'status',
         'comments',
     ];
 
