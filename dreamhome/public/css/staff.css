@@ -1011,6 +1011,13 @@
     border: none;
 }
 
+.action-staff-update-btn {
+    background-color: #f59e0b;
+    color: #000000;
+    padding: 1rem 2.5rem;
+    border: none;
+}
+
 .action-btn-submit:hover {
     background-color: #22d3ee; /* cyan-400 */
 }

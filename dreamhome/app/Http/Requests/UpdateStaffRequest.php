@@ -20,13 +20,25 @@ class UpdateStaffRequest extends FormRequest
         return [
             'first_name'   => 'required|string|max:255',
             'last_name'    => 'required|string|max:255',
+            'dob'          => 'required|date|before:today', // Added DOB validation
             'sex'          => 'required|in:male,female',
+            
+            // Contact Details
+            'email'        => 'required|email|max:255', // Added Email validation
+            'telephone_no' => 'required|string|max:20',
+            'address'      => 'required|string',        // Added Address validation
+            
+            // Employment & Assignment
             'position'     => 'required|in:manager,supervisor,secretary,staff',
-            'salary'       => 'required|numeric',
-            'telephone_no' => 'required|string',
+            'salary'       => 'required|numeric|min:0',
             'branch_id'    => 'required|exists:branches,branch_id',
-            // This ensures validation passes even if the user leaves their current NIN unchanged
             'nin'          => 'required|string|unique:staff,nin,' . $staff_id . ',staff_id',
+
+            // Role-Specific Conditional Fields (Made nullable so they don't break for other roles)
+            'car_allowance'     => 'nullable|numeric|min:0',
+            'performance_bonus' => 'nullable|numeric|min:0',
+            'typing_speed_wpm'  => 'nullable|integer|min:0',
+            'supervised_by'     => 'nullable|exists:staff,staff_id',
         ];
     }
 }

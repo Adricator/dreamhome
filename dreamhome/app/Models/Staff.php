@@ -24,7 +24,7 @@ class Staff extends Authenticatable
 
     public function nextOfKin()
     {
-        return $this->hasOne(NextOfKin::class, 'staff_id');
+        return $this->hasOne(NextOfKin::class, 'staff_id', 'staff_id');
     }
 
     public function properties()
