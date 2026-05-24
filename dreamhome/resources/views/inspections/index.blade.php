@@ -34,59 +34,102 @@
 
     <main class="inspection-main">
 
-        <div class="inspection-header">
-            <div class="inspection-header-left">
-                <h1 class="inspection-title">inspection logs</h1>
-                <form action="{{ route('inspections.index') }}" method="GET" class="inspection-search-form">
-                    <input type="text"
-                        name="search"
-                        value="{{ request('search') }}"
-                        placeholder="Search inspections..."
-                        class="inspection-search-input">
-                    <button type="submit" class="inspection-search-button">Search</button>
-                </form>
-            </div>
-            <a href="{{ route('inspections.create') }}" class="inspection-create-button">
-                + New Inspection
-            </a>
+    <div class="inspection-header">
+        <div class="inspection-header-left">
+            <h1 class="inspection-title">Inspections</h1>
+
+            <form method="GET" action="{{ route('inspections.index') }}" class="inspection-search-form">
+                <input
+                    type="text"
+                    name="search"
+                    class="inspection-search-input"
+                    placeholder="Search property, staff, comments..."
+                    value="{{ request('search') }}"
+                >
+
+                <button type="submit" class="inspection-search-button">
+                    Search
+                </button>
+            </form>
         </div>
 
-        <div class="inspection-grid">
-            @foreach($inspections as $inspection)
+        <a href="{{ route('inspections.create') }}" class="inspection-create-button">
+            + Add Inspection
+        </a>
+    </div>
+
+    <div class="inspection-grid">
+
+        @forelse($inspections as $inspection)
             <div class="inspection-card">
+
                 <div class="inspection-card-top">
                     <span class="inspection-id-badge">
-                        ID: {{ $inspection->inspection_id }}
+                        Inspection #{{ $inspection->inspection_id }}
                     </span>
                 </div>
 
                 <div class="inspection-info">
-                    <h3 class="inspection-property-name">Property: {{ $inspection->property_id }}</h3>
-                    <p class="inspection-date-text">
-                       Date: {{ optional($inspection->inspection_date)->format('M d, Y') ?? 'No Date' }}
+                    <h2 class="inspection-name">
+                        Property: {{ $inspection->property_id }}
+                    </h2>
+
+                    <p class="inspection-position">
+                        {{ \Carbon\Carbon::parse($inspection->inspection_date)->format('M d, Y') }}
                     </p>
                 </div>
 
                 <div class="inspection-details">
+
                     <div class="inspection-detail-row">
-                        <span class="inspection-detail-label">Inspector ID</span>
-                        <span class="inspection-detail-value-hl">{{ $inspection->staff_id }}</span>
-                    </div>
-                    <div class="inspection-detail-block">
-                        <span class="inspection-detail-label-block">Comments</span>
-                        <span class="inspection-detail-value-ellipsis">
-                            {{ $inspection->comments ?? 'No comments provided' }}
+                        <span class="inspection-detail-label">Property ID</span>
+                        <span class="inspection-detail-value">
+                            {{ $inspection->property_id }}
                         </span>
                     </div>
+
+                    <div class="inspection-detail-row">
+                        <span class="inspection-detail-label">Staff ID</span>
+                        <span class="inspection-detail-value">
+                            {{ $inspection->staff_id }}
+                        </span>
+                    </div>
+
+                    <div class="inspection-detail-row">
+                        <span class="inspection-detail-label">Date</span>
+                        <span class="inspection-detail-value-hl">
+                            {{ \Carbon\Carbon::parse($inspection->inspection_date)->format('M d, Y') }}
+                        </span>
+                    </div>
+
+                    <div class="inspection-comments">
+                        <span class="inspection-detail-label">Comments</span>
+                        <p>
+                            {{ $inspection->comments ?? 'No comments provided.' }}
+                        </p>
+                    </div>
+
                 </div>
 
                 <div class="inspection-actions">
-                    <a href="{{ route('inspections.show', $inspection->inspection_id) }}" class="inspection-view-link">View Details</a>
-                    <a href="{{ route('inspections.edit', $inspection->inspection_id) }}" class="inspection-edit-link">Edit</a>
+                    <a href="{{ route('inspections.show', $inspection->inspection_id) }}" class="inspection-view-link">
+                        View
+                    </a>
+
+                    <a href="{{ route('inspections.edit', $inspection->inspection_id) }}" class="inspection-edit-link">
+                        Edit
+                    </a>
                 </div>
+
             </div>
-            @endforeach
-        </div>
-    </main>
-</body>
-</html>
+        @empty
+            <div class="inspection-empty">
+                No inspections found.
+            </div>
+        @endforelse
+
+    </div>
+
+</main>
+
+@endsection

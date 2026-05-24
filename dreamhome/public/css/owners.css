@@ -576,7 +576,7 @@
     box-sizing: border-box;
     width: 100%;
     min-height: 48px;
-    max: height 140px;px;
+    max-height: 140px;
     transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
