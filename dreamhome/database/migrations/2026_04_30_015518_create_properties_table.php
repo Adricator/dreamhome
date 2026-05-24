@@ -34,7 +34,7 @@ return new class extends Migration
             $table->integer('rooms');
             $table->decimal('monthly_rent', 10, 2);
 
-            $table->enum('status', ['available', 'maintenance', 'rented', 'reserved'])->default('available');;
+            $table->enum('status', ['available', 'maintenance', 'rented', 'reserved'])->default('available');
 
             $table->timestamps();
         });

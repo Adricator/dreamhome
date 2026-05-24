@@ -16,7 +16,7 @@ class Owner extends Model
 
     public function properties()
     {
-        return $this->hasMany(Property::class, 'owner_id');
+        return $this->hasMany(Property::class, 'owner_id', 'owner_id');
     }
 
     protected $fillable = [

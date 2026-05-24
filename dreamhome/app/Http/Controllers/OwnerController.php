@@ -51,7 +51,11 @@ class OwnerController extends Controller
     }
     public function show($owner_id)
     {
-        $owner = Owner::where('owner_id', $owner_id)->firstOrFail();
+        // Find the owner and automatically append a 'properties_count' attribute to the object
+        $owner = Owner::where('owner_id', $owner_id)
+            ->withCount('properties') 
+            ->firstOrFail();
+
         return view('owners.show', compact('owner'));
     }
     public function edit($owner_id)
