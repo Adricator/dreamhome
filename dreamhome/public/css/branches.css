@@ -1059,7 +1059,7 @@
 .b-reg-form {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* space-y-8 */
+    gap: 1rem; /* space-y-8 */
 }
 
 .b-reg-fieldset {
@@ -1156,8 +1156,7 @@
 /* Operational Button Containers and Element Nodes */
 .b-reg-actions-row {
     display: flex;
-    gap: 1rem; /* gap-4 */
-    padding-top: 1rem; /* pt-4 */
+    gap: 1rem;
 }
 
 .b-reg-btn {

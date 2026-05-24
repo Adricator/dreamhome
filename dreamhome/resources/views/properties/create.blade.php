@@ -35,11 +35,14 @@
                 <div class="p-crt-field-stack">
                     <label class="p-crt-field-label">Specifications</label>
                     <div class="p-crt-grid-dual">
-                        <select name="type" class="p-crt-select-menu">
-                            <option value="house">House</option>
-                            <option value="flat">Flat</option>
-                            <option value="bungalow">Bungalow</option>
-                        </select>
+                    <select name="type" class="p-crt-select-menu" required>
+                        <option value="" disabled selected>-- Select Type --</option>
+                        @foreach($types as $type)
+                            <option value="{{ $type }}" {{ old('type') == $type ? 'selected' : '' }}>
+                                {{ ucfirst($type) }}
+                            </option>
+                        @endforeach
+                    </select>
                         <input type="number" name="rooms" placeholder="Rooms" class="p-crt-input-text">
                     </div>
                     <div class="p-crt-grid-dual">
@@ -51,18 +54,79 @@
 
             <div class="p-crt-management-section">
                 <label class="p-crt-field-label p-crt-label-block">Management Assignment</label>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const branchSelect = document.getElementById('branch-select-prop');
+                        const staffSelect = document.getElementById('staff-select-prop');
+
+                        if (branchSelect && staffSelect) {
+                            branchSelect.addEventListener('change', function () {
+                                const branchId = this.value;
+
+                                // Reset dropdown with a loading state hint
+                                staffSelect.innerHTML = '<option value="">Loading assigned staff...</option>';
+
+                                if (!branchId) {
+                                    staffSelect.innerHTML = '<option value="">-- Select a Branch First --</option>';
+                                    return;
+                                }
+
+                                // Fetch staff assigned to the selected branch route
+                                fetch(`/api/branches/${branchId}/staff`)
+                                    .then(response => {
+                                        if (!response.ok) throw new Error('Network error fetching staff elements');
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        // Initialize drop options back to default baseline choice
+                                        staffSelect.innerHTML = '<option value="">-- Choose Staff Member --</option>';
+
+                                        if (data.length === 0) {
+                                            staffSelect.innerHTML = '<option value="">No staff members found here</option>';
+                                            return;
+                                        }
+
+                                        // Build and inject option tags dynamically
+                                        data.forEach(staff => {
+                                            const option = document.createElement('option');
+                                            option.value = staff.staff_id;
+                                            option.textContent = `${staff.staff_id} - ${staff.first_name} ${staff.last_name} (${staff.position})`;
+                                            staffSelect.appendChild(option);
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.error('Fetch Error:', error);
+                                        staffSelect.innerHTML = '<option value="">Error fetching staff. Try again.</option>';
+                                    });
+                            });
+                        }
+                    });
+                    </script>
                 <div class="p-crt-grid-triad">
-                <select name="owner_id" class="p-crt-input-text">
-                    <option value="">-- Choose an Owner --</option>
-                    @foreach($owners as $owner)
-                        <option value="{{ $owner->owner_id }}" 
-                            {{ old('owner_id', $selectedOwnerId) == $owner->owner_id ? 'selected' : '' }}>
-                            {{ $owner->owner_id }} - {{ $owner->first_name }} {{ $owner->last_name }}
-                        </option>
-                    @endforeach
-                </select>
-                    <input type="text" name="staff_id" placeholder="Staff ID" class="p-crt-input-text">
-                    <input type="text" name="branch_id" placeholder="Branch ID" class="p-crt-input-text">
+                    
+                    <select name="owner_id" class="p-crt-input-text">
+                        <option value="">-- Choose an Owner --</option>
+                        @foreach($owners as $owner)
+                            <option value="{{ $owner->owner_id }}" 
+                                {{ old('owner_id', $selectedOwnerId) == $owner->owner_id ? 'selected' : '' }}>
+                                {{ $owner->owner_id }} - {{ $owner->first_name }} {{ $owner->last_name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <select name="branch_id" id="branch-select-prop" class="p-crt-input-text" required>
+                        <option value="" disabled selected>-- Select a Branch --</option>
+                        @foreach($branches as $branch)
+                            <option value="{{ $branch->branch_id }}" {{ old('branch_id') == $branch->branch_id ? 'selected' : '' }}>
+                                {{ $branch->branch_id }} - {{ $branch->city }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <select name="staff_id" id="staff-select-prop" class="p-crt-input-text" required>
+                        <option value="">-- Select a Branch First --</option>
+                    </select>
+
                 </div>
             </div>
 

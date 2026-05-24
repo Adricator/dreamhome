@@ -42,7 +42,7 @@
                     
                     <div class="os-det-stats-column-box">
                         <h4 class="os-det-stats-title">Properties Owned</h4>
-                        <div class="os-det-stats-counter">04</div>
+                        <div class="os-det-stats-counter">{{ $owner->properties_count }}</div>
                         <a href="{{ route('properties.create', ['owner_id' => $owner->owner_id]) }}" class="os-det-add-prop-btn">
                             + Add Property
                         </a>

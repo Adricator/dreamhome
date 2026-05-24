@@ -2,24 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Inspection extends Model
 {
-    use HasFactory;
+    protected $table = 'inspections';
 
-    // Use inspection_id as primary key instead of id
     protected $primaryKey = 'inspection_id';
+
+    public $incrementing = true;
+
+    protected $keyType = 'int';
+
+    public $timestamps = false;
 
     protected $fillable = [
         'property_id',
-        'inspection_date',
         'staff_id',
-        'comments',
+        'date',
+        'comment',
     ];
-
-   protected $casts = [
-    'inspection_date' => 'datetime',
-];
 }

@@ -110,6 +110,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('leases', LeaseController::class)
         ->only(['index']);
 
+    Route::get('/api/branches/{branch_id}/supervisors', [StaffController::class, 'getSupervisorsByBranch']);
+    Route::get('/api/branches/{branch_id}/staff', [PropertyController::class, 'getStaffByBranch']);
+
 });
 
 

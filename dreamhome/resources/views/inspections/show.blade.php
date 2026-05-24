@@ -3,53 +3,119 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inspection View - Dream Home</title>
+    <title>Inspection Details - Dream Home</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/staff.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/inspections.css') }}">
 </head>
-<body style="color:white;">
-    <header class="navbar-container">
-        <nav class="navbar"><div class="navbar-links"><a href="{{ route('dashboard') }}">Home</a><a href="{{ route('inspections.index') }}" class="active">Inspections</a></div></nav>
-    </header>
 
-    <main class="max-w-2xl mx-auto mt-12 p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl m-4">
-        <div class="flex justify-between items-start mb-6">
-            <div>
-                <span class="text-xs font-bold uppercase px-3 py-1 bg-white/20 rounded-full tracking-wider">Log ID: {{ $inspection->inspection_id }}</span>
-                <h1 class="text-3xl font-bold font-['montserrat'] tracking-wide mt-3 text-white lowercase">inspection summary</h1>
-            </div>
-            <a href="{{ route('inspections.edit', $inspection) }}" class="border border-white/40 text-sm font-bold font-['montserrat'] px-4 py-2 rounded-full hover:bg-white/10 transition">Edit Record</a>
+<body>
+
+<header class="navbar-container">
+    <nav class="navbar">
+        <div class="navbar-links">
+            <a href="{{ url('/dashboard') }}">Home</a>
+            <a href="{{ route('branches.index') }}">Branches</a>
+            <a href="{{ route('staff.index') }}">Staff</a>
+            <a href="{{ route('properties.index') }}">Properties</a>
+            <a href="{{ route('owners.index') }}">Owners</a>
+            <a href="{{ route('inspections.index') }}" class="active">Inspections</a>
+            <a href="{{ url('/clients') }}">Clients</a>
+            <a href="{{ url('/viewings') }}">Viewings</a>
+            <a href="{{ url('/leases') }}">Leases</a>
+        </div>
+    </nav>
+
+    <form method="POST" action="{{ route('logout') }}" class="logout-form">
+        @csrf
+        <button type="submit" class="logout-link-btn">Log Out</button>
+    </form>
+</header>
+
+<main class="inspection-show-container">
+
+    <div class="inspection-show-header">
+        <div>
+            <h1 class="inspection-show-title">Inspection Details</h1>
+            <p class="inspection-show-subtitle">Inspection #{{ $inspection->inspection_id }}</p>
         </div>
 
-        <div class="border-t border-white/10 pt-6 space-y-4">
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-black/20 p-4 rounded-xl">
-                    <span class="block text-neutral-400 text-xs uppercase font-bold tracking-wider mb-1">Target Property ID</span>
-                    <span class="text-lg font-semibold text-white">{{ $inspection->property_id }}</span>
-                </div>
-                <div class="bg-black/20 p-4 rounded-xl">
-                    <span class="block text-neutral-400 text-xs uppercase font-bold tracking-wider mb-1">Inspected Date</span>
-                    <span class="text-lg font-semibold text-white">{{ $inspection->inspection_date->format('F d, Y') }}</span>
-                </div>
+        <span class="inspection-id-badge">
+            {{ $inspection->date
+                ? \Carbon\Carbon::parse($inspection->date)->format('M d, Y')
+                : 'No Date'
+            }}
+        </span>
+    </div>
+
+    @if(session('success'))
+        <div class="inspection-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="inspection-show-card">
+
+        <div class="inspection-show-grid">
+
+            <div class="inspection-show-item">
+                <span>Property ID</span>
+                <p>{{ $inspection->property_id }}</p>
             </div>
 
-            <div class="bg-black/20 p-4 rounded-xl">
-                <span class="block text-neutral-400 text-xs uppercase font-bold tracking-wider mb-1">Inspector Assigned (Staff ID)</span>
-                <span class="text-lg font-semibold text-amber-300">{{ $inspection->staff_id }}</span>
+            <div class="inspection-show-item">
+                <span>Staff ID</span>
+                <p>{{ $inspection->staff_id }}</p>
             </div>
 
-            <div class="bg-black/20 p-4 rounded-xl">
-                <span class="block text-neutral-400 text-xs uppercase font-bold tracking-wider mb-1">Internal Remarks & Comments</span>
-                <p class="text-white mt-2 leading-relaxed whitespace-pre-line">{{ $inspection->comments ?? 'No notes appended to this file entry.' }}</p>
+            <div class="inspection-show-item">
+                <span>Inspection Date</span>
+                <p>
+                    {{ $inspection->date
+                        ? \Carbon\Carbon::parse($inspection->date)->format('M d, Y')
+                        : 'No Date'
+                    }}
+                </p>
             </div>
+
         </div>
 
-        <div class="mt-8 text-center">
-            <a href="{{ route('inspections.index') }}" class="text-sm opacity-70 hover:opacity-100 transition underline">← Back to Overview Directory</a>
+        <hr class="inspection-divider">
+
+        <div class="inspection-show-comments">
+            <span>Comment</span>
+            <p>{{ $inspection->comment ?? 'No comment provided.' }}</p>
         </div>
-    </main>
+
+        <div class="inspection-show-actions">
+
+            <a href="{{ route('inspections.index') }}" class="inspection-cancel-btn">
+                Back
+            </a>
+
+            <a href="{{ route('inspections.edit', $inspection) }}" class="inspection-submit-btn">
+                Edit
+            </a>
+
+            <form action="{{ route('inspections.destroy', $inspection) }}" method="POST" onsubmit="return confirm('Delete this inspection?')">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="inspection-danger-btn">
+                    Delete
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
 </body>
 </html>

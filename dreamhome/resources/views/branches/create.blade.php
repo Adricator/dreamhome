@@ -64,16 +64,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="b-reg-divider-section">
-                <div class="b-reg-grid-bottom">
-                    <div class="b-reg-field-wrapper">
-                        <label class="b-reg-group-label b-reg-mb-space">Branch Registration ID</label>
-                        <input type="text" name="branch_id" value="{{ old('branch_id') }}" placeholder="e.g., B005" class="b-reg-control">
-                    </div>
-                </div>
-            </div>
-
+        <hr class="divider">
             <div class="b-reg-actions-row">
                 <button type="submit" class="b-reg-btn b-reg-btn-submit">
                     Confirm Registration
