@@ -12,7 +12,7 @@ class StoreNextOfKinRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,10 @@ class StoreNextOfKinRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nok_name'         => ['required', 'string', 'max:255'],
+            'nok_relationship' => ['required', 'string', 'max:100'],
+            'nok_telephone_no' => ['required', 'string', 'max:50'],
+            'nok_address'      => ['required', 'string', 'max:255'],
         ];
     }
 }

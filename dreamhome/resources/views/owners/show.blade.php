@@ -6,48 +6,85 @@
     <title>Owners - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owners.css') }}">
 </head>
-<body class="text-white min-h-screen">
+<body>
+<main class="os-det-container">
+    <div class="os-det-inner-wrapper">
+        <div class="os-det-back-navigation">
+            <a href="{{ route('owners.index') }}" class="os-det-back-link">← Back to List</a>
+        </div>
 
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="max-w-4xl mx-auto">
-    <div class="mb-8">
-        <a href="{{ route('owners.index') }}" class="text-cyan-400 text-xs uppercase font-bold tracking-widest">← Back to List</a>
-    </div>
-
-    <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden">
-        <div class="p-12">
-            <div class="flex justify-between items-start mb-12">
-                <div>
-                    <span class="text-xs bg-cyan-500/20 text-cyan-400 px-4 py-1 rounded-full uppercase font-bold tracking-tighter">{{ $owner->owner_id }}</span>
-                    <h1 class="text-5xl font-bold mt-4">{{ $owner->first_name }} {{ $owner->last_name }}</h1>
-                </div>
-                <div class="flex gap-3">
-                    <a href="{{ route('owners.edit', $owner) }}" class="border border-white/20 px-6 py-2 rounded-lg text-[10px] uppercase font-bold hover:bg-white hover:text-black transition">Edit</a>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <div>
-                        <h4 class="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-2">Contact Information</h4>
-                        <p class="text-lg">{{ $owner->telephone_no }}</p>
-                        <p class="text-cyan-400">{{ $owner->email }}</p>
-                    </div>
-                    <div>
-                        <h4 class="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-2">Primary Address</h4>
-                        <p class="text-gray-300 leading-relaxed">{{ $owner->address }}</p>
-                    </div>
-                </div>
+        <div class="os-det-profile-panel">
+            <div class="os-det-panel-body">
                 
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/5">
-                    <h4 class="text-[10px] uppercase tracking-[0.2em] text-cyan-400 mb-4">Quick Stats</h4>
-                    <div class="text-3xl font-light mb-1">04</div>
-                    <div class="text-[10px] uppercase text-gray-500 tracking-widest">Properties Owned</div>
+                <div class="os-det-profile-header">
+                    <div class="os-det-header-title-group">
+                        <span class="os-det-id-badge">{{ $owner->owner_id }}</span>
+                        <h1 class="os-det-full-name">{{ $owner->first_name }} {{ $owner->last_name }}</h1>
+                    </div>
+                </div>
+
+                <div class="os-det-layout-grid">
+                    
+                    <div class="os-det-meta-fields-column">
+                        <div class="os-det-field-group">
+                            <h4 class="os-det-section-subtitle">Contact Information</h4>
+                            <p class="os-det-telephone-display">{{ $owner->telephone_no }}</p>
+                            <p class="os-det-email-display">{{ $owner->email }}</p>
+                        </div>
+                        <div class="os-det-field-group">
+                            <h4 class="os-det-section-subtitle">Primary Address</h4>
+                            <p class="os-det-address-display">{{ $owner->address }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="os-det-stats-column-box">
+                        <h4 class="os-det-stats-title">Properties Owned</h4>
+                        <div class="os-det-stats-counter">04</div>
+                        <a href="{{ route('properties.create', ['owner_id' => $owner->owner_id]) }}" class="os-det-add-prop-btn">
+                            + Add Property
+                        </a>
+                    </div>
+                </div>
+                <hr class="divider">
+                <!-- make a div here
+                <div class="action-bar">
+                    <a href="http://127.0.0.1:8000/staff/ST0001/edit" class="btn btn-filled">
+                        Edit Staff Member
+                    </a>
+                    <a href="http://127.0.0.1:8000/staff" class="btn btn-outlined">
+                        Return to Directory
+                    </a>
+                    
+                    <form action="http://127.0.0.1:8000/staff/ST0001" method="POST" onsubmit="return confirm('Archive this staff record?');" class="delete-form">
+                        <input type="hidden" name="_token" value="UEOfTIatvUJRFyzaWbABjzBxfdfBzruCRb7Xxudx" autocomplete="off">            <input type="hidden" name="_method" value="DELETE">            <button type="submit" class="btn-delete">
+                            Delete Record
+                        </button>
+                    </form>
+                </div> 
+                    THIS IS JUST A REFERENCE FROM staff but give the code for owner side-->
+                    <!-- I am curently woking with owner/show.balde.php -->
+                <div class="os-actions">
+                    <div class="os-action-buttons">
+                        <a href="{{ route('owners.edit', $owner->owner_id) }}" class="os-edit-button">
+                            Edit Owner
+                        </a>
+                    </div>
+                    <form action="{{ route('owners.destroy', $owner->owner_id) }}" 
+                        method="POST" 
+                        onsubmit="return confirm('Permanent action: Delete this owner record?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="os-delete-button">
+                            Delete Record
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>
+</body>
+</html>

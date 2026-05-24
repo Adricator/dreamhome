@@ -21,45 +21,85 @@ class PropertyController extends Controller
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
-                $q->where('street', 'LIKE', "%{$search}%")
-                  ->orWhere('city', 'LIKE', "%{$search}%")
-                  ->orWhere('area', 'LIKE', "%{$search}%")
-                  ->orWhere('postcode', 'LIKE', "%{$search}%")
-                  ->orWhere('property_id', 'LIKE', "%{$search}%");
+                $q->where('street', 'ILIKE', "%{$search}%")
+                  ->orWhere('city', 'ILIKE', "%{$search}%")
+                  ->orWhere('area', 'ILIKE', "%{$search}%")
+                  ->orWhere('postcode', 'ILIKE', "%{$search}%")
+                  ->orWhere('property_id', 'ILIKE', "%{$search}%");
             });
         }
 
         // 2. Handle Status Filtering
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
+        if ($request->filled('type')) {
+            $query->where('type', $request->input('type'));
         }
 
         // 3. Handle Type Filtering
-        if ($request->filled('type')) {
-            $query->where('type', $request->type);
+        if ($request->filled('status')) {
+            $query->where('status', $request->input('status'));
         }
 
         // Get results with pagination (10 per page)
         // withQueryString ensures filters stay active when clicking page 2, 3, etc.
-        $properties = $query->paginate(10)->withQueryString();
+        $properties = $query->get();
 
         return view('properties.index', compact('properties'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $owners = Owner::all();
         $branches = Branch::all();
-        return view('properties.create', compact('owners', 'branches'));
+        $selectedOwnerId = $request->query('owner_id');
+
+        // 3. Return everything together in a single, unified view payload
+        return view('properties.create', compact('owners', 'branches', 'selectedOwnerId'));
     }
 
-    public function store(StorePropertyRequest $request)
-    {
-        // This uses the rules defined in your StorePropertyRequest file
-        Property::create($request->validated());
+    public function store(Request $request)
+{
+    // 1. Run your field validation parameters safely
+    $validated = $request->validate([
+        'street'       => 'required|string|max:255',
+        'city'         => 'nullable|string|max:255',
+        'postcode'     => 'nullable|string|max:20',
+        'type'         => 'required|string',
+        'rooms'        => 'nullable|integer',
+        'monthly_rent' => 'nullable|numeric',
+        'area'         => 'nullable|string',
+        'owner_id'     => 'nullable|string',
+        'staff_id'     => 'nullable|string',
+        'branch_id'    => 'nullable|string',
+    ]);
 
-        return redirect()->route('properties.index')->with('success', 'Property created successfully.');
+    // 2. GENERATE CUSTOM PROPERTY ID (e.g., outputs PR0001, PR0002)
+    $lastProperty = \App\Models\Property::orderBy('property_id', 'desc')->first();
+    
+    if ($lastProperty) {
+        // Strip the string prefix prefix, pull the number, and add 1
+        $number = intval(substr($lastProperty->property_id, 2)) + 1;
+        $nextId = 'PR' . str_pad($number, 4, '0', STR_PAD_LEFT);
+    } else {
+        $nextId = 'PR0001'; // Fallback for the first entry in the database table
     }
+
+    // 3. Build array including the generated property_id string
+    \App\Models\Property::create([
+        'property_id'  => $nextId, // Assigning generated token string here
+        'street'       => $validated['street'],
+        'city'         => $validated['city'],
+        'postcode'     => $validated['postcode'],
+        'type'         => $validated['type'],
+        'rooms'        => $validated['rooms'],
+        'monthly_rent' => $validated['monthly_rent'],
+        'area'         => $validated['area'],
+        'owner_id'     => $validated['owner_id'],
+        'staff_id'     => $validated['staff_id'],
+        'branch_id'    => $validated['branch_id'],
+    ]);
+
+    return redirect()->route('properties.index')->with('success', 'Property successfully listed!');
+}
 
     public function edit($property_id)
     {
@@ -70,12 +110,45 @@ class PropertyController extends Controller
         return view('properties.edit', compact('property', 'owners', 'branches'));
     }
 
-    public function update(UpdatePropertyRequest $request, Property $property)
+    public function update(Request $request, $id)
     {
-        // Update only the fields that passed validation
-        $property->update($request->validated());
+        // 1. Find the property record using the unique string ID
+        $property = \App\Models\Property::where('property_id', $id)->firstOrFail();
 
-        return redirect()->route('properties.index')->with('success', 'Property updated successfully.');
+        // 2. Validate all incoming form fields safely
+        $validated = $request->validate([
+            'street'       => 'required|string|max:255',
+            'city'         => 'nullable|string|max:255',
+            'postcode'     => 'nullable|string|max:20',
+            'type'         => 'required|string',
+            'status'       => 'required|string',
+            'rooms'        => 'nullable|integer',
+            'monthly_rent' => 'nullable|numeric',
+            'area'         => 'nullable|string',
+            'owner_id'     => 'nullable|string',
+            'staff_id'     => 'nullable|string',
+            'branch_id'    => 'nullable|string',
+        ]);
+
+        // 3. Perform the database update operation
+        $property->update([
+            'street'       => $validated['street'],
+            'city'         => $validated['city'],
+            'postcode'     => $validated['postcode'],
+            'type'         => $validated['type'],
+            'status'       => $validated['status'],
+            'rooms'        => $validated['rooms'],
+            'monthly_rent' => $validated['monthly_rent'],
+            'area'         => $validated['area'],
+            'owner_id'     => $validated['owner_id'],
+            'staff_id'     => $validated['staff_id'],
+            'branch_id'    => $validated['branch_id'],
+        ]);
+
+        // 4. Redirect back to the profile details view with a success notification banner
+        return redirect()
+            ->route('properties.show', $property->property_id)
+            ->with('success', 'Property tracking details updated successfully!');
     }
 
     public function show($id)
@@ -84,9 +157,23 @@ class PropertyController extends Controller
         return view('properties.show', compact('property'));
     }
 
-    public function destroy(Property $property)
-    {
-        $property->delete();
-        return redirect()->route('properties.index')->with('success', 'Property deleted.');
+    public function destroy($id)
+{
+    // 1. Target the specific row using your custom string column primary key
+    $property = \App\Models\Property::where('property_id', $id)->firstOrFail();
+
+    // 2. Cascade delete or clear records if database restrictions require it
+    // If you have an advertisements relationship defined, delete them first to prevent foreign key errors:
+    if ($property->advertisements) {
+        $property->advertisements()->delete();
     }
+
+    // 3. Delete the property row from the table
+    $property->delete();
+
+    // 4. Send the user back to the directory list with a confirmation alert message
+    return redirect()
+        ->route('properties.index')
+        ->with('success', 'Property records successfully removed from system databases.');
+}
 }

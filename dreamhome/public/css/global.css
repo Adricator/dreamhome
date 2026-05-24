@@ -80,3 +80,8 @@ select option {
     color: white;
 }
 
+.divider{
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+}

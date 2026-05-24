@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 
     public function owner()
     {
-        return $this->belongsTo(PrivateOwner::class, 'owner_id');
+        return $this->belongsTo(Owner::class, 'owner_id');
     }
 
     public function branch()

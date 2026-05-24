@@ -6,82 +6,121 @@
     <title>Edit Owner - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/properties.css') }}">
 </head>
-<body class="text-white min-h-screen bg-[#0a0a0a]">
-
-    <main class="max-w-4xl mx-auto px-6 py-16">
-        <div class="glass-card rounded-3xl p-10 border border-amber-500/20 bg-white/5 backdrop-blur-md">
-            
-            <div class="flex justify-between items-start mb-10">
-                <div>
-                    <h1 class="font-dream text-4xl text-[#d1dcd5] lowercase">edit owner</h1>
-                    <p class="text-amber-500 text-[10px] uppercase tracking-widest mt-2 font-bold">
-                        Modifying Profile: {{ $owner->owner_id }}
-                    </p>
-                </div>
-                <span class="text-[10px] px-4 py-2 bg-white/5 rounded-full border border-white/10 uppercase tracking-tighter">
-                    Type: Owner
-                </span>
+<body>
+<main class="p-edt-container">
+    <div class="p-edt-glass-card">
+        
+        <div class="p-edt-header">
+            <div>
+                <h1 class="p-edt-main-title">edit property listing</h1>
+                <p class="p-edt-sub-title">Modifying Property: {{ $property->property_id }}</p>
             </div>
 
-            <form action="{{ route('owners.update', $owner->owner_id) }}" method="POST" class="space-y-8">
-                @csrf
-                @method('PUT')
-                
-                <input type="hidden" name="owner_id" value="{{ $owner->owner_id }}">
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Personal Information</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="space-y-1">
-                                <span class="text-[9px] text-gray-500 uppercase ml-2">First Name</span>
-                                <input type="text" name="first_name" value="{{ $owner->first_name }}" 
-                                    class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
-                            </div>
-                            <div class="space-y-1">
-                                <span class="text-[9px] text-gray-500 uppercase ml-2">Last Name</span>
-                                <input type="text" name="last_name" value="{{ $owner->last_name }}" 
-                                    class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <span class="text-[9px] text-gray-500 uppercase ml-2">Street Address</span>
-                            <input type="text" name="address" value="{{ $owner->address }}" 
-                                class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Contact Details</label>
-                        <div class="space-y-1">
-                            <span class="text-[9px] text-gray-500 uppercase ml-2">Phone Number</span>
-                            <input type="text" name="tel_no" value="{{ $owner->tel_no }}" 
-                                class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
-                        </div>
-                        <div class="space-y-1">
-                            <span class="text-[9px] text-gray-500 uppercase ml-2">Email Address</span>
-                            <input type="email" name="email" value="{{ $owner->email }}" 
-                                class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-1 focus:ring-cyan-400 outline-none transition-all">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-8 border-t border-white/10">
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-black px-10 py-4 text-xs font-bold uppercase tracking-widest transition-all rounded-lg">
-                            Update Owner Profile
-                        </button>
-                        <a href="{{ route('owners.index') }}" class="border border-white/20 hover:bg-white/5 px-10 py-4 text-xs font-bold uppercase tracking-widest transition-all rounded-lg flex items-center justify-center">
-                            Cancel Changes
-                        </a>
-                    </div>
-                </div>
-            </form>
-            
+            @if(isset($property))
+            <span class="p-id-pill">
+                ID: {{ $property->property_id }}
+            </span>
+            @endif
         </div>
-    </main>
+
+        <form action="{{ route('properties.update', $property->property_id) }}" method="POST" class="p-edt-form-layout">
+            @csrf
+            @method('PUT')
+            
+            <div class="p-edt-grid-split">
+
+                
+                
+                <div class="p-edt-field-stack">
+                    <label class="p-edt-field-label">Location Details</label>
+                    <div class="p-edt-input-group">
+                        <span class="p-edt-input-label">Street</span>
+                        <input type="text" name="street" value="{{ old('street', $property->street) }}" placeholder="Street Address" class="p-edt-input-text" required>
+                    </div>
+                        <div class="p-edt-grid-dual">
+                            <div class="p-edt-input-group">
+                                <span class="p-edt-input-label">City</span>
+                                <input type="text" name="city" value="{{ old('city', $property->city) }}" placeholder="City" class="p-edt-input-text">
+                            </div>
+                            <div class="p-edt-input-group">
+                                <span class="p-edt-input-label">Postcode</span>
+                                <input type="text" name="postcode" value="{{ old('postcode', $property->postcode) }}" placeholder="Postcode" class="p-edt-input-text">
+                            </div>
+                        </div>
+                </div>
+
+                <div class="p-edt-field-stack">
+                    <label class="p-edt-field-label">Specifications & Status</label>
+                    <div class="p-edt-grid-dual">
+                        <div class="p-edt-input-group">
+                            <span class="p-edt-input-label">type</span>
+                            <select name="type" class="p-edt-select-menu">
+                                <option value="house" @selected(old('type', $property->type) == 'house')>House</option>
+                                <option value="flat" @selected(old('type', $property->type) == 'flat')>Flat</option>
+                                <option value="bungalow" @selected(old('type', $property->type) == 'bungalow')>Bungalow</option>
+                                <option value="apartment" @selected(old('type', $property->type) == 'apartment')>Apartment</option>
+                                <option value="condo" @selected(old('type', $property->type) == 'condo')>Condo</option>
+                                <option value="studio" @selected(old('type', $property->type) == 'studio')>Studio</option>
+                            </select>
+                        </div>
+                        <div class="p-edt-input-group">
+                            <span class="p-edt-input-label">status</span>
+                            <select name="status" class="p-edt-select-menu">
+                                <option value="available" @selected(old('status', $property->status) == 'available')>Available</option>
+                                <option value="rented" @selected(old('status', $property->status) == 'rented')>Rented</option>
+                                <option value="maintenance" @selected(old('status', $property->status) == 'maintenance')>Maintenance</option>
+                                <option value="reserved" @selected(old('status', $property->status) == 'reserved')>Reserved</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p-edt-grid-dual">
+                        <div class="p-edt-input-group">
+                            <span class="p-edt-input-label">rooms</span>
+                            <input type="number" name="rooms" value="{{ old('rooms', $property->rooms) }}" placeholder="Rooms" class="p-edt-input-text">
+                        </div>
+                        <div class="p-edt-input-group">
+                            <span class="p-edt-input-label">area</span>
+                            <input type="text" name="area" value="{{ old('area', $property->area) }}" placeholder="Area" class="p-edt-input-text">
+                        </div>
+                    </div>
+                    <div class="p-edt-input-group">
+                        <span class="p-edt-input-label">monthly rent</span>
+                        <input type="number" name="monthly_rent" value="{{ old('monthly_rent', $property->monthly_rent) }}" placeholder="Rent (₱)" class="p-edt-input-text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-edt-management-section">
+                <label class="p-edt-field-label p-edt-label-block">Management Assignment</label>
+                <div class="p-edt-grid-triad">
+                    <div class="p-edt-input-group">
+                        <span class="p-edt-input-label">owner</span>
+                        <input type="text" name="owner_id" value="{{ old('owner_id', $property->owner_id) }}" placeholder="Owner ID" class="p-edt-input-text">
+                    </div>
+                    <div class="p-edt-input-group">
+                        <span class="p-edt-input-label">staff assigned</span>
+                        <input type="text" name="staff_id" value="{{ old('staff_id', $property->staff_id) }}" placeholder="Staff ID" class="p-edt-input-text">
+                    </div>
+                    <div class="p-edt-input-group">
+                        <span class="p-edt-input-label">branch</span>
+                        <input type="text" name="branch_id" value="{{ old('branch_id', $property->branch_id) }}" placeholder="Branch ID" class="p-edt-input-text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-edt-action-deck">
+                <button type="submit" class="p-edt-btn p-edt-btn-submit">
+                    Save Changes
+                </button>
+                <a href="{{ route('properties.show', $property->property_id) }}" class="p-edt-btn p-edt-btn-cancel">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

@@ -115,6 +115,10 @@
                             ₱{{ number_format($staff->performance_bonus ?? 0, 2) }}
                         </p>
                     </div>
+                    <div>
+                        <p class="data-label">Properties Managed</p>
+                        <p class="data-value">{{ $staff->properties->count() }} Listings</p>
+                    </div>
 
                 @elseif(strtolower($staff->position) === 'secretary')
 
@@ -130,6 +134,10 @@
                             {{ $staff->supervised_by ?? 'Not Assigned' }}
                         </p>
                     </div>
+                    <div>
+                        <p class="data-label">Properties Managed</p>
+                        <p class="data-value">{{ $staff->properties->count() }} Listings</p>
+                    </div>
 
                 @elseif(strtolower($staff->position) === 'staff')
                     <div>
@@ -137,13 +145,14 @@
                         <p class="data-value">
                             {{ $staff->supervised_by ?? 'Not Assigned' }}
                         </p>
+                    </div>  
+                    <div>
+                        <p class="data-label">Properties Managed</p>
+                        <p class="data-value">{{ $staff->properties->count() }} Listings</p>
                     </div>
-
                 @endif
-
             </div>
-        </div>
-            
+        </div>       
     </div>
 
     <div class="nok-dropdown-wrapper">
@@ -173,15 +182,6 @@
     </div>
     
     <hr class="divider">
-
-    <div class="grid-three-col">
-         <div>
-            <p class="data-label">Properties Managed</p>
-            <p class="data-value">{{ $staff->properties->count() }} Listings</p>
-        </div>
-        <div></div>
-        <div></div>
-    </div>
 
     <div class="action-bar">
         <a href="{{ route('staff.edit', ['staff_id' => $staff->staff_id]) }}" class="btn btn-filled">

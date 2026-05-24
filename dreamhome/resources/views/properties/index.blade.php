@@ -6,10 +6,11 @@
     <title>Properties - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/properties.css') }}">
 </head>
-<body class="text-white min-h-screen">
+<body>
 
     <header class="navbar-container">
         <nav class="navbar">
@@ -33,80 +34,82 @@
         </form>
     </header>
 
-
-    <main class="max-w-7xl mx-auto px-6 py-12">
-        <!-- Header & Search Section -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-            <div>
-                <h1 class="font-dream text-5xl text-[#d1dcd5] mb-4">property directory</h1>
-                <form action="{{ route('properties.index') }}" method="GET" class="flex flex-wrap gap-3">
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by street or ID..." class="px-4 py-2 rounded-lg text-sm w-64 focus:outline-none focus:ring-1 focus:ring-cyan-400">
-                   <select name="type" class="px-4 py-2 rounded-lg bg-[#0f172a] text-sm focus:outline-none">
-                    <option value="">All Types</option>
-                    <option value="House" @selected(request('type') == 'House')>House</option>
-                    <option value="Apartment" @selected(request('type') == 'Apartment')>Apartment</option>
-                    <option value="Condo" @selected(request('type') == 'Condo')>Condo</option>
-                    <option value="Flat" @selected(request('type') == 'Flat')>Flat</option>
-                </select>
-
-                 <select name="status" class="px-4 py-2 rounded-lg bg-[#0f172a] text-sm focus:outline-none">
-                <option value="">All Statuses</option>
-                <option value="Available" @selected(request('status') == 'Available')>Available</option>
-                <option value="Rented" @selected(request('status') == 'Rented')>Rented</option>
-                <option value="Maintenance" @selected(request('status') == 'Maintenance')>Maintenance</option>
+    <main class="p-dir-container">
+    
+    <div class="p-dir-topbar">
+        <div class="p-dir-meta-left">
+            <h1 class="p-dir-main-title">property directory</h1>
+            
+            <form action="{{ route('properties.index') }}" method="GET" class="p-dir-filter-form" id="propertyFilterForm">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by street or ID..." class="p-dir-search-input">
+                <button type="submit" class="p-dir-btn-filter">Search</button>
                 
+                <select name="type" class="p-dir-select-menu" onchange="this.form.submit()">
+                    <option value="">All Types</option>
+                    <option value="house" @selected(request('type') == 'house')>House</option>
+                    <option value="apartment" @selected(request('type') == 'apartment')>Apartment</option>
+                    <option value="condo" @selected(request('type') == 'condo')>Condo</option>
+                    <option value="flat" @selected(request('type') == 'flat')>Flat</option>
+                    <option value="studio" @selected(request('type') == 'studio')>Studio</option>
                 </select>
-                    <button type="submit" class="bg-cyan-600 px-4 py-2 rounded-lg text-xs uppercase font-bold hover:bg-cyan-500">Filter</button>
+
+                <select name="status" class="p-dir-select-menu" onchange="this.form.submit()">
+                    <option value="">All Statuses</option>
+                    <option value="available" @selected(request('status') == 'available')>Available</option>
+                    <option value="rented" @selected(request('status') == 'rented')>Rented</option>
+                    <option value="maintenance" @selected(request('status') == 'maintenance')>Maintenance</option>
+                    <option value="reserved" @selected(request('status') == 'reserved')>Reserved</option>
+                </select>
+            </form>
+        </div>
+        
+        <a href="{{ route('properties.create') }}" class="p-dir-btn-add">
+            + Add Property
+        </a>
+    </div>
+
+    <div class="p-dir-card-grid">
+        @foreach($properties as $property)
+        <div class="p-dir-glass-card">
+            
+            <div class="p-dir-card-header">
+                <span class="p-dir-badge-status">
+                    {{ $property->status }} | {{ $property->type }}
+                </span>
+                <h3 class="p-dir-price-tag">
+                    ₱{{ number_format($property->monthly_rent) }}<span class="p-dir-price-period">/mo</span>
+                </h3>
+            </div>
+
+            <div class="p-dir-location-block">
+                <p class="p-dir-text-id">Property ID: {{ $property->property_id }}</p>
+                <p class="p-dir-text-street">{{ $property->street }}</p>
+                <p class="p-dir-text-city">{{ $property->city }}, {{ $property->postcode }}</p>
+            </div>
+
+            <div class="p-dir-specs-matrix">
+                <div class="p-dir-matrix-cell"><span class="p-dir-cell-label">Rooms:</span> {{ $property->rooms }}</div>
+                <div class="p-dir-matrix-cell"><span class="p-dir-cell-label">Area:</span> {{ $property->area }}</div>
+                <div class="p-dir-matrix-cell"><span class="p-dir-cell-label">Owner ID:</span> {{ $property->owner_id }}</div>
+                <div class="p-dir-matrix-cell"><span class="p-dir-cell-label">Staff | Branch ID:</span> {{ $property->staff_id }} | {{ $property->branch_id }}</div>
+            </div>
+
+            <div class="p-dir-card-actions">
+                <div class="p-dir-links-group">
+                    <a href="{{ route('properties.show', $property->property_id) }}" class="p-dir-action-link p-dir-link-cyan">View</a>
+                    <a href="{{ route('properties.edit', $property->property_id) }}" class="p-dir-action-link p-dir-link-white">Edit</a>
+                </div>
+                
+                <form action="{{ route('properties.destroy', $property->property_id) }}" method="POST" onsubmit="return confirm('Delete this property?');" class="p-dir-delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="p-dir-btn-delete">Delete</button>
                 </form>
             </div>
-            
-            <a href="{{ route('properties.create') }}" class="border border-white px-6 py-2 text-[11px] font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition">
-                + Add Property
-            </a>
         </div>
-
-        <!-- Property Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($properties as $property)
-            <div class="glass-card rounded-2xl p-6 hover:border-white/40 transition-all group flex flex-col">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full uppercase tracking-tighter">
-                        {{ $property->status }} | {{ $property->type }}
-                    </span>
-                    <h3 class="text-2xl font-light">₱{{ number_format($property->monthly_rent) }}<span class="text-xs text-gray-500">/mo</span></h3>
-                </div>
-
-                <div class="space-y-1 mb-4">
-                    <p class="text-gray-500 text-sm">Property ID: {{ $property->property_id }}</p>
-                    <p class="text-xl font-semibold tracking-tight">{{ $property->street }}</p>
-                    <p class="text-gray-400 text-sm uppercase tracking-widest">{{ $property->city }}, {{ $property->postcode }}</p>
-                    
-                </div>
-
-                <!-- New Data Points -->
-                <div class="grid grid-cols-2 gap-4 py-4 border-y border-white/10 my-4 text-[11px] uppercase tracking-wider text-gray-300">
-                    <div><span class="text-gray-500 block">Rooms:</span> {{ $property->rooms }}</div>
-                    <div><span class="text-gray-500 block">Area:</span> {{ $property->area }}</div>
-                    <div><span class="text-gray-500 block">Owner ID:</span> {{ $property->owner_id }}</div>
-                    <div><span class="text-gray-500 block">Staff | Branch ID:</span> {{ $property->staff_id }} | {{ $property->branch_id }}</div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="mt-auto pt-4 flex justify-between items-center">
-                    <div class="flex gap-4">
-                        <a href="{{ route('properties.show', $property->property_id) }}" class="text-cyan-400 hover:text-white text-[10px] uppercase font-bold tracking-widest">View</a>
-                        <a href="{{ route('properties.edit', $property->property_id) }}" class="text-white hover:text-cyan-400 text-[10px] uppercase font-bold tracking-widest">Edit</a>
-                    </div>
-                    
-                    <form action="{{ route('properties.destroy', $property->property_id) }}" method="POST" onsubmit="return confirm('Delete this property?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-red-400 hover:text-red-600 text-[10px] uppercase font-bold tracking-widest">Delete</button>
-                    </form>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </main>
+        @endforeach
+    </div>
+</main>
+    
 </body>
 </html>

@@ -9,7 +9,7 @@ class Owner extends Model
 {
     /** @use HasFactory<\Database\Factories\PrivateOwnerFactory> */
     use HasFactory;
-     protected $primaryKey = 'owner_id';
+    protected $primaryKey = 'owner_id';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;
@@ -27,8 +27,4 @@ class Owner extends Model
         'telephone_no',
         'email',
     ];
-
-
-
 }
-

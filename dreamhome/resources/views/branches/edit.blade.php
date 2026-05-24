@@ -55,11 +55,9 @@
                     </label>
 
                     <div class="branch-input-group">
-
                         <span class="branch-input-label">
                             Street Address
                         </span>
-
                         <textarea name="street" rows="2" class="branch-textarea">{{ old('street', $branch->street ?? '') }}</textarea>
 
                     </div>

@@ -88,11 +88,6 @@ class BranchController extends Controller
     }
 
 
-
-
-    /**
-     * Remove the branch.
-     */
     public function destroy($id)
     {
         $branch = Branch::findOrFail($id);

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('email')->nullable();
             $table->string('prefer_type')->nullable();
             $table->decimal('max_rent',10,2)->nullable();
+            $table->string('password');
+            $table->rememberToken();
         });
     }
 

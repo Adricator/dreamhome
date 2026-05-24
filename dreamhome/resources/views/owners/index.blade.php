@@ -6,10 +6,11 @@
     <title>Owners - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owners.css') }}">
 </head>
-<body class="text-white min-h-screen">
+<body>
 
     <header class="navbar-container">
         <nav class="navbar">
@@ -32,50 +33,62 @@
             </button>
         </form>
     </header>
+    <main class="od-dir-wrapper">
+        @if (session('success'))
+            <div class="alert-success-toast" style="background-color: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; color: #22c55e; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-size: 0.875rem;">
+                {{ session('success') }}
+            </div>
+        @endif
 
-        <main class="max-w-7xl mx-auto px-6 py-12">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-            <div>
-                <h1 class="font-dream text-5xl text-[#d1dcd5] mb-4">owner directory</h1>
-                <form action="{{ route('owners.index') }}" method="GET" class="flex flex-wrap gap-3">
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search owners..." class="bg-white/10 border border-white/20 px-4 py-2 rounded-lg text-sm w-64 focus:outline-none focus:ring-1 focus:ring-cyan-400 text-white">
-                    <button type="submit" class="bg-cyan-600 px-4 py-2 rounded-lg text-xs uppercase font-bold hover:bg-cyan-500">Search</button>
+        @if (session('error'))
+            <div class="alert-danger-toast" style="background-color: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-size: 0.875rem;">
+                <strong>Action Blocked:</strong> {{ session('error') }}
+            </div>
+        @endif
+        <div class="od-dir-top-bar">
+            
+            <div class="od-dir-title-area">
+                <h1 class="od-dir-main-heading">owner directory</h1>
+                <form action="{{ route('owners.index') }}" method="GET" class="od-dir-search-form">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search owners..." class="od-dir-search-field">
+                    <button type="submit" class="od-dir-search-btn">Search</button>
                 </form>
             </div>
 
-            <a href="{{ route('owners.create') }}" class="border border-white px-6 py-2 text-[11px] font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition">
+            <a href="{{ route('owners.create') }}" class="od-dir-action-register">
                 + Register New Owner
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="od-dir-cards-matrix">
             @foreach($owners as $owner)
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all group">
-                <div class="mb-4">
-                    <span class="text-[10px] bg-white/10 text-gray-400 px-3 py-1 rounded-full uppercase tracking-tighter">
+            <div class="od-dir-profile-card">
+                
+                <div class="od-dir-badge-row">
+                    <span class="od-dir-id-token">
                         {{ $owner->owner_id }}
                     </span>
                 </div>
 
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold tracking-tight">{{ $owner->first_name }} {{ $owner->last_name }}</h3>
-                    <p class="text-cyan-400 text-[10px] uppercase tracking-widest font-semibold mt-1">Property Owner</p>
+                <div class="od-dir-identity-block">
+                    <h3 class="od-dir-full-name">{{ $owner->first_name }} {{ $owner->last_name }}</h3>
+                    <p class="od-dir-role-tag">Property Owner</p>
                 </div>
 
-                <div class="space-y-2 mb-6 text-sm text-gray-300">
-                    <div class="flex justify-between border-b border-white/5 pb-1">
-                        <span class="text-gray-500 text-[10px] uppercase">Phone</span>
-                        <span class="text-xs">{{ $owner->telephone_no }}</span>
+                <div class="od-dir-details-list">
+                    <div class="od-dir-info-row">
+                        <span class="od-dir-label text-uppercase">Phone</span>
+                        <span class="od-dir-value">{{ $owner->telephone_no }}</span>
                     </div>
-                    <div class="flex justify-between border-b border-white/5 pb-1">
-                        <span class="text-gray-500 text-[10px] uppercase">Email</span>
-                        <span class="text-xs truncate ml-4">{{ $owner->email }}</span>
+                    <div class="od-dir-info-row">
+                        <span class="od-dir-label text-uppercase">Email</span>
+                        <span class="od-dir-value od-dir-truncate-email">{{ $owner->email }}</span>
                     </div>
                 </div>
 
-                <div class="flex gap-4">
-                    <a href="{{ route('owners.show', $owner) }}" class="text-cyan-400 hover:text-white text-[10px] uppercase font-bold tracking-widest">View Details</a>
-                    <a href="{{ route('owners.edit', $owner) }}" class="text-white/50 hover:text-white text-[10px] uppercase font-bold tracking-widest">Edit</a>
+                <div class="od-dir-action-links">
+                    <a href="{{ route('owners.show', $owner) }}" class="od-dir-btn-link od-dir-link-cyan">View Details</a>
+                    <a href="{{ route('owners.edit', $owner) }}" class="od-dir-btn-link od-dir-link-muted">Edit</a>
                 </div>
             </div>
             @endforeach
