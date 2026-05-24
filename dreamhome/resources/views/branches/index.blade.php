@@ -16,7 +16,7 @@
         <nav class="navbar">
             <div class="nav-spacer"></div>
             <div class="navbar-links">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ url('/dashboard') }}">Home</a>
                 <a href="{{ route('branches.index') }}" class="active">Branches</a>
                 <a href="{{ route('staff.index') }}">Staff</a>
                 <a href="{{ route('properties.index') }}">Properties</a>

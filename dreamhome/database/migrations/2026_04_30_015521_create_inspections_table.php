@@ -6,39 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('inspections', function (Blueprint $table) {
-            $table->integer('inspection_no'); 
-            $table->string('property_id');
-            
-            $table->string('staff_id');
-            $table->date('date');
-            $table->text('comment');
+            $table->bigIncrements('inspection_id'); // bigint UNSIGNED PRIMARY KEY
+            $table->string('property_id', 20);      // varchar(20) Foreign Key
+            $table->date('inspection_date');        // date
+            $table->string('staff_id', 20);         // varchar(20) Foreign Key
+            $table->text('comments')->nullable();   // text
+            $table->timestamps();
 
-            // 1. Define the Composite Primary Key
-            $table->primary(['inspection_no', 'property_id']);
-
-            // 2. Define Foreign Key for property_id
-            $table->foreign('property_id')
-                ->references('property_id')
-                ->on('properties')
-                ->onDelete('cascade');
-
-            // 3. Define Foreign Key for staff_id
-            $table->foreign('staff_id')
-                ->references('staff_id')
-                ->on('staff')
-                ->onDelete('cascade');
+            // Set up Foreign key restrictions if your tables exist:
+            // $table->foreign('property_id')->references('property_id')->on('properties')->onDelete('cascade');
+            // $table->foreign('staff_id')->references('staff_id')->on('staff')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('inspections');

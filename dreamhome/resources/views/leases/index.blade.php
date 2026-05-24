@@ -3,19 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Branches - Dream Home</title>
+    <title>Leases - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/branches.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/leases.css') }}">
     </head>
 <body>
     
     <header class="navbar-container">
         <nav class="navbar">
             <div class="navbar-links">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ url('/dashboard') }}">Home</a>
                 <a href="{{ route('branches.index') }}">Branches</a>
                 <a href="{{ route('staff.index') }}">Staff</a>
                 <a href="{{ route('properties.index') }}">Properties</a>

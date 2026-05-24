@@ -11,64 +11,109 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ViewingController;
 use App\Http\Controllers\LeaseController;
 
-use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
-| Public Frontend Routes (No Authentication Required)
+| Public Frontend Routes
+|--------------------------------------------------------------------------
+| These routes can be accessed without logging in.
 |--------------------------------------------------------------------------
 */
 
-// Root URL points directly to the login interface
+// Welcome / landing page
 Route::get('/', function () {
-    if (Auth::check()) { // <-- Changed from auth()->check()
-        return redirect()->route('dashboard');
-    }
-    
-    return redirect()->route('login');
-})->name('home');
+    return view('welcome');
+})->name('welcome');
 
-// Search Engine Routes
-Route::get('/search', [SearchController::class, 'index'])->name('search.page');
-Route::get('/search/results', [SearchController::class, 'search'])->name('search.results');
-// Client Portal Preference Submission
+// Search page
+Route::get('/search', [SearchController::class, 'index'])
+    ->name('search.page');
+
+// Search results
+Route::get('/search/results', [SearchController::class, 'search'])
+    ->name('search.results');
+
+// Client preference registration page
 Route::get('/register-preferences', function () {
-    return view('client_preferences'); 
+    return view('client_preferences');
 })->name('register.preferences');
 
 
 /*
 |--------------------------------------------------------------------------
-| Secure Management Routes (Requires Admin/Staff Login)
+| Dashboard Route
+|--------------------------------------------------------------------------
+| Only authenticated users with admin or staff role can access this page.
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->group(function () {
 
-    // Main App Dashboard Window
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'role:admin,staff'])
+  ->name('dashboard');
 
-    // Standard CRUD Resources (Scoped to use custom column parameters)
-    Route::resource('branches', BranchController::class)->parameters(['branches' => 'branch_id']);
-    Route::resource('staff', StaffController::class)->parameters(['staff' => 'staff_id']);
-    Route::resource('properties', PropertyController::class)->parameters(['properties' => 'property_id']);
-    Route::resource('owners', OwnerController::class)->parameters(['owners' => 'owner_id']);
-    Route::resource('clients', ClientController::class)->parameters(['clients' => 'client_id']);
-    Route::resource('inspections', InspectionController::class);
-
-    // Contextual Composite Key Mapping for Inspections Edit Window
-    Route::get('/inspections/{property_id}/{inspection_date}/edit', [InspectionController::class, 'edit'])->name('inspections.edit');
-
-    // Read-Only System Trackers
-    Route::get('/viewings', [ViewingController::class, 'index'])->name('viewings.index');
-    Route::get('/leases', [LeaseController::class, 'index'])->name('leases.index');
-
-});
 
 /*
 |--------------------------------------------------------------------------
-| Laravel Breeze Authentication Handlers (Login, Registration, Logouts)
+| Protected Management Routes
+|--------------------------------------------------------------------------
+| These routes require the user to be logged in.
+| Used for admin/staff CRUD management.
 |--------------------------------------------------------------------------
 */
-require __DIR__.'/auth.php';
+
+Route::middleware(['auth'])->group(function () {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Main CRUD Resources
+    |--------------------------------------------------------------------------
+    | These routes handle Create, Read, Update, and Delete operations.
+    | Custom parameters are used because your database uses IDs like:
+    | property_id, branch_id, staff_id, owner_id, client_id.
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('properties', PropertyController::class)
+        ->parameters(['properties' => 'property_id']);
+
+    Route::resource('branches', BranchController::class)
+        ->parameters(['branches' => 'branch_id']);
+
+    Route::resource('staff', StaffController::class)
+        ->parameters(['staff' => 'staff_id']);
+
+    Route::resource('owners', OwnerController::class)
+        ->parameters(['owners' => 'owner_id']);
+
+    Route::resource('clients', ClientController::class)
+        ->parameters(['clients' => 'client_id']);
+
+    Route::resource('inspections', InspectionController::class);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Read-Only System Tracker Routes
+    |--------------------------------------------------------------------------
+    | These pages are only for viewing records, not creating/editing/deleting.
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('viewings', ViewingController::class)
+        ->only(['index']);
+
+    Route::resource('leases', LeaseController::class)
+        ->only(['index']);
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Laravel Breeze Authentication Routes
+|--------------------------------------------------------------------------
+| This includes login, register, logout, forgot password, etc.
+|--------------------------------------------------------------------------
+*/
+
+require __DIR__ . '/auth.php';

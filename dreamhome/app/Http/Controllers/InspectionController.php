@@ -2,77 +2,77 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Inspection;
-use App\Http\Requests\StoreInspectionRequest;
-use App\Http\Requests\UpdateInspectionRequest;
+use Illuminate\Http\Request;
 
 class InspectionController extends Controller
 {
-    // app/Http/Controllers/InspectionController.php
-
-    public function index()
+    public function index(Request $request)
     {
-        // This 'property' here is what was causing the crash
-        $inspections = Inspection::with(['property', 'staff'])->get(); 
-        
+        $query = Inspection::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('property_id', 'LIKE', "%{$search}%")
+                  ->orWhere('staff_id', 'LIKE', "%{$search}%")
+                  ->orWhere('comments', 'LIKE', "%{$search}%");
+        }
+
+        $inspections = $query->get();
+
         return view('inspections.index', compact('inspections'));
     }
 
-    public function store(StoreInspectionRequest $request)
+   public function create()
     {
+        $properties = Property::all();
+        $staffMembers = Staff::all();
 
-    $validated = $request->validate([
-            'property_id'      => 'required|string|max:20',
+        return view('inspections.create', compact('properties', 'staffMembers'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'property_id'     => 'required|string|max:20',
             'inspection_date' => 'required|date',
             'staff_id'        => 'required|string|max:20',
             'comments'        => 'nullable|string',
         ]);
-        // Use the data already validated by the StoreInspectionRequest
-        Inspection::create($request->validated());
 
-        return redirect()->route('inspections.index')
-                         ->with('success', 'Inspection recorded successfully.');
+        Inspection::create($validated);
+
+        return redirect()->route('inspections.index')->with('success', 'Inspection logged successfully.');
     }
 
-    // Fixed: Removed Route Model Binding since you are using composite keys
-    public function show($property_id, $inspection_date)
+    public function show(Inspection $inspection)
     {
-        $inspection = Inspection::where('property_id', $property_id)
-            ->where('inspection_date', $inspection_date)
-            ->firstOrFail();
-
         return view('inspections.show', compact('inspection'));
     }
 
-    public function edit($property_id, $inspection_date)
+    public function edit(Inspection $inspection)
     {
-        // Fixed the typo: $propert_id -> $property_id
-        $inspection = Inspection::where('property_id', $property_id)
-            ->where('inspection_date', $inspection_date)
-            ->firstOrFail();
-
         return view('inspections.edit', compact('inspection'));
     }
 
-    public function update(UpdateInspectionRequest $request, $property_id, $inspection_date)
+    public function update(Request $request, Inspection $inspection)
     {
-        // Recommended: Use the UpdateInspectionRequest for validation logic
-        Inspection::where('property_id', $property_id)
-            ->where('inspection_date', $inspection_date)
-            ->update($request->validated());
+        $validated = $request->validate([
+            'property_id'     => 'required|string|max:20',
+            'inspection_date' => 'required|date',
+            'staff_id'        => 'required|string|max:20',
+            'comments'        => 'nullable|string',
+        ]);
 
-        return redirect()->route('inspections.index')
-                         ->with('success', 'Inspection updated successfully.');
+        $inspection->update($validated);
+
+        return redirect()->route('inspections.index')->with('success', 'Inspection updated successfully.');
     }
 
-    public function destroy($property_id, $inspection_date)
+    public function destroy(Inspection $inspection)
     {
-        Inspection::where('property_id', $property_id)
-            ->where('inspection_date', $inspection_date)
-            ->delete();
+        $inspection->delete();
 
-        return redirect()->route('inspections.index')
-                         ->with('success', 'Inspection deleted successfully.');
+        return redirect()->route('inspections.index')->with('success', 'Inspection deleted successfully.');
     }
 }

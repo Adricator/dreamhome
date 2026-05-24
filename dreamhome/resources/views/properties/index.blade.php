@@ -14,7 +14,7 @@
     <header class="navbar-container">
         <nav class="navbar">
             <div class="navbar-links">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ url('/dashboard') }}">Home</a>
                 <a href="{{ route('branches.index') }}" >Branches</a>
                 <a href="{{ route('staff.index') }}">Staff</a>
                 <a href="{{ route('properties.index') }}" class="active">Properties</a>

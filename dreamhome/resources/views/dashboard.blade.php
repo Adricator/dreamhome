@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dream Home</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('css/nav.css') }}"> -->
-
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 </head>
 
 <body class="antialiased bg-black overflow-hidden">
@@ -28,51 +28,38 @@
 
         <!-- Navigation -->
 
-        <header class="relative z-50 w-full pt-8 flex justify-center">
-            
-    <nav class="flex items-center justify-between bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-5 py-1 w-full">
+        <header class="relative z-50 w-full pt-8 px-10 flex items-center">
     
     <div class="flex-1 flex justify-start">
-        <a href="{{ url('/search') }}" class="group flex items-center justify-center w-8 h-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-4 h-4 group-hover:scale-110 transition-transform">
+        <a href="{{ url('/search') }}" class="group flex items-center justify-center w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-5 h-5 group-hover:scale-110 transition-transform">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
         </a>
     </div>
 
-    <div class="flex items-center gap-10 text-white uppercase font-bold text-[10px] tracking-widest">
-        <a href="{{ route('dashboard')   }}" class="hover:text-gray-300 transition">Home</a>
-        <a href="{{ route('branches.index') }}" class="hover:text-gray-300 transition">Branches</a>
-        <a href="{{ url('/staff') }}" class="hover:text-gray-300 transition">Staff</a>
-        <a href="{{ route('properties.index') }}" class="hover:text-gray-300 transition">Properties</a>
-        <a href="{{ route('owners.index') }}" class="hover:text-gray-300 transition">Owners</a>
-        <a href="{{ url('/inspections') }}" class="hover:text-gray-300 transition">Inspections</a>
-        <a href="{{ url('/clients') }}" class="hover:text-gray-300 transition">Clients</a>
-        <a href="{{ url('/viewings') }}" class="hover:text-gray-300 transition">Viewings</a>
-        <a href="{{ url('/leases') }}" class="hover:text-gray-300 transition">Leases</a>
-    </div>
+   <nav class="navbar">
+            <div class="navbar-links">
+                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ route('branches.index') }}" >Branches</a>
+                <a href="{{ route('staff.index') }}" >Staff</a>
+                <a href="{{ route('properties.index') }}">Properties</a>
+                <a href="{{ route('owners.index') }}">Owners</a>
+                <a href="{{ url('/inspections') }}">Inspections</a>
+                <a href="{{ url('/clients') }}">Clients</a>
+                <a href="{{ url('/viewings') }}">Viewings</a>
+                <a href="{{ url('/leases') }}">Leases</a>
+            </div>
+        </nav>
 
-    <div class="flex-1 flex justify-end items-center gap-4">
-   @if (Route::has('login'))
+    <div class="flex-1 flex justify-end items-center gap-6">
+         @if (Route::has('login'))
     @auth
         <a href="{{ url('/dashboard') }}" class="text-white text-[8px] tracking-widest font-bold uppercase border border-white px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition-all">Dashboard</a>
-    @else
-        {{-- Matches Register size, tracking, and font weight --}}
-        <a href="{{ route('login') }}" class="text-white text-[8px] tracking-widest font-black uppercase border border-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-all">
-            Login
-        </a>
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="bg-white text-black text-[8px] tracking-widest font-black uppercase px-3 py-1.5 rounded-full hover:bg-gray-200 transition-all shadow-lg">
-                        Register
-                    </a>
-                @endif
-            @endauth
-        @endif
+     @endauth   
+    @endif
     </div>
-
-</nav>
-
-        </header>
+</header>
 
 
 
@@ -100,12 +87,11 @@
 
                 <div class="mt-8">
 
-                    <a href="{{ route('properties.index') }}" class="inline-block border border-white px-5 py-2 text-white text-[11px] font-semibold uppercase tracking-[0.1em] hover:bg-white hover:text-cyan-900 transition-all duration-300">
+                    <a href="{{ route('branches.index') }}" class="inline-block border border-white px-5 py-2 text-white text-[11px] font-semibold uppercase tracking-[0.1em] hover:bg-white hover:text-cyan-900 transition-all duration-300">
 
-                        Find Display Home
+                        explore listings
 
                     </a>
-
                 </div>
 
             </div>
