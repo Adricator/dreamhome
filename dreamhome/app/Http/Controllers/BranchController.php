@@ -34,20 +34,35 @@ class BranchController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'branch_id'    => 'required|string|max:20|unique:branches,branch_id',
+        // 1. Validate incoming form metrics (excluding branch_id)
+        $validatedData = $request->validate([
             'street'       => 'required|string',
-            'area'         => 'required|string',
-            'city'         => 'required|string',
-            'postcode'     => 'required|string',
-            'telephone_no' => 'nullable|string|max:50',
+            'city'         => 'required|string|max:255',
+            'postcode'     => 'required|string|max:50',
+            'area'         => 'required|string|max:255',
+            'telephone_no' => 'required|string|max:50',
             'fax_no'       => 'nullable|string|max:50',
         ]);
 
-        Branch::create($validated);
+        // 2. Fetch the absolute latest branch key out of the sequence
+        $latestBranch = Branch::orderBy('branch_id', 'desc')->first();
+
+        if (!$latestBranch) {
+            $newBranchId = 'B0001';
+        } else {
+            $number = filter_var($latestBranch->branch_id, FILTER_SANITIZE_NUMBER_INT);
+            
+            $nextNumber = intval($number) + 1;
+
+            $newBranchId = 'B' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+        }
+        $validatedData['branch_id'] = $newBranchId;
+
+        // 4. Create the new row in PostgreSQL
+        Branch::create($validatedData);
 
         return redirect()->route('branches.index')
-                         ->with('success', 'Branch added successfully!');
+            ->with('success', "Branch {$newBranchId} was successfully registered!");
     }
 
     public function show($id)

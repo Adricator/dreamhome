@@ -8,6 +8,8 @@ use App\Http\Requests\StoreStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
 use App\Models\NextOfKin;
 use Illuminate\Support\Facades\DB;
+use App\Models\Branch;
+use Illuminate\Http\JsonResponse;
 
 class StaffController extends Controller
 {
@@ -34,16 +36,11 @@ class StaffController extends Controller
      */
     public function create()
     {
-        $positions = \App\Models\Staff::whereNotNull('position')
-        ->distinct()
-        ->pluck('position');
+        $positions = ['manager', 'supervisor', 'secretary', 'staff'];
+        $sex_options = ['male', 'female'];
+        $branches = \App\Models\Branch::all();
 
-    // 2. Fetch unique sex value variants (e.g., outputs ['M', 'F'] or ['male', 'female'] based on your entries)
-        $sex_options = \App\Models\Staff::whereNotNull('sex')
-            ->distinct()
-            ->pluck('sex');
-        // 3. Compact and send both lookup variables safely down to the frontend asset layout
-        return view('staff.create', compact('positions', 'sex_options'));
+        return view('staff.create', compact('positions', 'sex_options', 'branches'));
     }
 
     /**
@@ -139,22 +136,34 @@ class StaffController extends Controller
     }
 
     public function destroy($staff_id) 
-{
-    // 1. Locate the core staff record explicitly via your custom string primary key
-    $staff = Staff::where('staff_id', $staff_id)->firstOrFail();
+    {
+        // 1. Locate the core staff record explicitly via your custom string primary key
+        $staff = Staff::where('staff_id', $staff_id)->firstOrFail();
 
-    // 2. Use a transaction block to handle cascading deletions safely
-    DB::transaction(function () use ($staff, $staff_id) {
-        
-        // Delete the dependent Next of Kin record first to satisfy foreign key constraints
-        NextOfKin::where('staff_id', $staff_id)->delete();
+        // 2. Use a transaction block to handle cascading deletions safely
+        DB::transaction(function () use ($staff, $staff_id) {
+            
+            // Delete the dependent Next of Kin record first to satisfy foreign key constraints
+            NextOfKin::where('staff_id', $staff_id)->delete();
 
-        // Now safe to delete the parent staff record
-        $staff->delete();
-    });
+            // Now safe to delete the parent staff record
+            $staff->delete();
+        });
 
-    return redirect()
-        ->route('staff.index')
-        ->with('success', 'Staff member and their associated Next of Kin record have been permanently removed.');
-}
+        return redirect()
+            ->route('staff.index')
+            ->with('success', 'Staff member and their associated Next of Kin record have been permanently removed.');
+    }
+
+    public function getSupervisorsByBranch($branch_id): JsonResponse
+    {
+        // Query PostgreSQL to find supervisors/managers assigned to this specific branch location
+        $supervisors = Staff::where('branch_id', $branch_id)
+            ->whereIn(DB::raw('LOWER(position)'), ['supervisor'])
+            ->select('staff_id', 'first_name', 'last_name')
+            ->get();
+
+        // Transform datasets smoothly into a JSON package payload response
+        return response()->json($supervisors);
+    }
 }

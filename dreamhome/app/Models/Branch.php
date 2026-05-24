@@ -33,12 +33,12 @@ class Branch extends Model
 
     protected $fillable = [
         'branch_id',
-         'street', 
-         'area', 
-         'city', 
-         'postcode', 
-         'telephone_no', 
-         'fax_no'
-         ];
+        'street', 
+        'area', 
+        'city', 
+        'postcode', 
+        'telephone_no', 
+        'fax_no'
+        ];
 }
 

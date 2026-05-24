@@ -55,19 +55,32 @@
                     </div>
                     <div class="input-fieldset">
                         <label class="fieldset-heading">Employment Details</label>
+                        
                         <select name="position" id="position-select" class="form-entry-field select-dropdown-native" required>
                             <option value="" disabled selected>Select Position Role...</option>
                             @foreach($positions as $position)
-                                <option value="{{ strtolower($position) }}">{{ ucwords($position) }}</option>
+                                <option value="{{ strtolower($position) }}" {{ old('position') == strtolower($position) ? 'selected' : '' }}>
+                                    {{ ucwords($position) }}
+                                </option>
                             @endforeach
                         </select>
+                        
                         <div>
-                            <input type="number" step="100.00" name="salary" placeholder="Monthly Salary" class="form-entry-field">
+                            <input type="number" step="100.00" name="salary" value="{{ old('salary') }}" placeholder="Monthly Salary" class="form-entry-field" required>
                         </div>
+                        
                         <div class="layout-split-pair">
-                            <input type="text" name="nin" placeholder="Insurance No" class="form-entry-field">
-                            <input type="text" name="branch_id" placeholder="BR00x" class="form-entry-field">
-                        </div>
+                            <input type="text" name="nin" value="{{ old('nin') }}" placeholder="Insurance No" class="form-entry-field">
+                            
+                            <select name="branch_id" id="branch-select" class="form-entry-field select-dropdown-native" required>
+                                <option value="" disabled selected>Select Branch...</option>
+                                @foreach($branches as $branch)
+                                    <option value="{{ $branch->branch_id }}" {{ old('branch_id') == $branch->branch_id ? 'selected' : '' }}>
+                                        {{ $branch->branch_id }} - {{ $branch->city }}
+                                    </option>
+                                @endforeach
+                            </select>
+                                                    </div>
                     </div>
                     <div id="dynamic-fields-container">
                         <div id="fields-manager" class="input-fieldset conditional-field-group">
@@ -83,30 +96,78 @@
 
                         <div id="fields-staff" class="input-fieldset conditional-field-group">
                             <label class="fieldset-heading">Staff Data</label>
-                            <input type="text" name="supervised_by" placeholder="Supervising Manager ID (e.g., ST0001)" class="form-entry-field">
+                            <select name="supervised_by" id="supervisor-select" class="form-entry-field select-dropdown-native">
+                                <option value="">-- Select a Branch First --</option>
+                            </select>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const branchSelect = document.getElementById('branch-select');
+                                    const supervisorSelect = document.getElementById('supervisor-select');
+
+                                    if (branchSelect && supervisorSelect) {
+                                        branchSelect.addEventListener('change', function () {
+                                            const branchId = this.value;
+
+                                            // Reset dropdown status to a clear baseline state while executing request pipelines
+                                            supervisorSelect.innerHTML = '<option value="">Loading eligible supervisors...</option>';
+
+                                            if (!branchId) {
+                                                supervisorSelect.innerHTML = '<option value="">-- Select a Branch First --</option>';
+                                                return;
+                                            }
+
+                                            // Asynchronously dispatch a background request fetch token straight to our Laravel API
+                                            fetch(`/api/branches/${branchId}/supervisors`)
+                                                .then(response => {
+                                                    if (!response.ok) throw new Error('Network response anomaly encountered');
+                                                    return response.json();
+                                                })
+                                                .then(data => {
+                                                    // Reset dropdown matrix layout space 
+                                                    supervisorSelect.innerHTML = '<option value="">-- Select Supervising Manager --</option>';
+
+                                                    if (data.length === 0) {
+                                                        supervisorSelect.innerHTML = '<option value="">No supervisors found at this branch</option>';
+                                                        return;
+                                                    }
+
+                                                    // Map array collection records natively straight into option structures
+                                                    data.forEach(supervisor => {
+                                                        const option = document.createElement('option');
+                                                        option.value = supervisor.staff_id;
+                                                        option.textContent = `${supervisor.staff_id} - ${supervisor.first_name} ${supervisor.last_name}`;
+                                                        supervisorSelect.appendChild(option);
+                                                    });
+                                                })
+                                                .catch(error => {
+                                                    console.error('Fetch Exception:', error);
+                                                    supervisorSelect.innerHTML = '<option value="">Error fetching supervisors. Try again.</option>';
+                                                });
+                                        });
+                                    }
+                                });
+                                </script>
                         </div>
                         <div id="fields-supervisor" class="input-fieldset conditional-field-group">
                             <label class="fieldset-heading">Supervisor Data</label>
                         </div>
                     </div>
                 </div>
-                <!-- add a next of kin details here next_of_kin(full_name, relationship, address, telephone_no)-->
+
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         const positionSelect = document.getElementById('position-select');
                         const groups = document.querySelectorAll('.conditional-field-group');
                         positionSelect.addEventListener('change', function () {
                             const selectedRole = this.value;
-                            // 1. Hide all sub-conditional component inputs instantly
                             groups.forEach(group => {
                                 group.style.display = 'none';
-                        
-                                // Disable hidden inputs so they are completely skipped during request array payload submission
+
                                 group.querySelectorAll('.form-entry-field').forEach(input => {
                                     input.disabled = true;
                                 });
                             });
-                            // 2. Identify target matching node element block 
+
                             const targetGroup = document.getElementById(`fields-${selectedRole}`);
                             
                             if (targetGroup) {
