@@ -8,12 +8,21 @@ class Viewing extends Model
 {
     protected $table = 'viewings';
 
+    protected $primaryKey = 'id';
+
+    public $incrementing = true;
+
+    protected $keyType = 'int';
+
+    public $timestamps = false;
+
     protected $fillable = [
         'client_id',
         'property_id',
         'view_date',
         'staff_id',
         'comments',
+        'status',
     ];
 
     public function client()

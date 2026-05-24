@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Viewings - Dream Home</title>
+    <title>Viewing Details - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewings.css') }}">
-    </head>
+</head>
 <body>
 
 <main class="viewing-show-main">
@@ -23,18 +23,18 @@
     <section class="viewing-show-card">
 
         <div class="viewing-status-badge">
-            Viewing Record
+            {{ $viewing->status ?? 'Pending' }}
         </div>
 
         <div class="viewing-show-header">
             <span class="viewing-profile-label">Client Property Viewing</span>
 
             <h1 class="viewing-show-title">
-                {{ $viewing->client_id }}
+                Viewing #{{ $viewing->id }}
             </h1>
 
             <p class="viewing-show-subtitle">
-                {{ $viewing->property_id }} / {{ $viewing->view_date }}
+                {{ $viewing->client_id }} / {{ $viewing->property_id }}
             </p>
         </div>
 
@@ -42,25 +42,50 @@
 
             <div class="viewing-show-left">
                 <div>
-                    <span class="viewing-section-label">Client ID</span>
-                    <p class="viewing-large-text">{{ $viewing->client_id }}</p>
+                    <span class="viewing-section-label">Client</span>
+                    <p class="viewing-large-text">
+                        {{ $viewing->client_id }}
+                        @if($viewing->client)
+                            - {{ $viewing->client->first_name ?? '' }} {{ $viewing->client->last_name ?? '' }}
+                        @endif
+                    </p>
                 </div>
 
                 <div>
-                    <span class="viewing-section-label">Property ID</span>
-                    <p class="viewing-large-text viewing-highlight">{{ $viewing->property_id }}</p>
+                    <span class="viewing-section-label">Property</span>
+                    <p class="viewing-large-text viewing-highlight">
+                        {{ $viewing->property_id }}
+                        @if($viewing->property)
+                            - {{ $viewing->property->street ?? '' }} {{ $viewing->property->city ?? '' }}
+                        @endif
+                    </p>
                 </div>
 
                 <div>
-                    <span class="viewing-section-label">Staff ID</span>
-                    <p class="viewing-large-text">{{ $viewing->staff_id ?? 'Not assigned' }}</p>
+                    <span class="viewing-section-label">Staff</span>
+                    <p class="viewing-large-text">
+                        @if($viewing->staff)
+                            {{ $viewing->staff->staff_id }} - {{ $viewing->staff->first_name ?? '' }} {{ $viewing->staff->last_name ?? '' }}
+                        @else
+                            Not assigned
+                        @endif
+                    </p>
+                </div>
+
+                <div>
+                    <span class="viewing-section-label">Status</span>
+                    <p class="viewing-large-text">
+                        {{ $viewing->status ?? 'Pending' }}
+                    </p>
                 </div>
             </div>
 
             <div class="viewing-management-card">
                 <div>
                     <span class="viewing-section-label">Viewing Date</span>
-                    <p class="viewing-management-area">{{ $viewing->view_date }}</p>
+                    <p class="viewing-management-area">
+                        {{ $viewing->view_date ?? 'No date assigned' }}
+                    </p>
                 </div>
 
                 <div class="viewing-description">
@@ -75,7 +100,7 @@
 
         <div class="viewing-show-actions">
             <a
-                href="{{ route('viewings.edit', [$viewing->client_id, $viewing->property_id, $viewing->view_date]) }}"
+                href="{{ route('viewings.edit', $viewing) }}"
                 class="viewing-edit-button"
             >
                 Edit Viewing
@@ -83,7 +108,7 @@
 
             <form
                 method="POST"
-                action="{{ route('viewings.destroy', [$viewing->client_id, $viewing->property_id, $viewing->view_date]) }}"
+                action="{{ route('viewings.destroy', $viewing) }}"
             >
                 @csrf
                 @method('DELETE')
@@ -102,3 +127,5 @@
 
 </main>
 
+</body>
+</html>

@@ -18,14 +18,15 @@ class ViewingController extends Controller
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
-                $q->where('client_id', 'ILIKE', "%{$search}%")
-                    ->orWhere('property_id', 'ILIKE', "%{$search}%")
-                    ->orWhere('staff_id', 'ILIKE', "%{$search}%")
-                    ->orWhere('comments', 'ILIKE', "%{$search}%");
+                $q->where('client_id', 'like', "%{$search}%")
+                    ->orWhere('property_id', 'like', "%{$search}%")
+                    ->orWhere('staff_id', 'like', "%{$search}%")
+                    ->orWhere('status', 'like', "%{$search}%")
+                    ->orWhere('comments', 'like', "%{$search}%");
             });
         }
 
-        $viewings = $query->orderBy('view_date', 'desc')->get();
+        $viewings = $query->orderBy('id', 'desc')->get();
 
         return view('viewings.index', compact('viewings'));
     }
@@ -42,20 +43,22 @@ class ViewingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'client_id' => 'required|string|max:20|exists:clients,client_id',
-            'property_id' => 'required|string|max:20|exists:properties,property_id',
+            'client_id' => 'required|string|exists:clients,client_id',
+            'property_id' => 'required|string|exists:properties,property_id',
             'view_date' => 'required|date',
-            'staff_id' => 'nullable|string|max:20|exists:staff,staff_id',
+            'staff_id' => 'nullable|string|exists:staff,staff_id',
             'comments' => 'nullable|string',
+            'status' => 'required|string|in:Pending,Approved,Completed,Cancelled',
         ]);
 
-        Viewing::create($request->only([
-            'client_id',
-            'property_id',
-            'view_date',
-            'staff_id',
-            'comments',
-        ]));
+        Viewing::create([
+            'client_id' => $request->client_id,
+            'property_id' => $request->property_id,
+            'view_date' => $request->view_date,
+            'staff_id' => $request->staff_id,
+            'comments' => $request->comments,
+            'status' => $request->status,
+        ]);
 
         return redirect()
             ->route('viewings.index')
@@ -71,6 +74,8 @@ class ViewingController extends Controller
 
     public function edit(Viewing $viewing)
     {
+        $viewing->load(['client', 'property', 'staff']);
+
         $clients = Client::orderBy('client_id')->get();
         $properties = Property::orderBy('property_id')->get();
         $staff = Staff::orderBy('staff_id')->get();
@@ -81,20 +86,22 @@ class ViewingController extends Controller
     public function update(Request $request, Viewing $viewing)
     {
         $request->validate([
-            'client_id' => 'required|string|max:20|exists:clients,client_id',
-            'property_id' => 'required|string|max:20|exists:properties,property_id',
+            'client_id' => 'required|string|exists:clients,client_id',
+            'property_id' => 'required|string|exists:properties,property_id',
             'view_date' => 'required|date',
-            'staff_id' => 'nullable|string|max:20|exists:staff,staff_id',
+            'staff_id' => 'nullable|string|exists:staff,staff_id',
             'comments' => 'nullable|string',
+            'status' => 'required|string|in:Pending,Approved,Completed,Cancelled',
         ]);
 
-        $viewing->update($request->only([
-            'client_id',
-            'property_id',
-            'view_date',
-            'staff_id',
-            'comments',
-        ]));
+        $viewing->update([
+            'client_id' => $request->client_id,
+            'property_id' => $request->property_id,
+            'view_date' => $request->view_date,
+            'staff_id' => $request->staff_id,
+            'comments' => $request->comments,
+            'status' => $request->status,
+        ]);
 
         return redirect()
             ->route('viewings.index')

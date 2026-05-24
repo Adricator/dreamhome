@@ -91,10 +91,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('inspections', InspectionController::class);
         
 
-    Route::resource('viewings', ViewingController::class)
-        ->parameters([
-            'viewings' => 'client_id,property_id,view_date'
-        ]);
+   Route::resource('viewings', ViewingController::class);
 
 
     /*

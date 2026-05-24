@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Viewings - Dream Home</title>
+    <title>Edit Viewing - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewings.css') }}">
-    </head>
+</head>
 <body>
+
 <main class="viewing-form-main">
 
     <section class="viewing-form-card orange-glow">
@@ -18,11 +19,11 @@
         <div class="viewing-form-header">
             <div>
                 <h1 class="viewing-form-title">Edit Viewing</h1>
-                <p class="viewing-form-subtitle orange-text">Update viewing record</p>
+                <p class="viewing-form-subtitle orange-text">Assign staff, date, and status</p>
             </div>
 
             <span class="viewing-id-pill">
-                {{ $viewing->client_id }} / {{ $viewing->property_id }}
+                Viewing #{{ $viewing->id }}
             </span>
         </div>
 
@@ -36,7 +37,7 @@
 
         <form
             method="POST"
-            action="{{ route('viewings.update', [$viewing->client_id, $viewing->property_id, $viewing->view_date]) }}"
+            action="{{ route('viewings.update', $viewing) }}"
             class="viewing-form"
         >
             @csrf
@@ -49,7 +50,7 @@
                     <select name="client_id" class="viewing-input" required>
                         @foreach($clients as $client)
                             <option value="{{ $client->client_id }}" {{ old('client_id', $viewing->client_id) == $client->client_id ? 'selected' : '' }}>
-                                {{ $client->client_id }}
+                                {{ $client->client_id }} - {{ $client->first_name ?? '' }} {{ $client->last_name ?? '' }}
                             </option>
                         @endforeach
                     </select>
@@ -60,7 +61,7 @@
                     <select name="property_id" class="viewing-input" required>
                         @foreach($properties as $property)
                             <option value="{{ $property->property_id }}" {{ old('property_id', $viewing->property_id) == $property->property_id ? 'selected' : '' }}>
-                                {{ $property->property_id }}
+                                {{ $property->property_id }} - {{ $property->street ?? '' }} {{ $property->city ?? '' }}
                             </option>
                         @endforeach
                     </select>
@@ -80,12 +81,22 @@
                 <div class="viewing-input-group">
                     <label class="viewing-input-label">Staff</label>
                     <select name="staff_id" class="viewing-input">
-                        <option value="">Select Staff</option>
+                        <option value="">Not assigned</option>
                         @foreach($staff as $employee)
                             <option value="{{ $employee->staff_id }}" {{ old('staff_id', $viewing->staff_id) == $employee->staff_id ? 'selected' : '' }}>
-                                {{ $employee->staff_id }}
+                                {{ $employee->staff_id }} - {{ $employee->first_name ?? '' }} {{ $employee->last_name ?? '' }}
                             </option>
                         @endforeach
+                    </select>
+                </div>
+
+                <div class="viewing-input-group">
+                    <label class="viewing-input-label">Status</label>
+                    <select name="status" class="viewing-input" required>
+                        <option value="Pending" {{ old('status', $viewing->status) == 'Pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="Approved" {{ old('status', $viewing->status) == 'Approved' ? 'selected' : '' }}>Approved</option>
+                        <option value="Completed" {{ old('status', $viewing->status) == 'Completed' ? 'selected' : '' }}>Completed</option>
+                        <option value="Cancelled" {{ old('status', $viewing->status) == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                     </select>
                 </div>
 
@@ -93,7 +104,11 @@
 
             <div class="viewing-input-group">
                 <label class="viewing-input-label">Comments</label>
-                <textarea name="comments" class="viewing-textarea">{{ old('comments', $viewing->comments) }}</textarea>
+                <textarea
+                    name="comments"
+                    class="viewing-textarea"
+                    placeholder="Enter viewing comments..."
+                >{{ old('comments', $viewing->comments) }}</textarea>
             </div>
 
             <div class="viewing-form-actions">
@@ -112,3 +127,5 @@
 
 </main>
 
+</body>
+</html>
