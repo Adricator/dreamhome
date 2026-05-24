@@ -578,13 +578,12 @@
 }
 
 .p-show-btn-primary {
-    background-color: #ffffff; /* bg-white */
-    color: #000000; /* text-black */
-    border: 1px solid #ffffff;
+    background-color:#22d3ee;
+    color: #000000;
 }
 
 .p-show-btn-primary:hover {
-    background-color: #22d3ee; /* hover:bg-cyan-400 */
+    background-color: #ffffff;
     border-color: #22d3ee;
 }
 

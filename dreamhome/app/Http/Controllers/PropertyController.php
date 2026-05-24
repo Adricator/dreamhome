@@ -19,7 +19,6 @@ class PropertyController extends Controller
         // Start a query builder instance
         $query = Property::query();
 
-        // 1. Handle Searching (only if 'search' has a value)
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
@@ -31,18 +30,14 @@ class PropertyController extends Controller
             });
         }
 
-        // 2. Handle Status Filtering
         if ($request->filled('type')) {
             $query->where('type', $request->input('type'));
         }
 
-        // 3. Handle Type Filtering
         if ($request->filled('status')) {
             $query->where('status', $request->input('status'));
         }
 
-        // Get results with pagination (10 per page)
-        // withQueryString ensures filters stay active when clicking page 2, 3, etc.
         $properties = $query->get();
 
         return view('properties.index', compact('properties'));

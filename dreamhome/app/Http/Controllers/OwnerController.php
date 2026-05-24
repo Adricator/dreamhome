@@ -10,22 +10,22 @@ class OwnerController extends Controller
 {
     public function index(Request $request)
     {
-        // Get search input
+
         $query = $request->input('search');
-
-        // Fetch owners with optional search
         $owners = Owner::when($query, function ($q) use ($query) {
-            return $q->where('first_name', 'like', "%{$query}%")
-                     ->orWhere('last_name', 'like', "%{$query}%");
+            return $q->where('first_name', 'ilike', "%{$query}%")
+                     ->orWhere('last_name', 'ilike', "%{$query}%")
+                     ->orWhere('owner_id', 'ilike', "%{$query}%");
+
         })->get();
-
-
         return view('owners.index', compact('owners'));
     }
+
     public function create()
     {
         return view('owners.create');
     }
+
     public function store(Request $request)
     {
        $validatedData = $request->validate([

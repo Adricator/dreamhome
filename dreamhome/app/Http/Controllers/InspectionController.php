@@ -12,9 +12,9 @@ class InspectionController extends Controller
         $search = $request->search;
 
         $inspections = Inspection::when($search, function ($query, $search) {
-            $query->where('property_id', 'like', "%{$search}%")
-                  ->orWhere('staff_id', 'like', "%{$search}%")
-                  ->orWhere('comment', 'like', "%{$search}%");
+            $query->where('property_id', 'ILIKE', "%{$search}%")
+                  ->orWhere('staff_id', 'ILIKE', "%{$search}%")
+                  ->orWhere('comment', 'ILIKE', "%{$search}%");
         })
         ->orderBy('inspection_id', 'desc')
         ->get();

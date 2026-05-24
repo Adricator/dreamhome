@@ -25,7 +25,8 @@ class StaffController extends Controller
         if ($request->has('search')) {
             $query->where('first_name', 'ilike', '%' . $request->search . '%')
                   ->orWhere('last_name', 'ilike', '%' . $request->search . '%')
-                  ->orWhere('staff_id', 'ilike', '%' . $request->search . '%');
+                  ->orWhere('staff_id', 'ilike', '%' . $request->search . '%')
+                  ->orWhere('position', 'ilike', '%' . $request->search . '%');
         }
 
         $staffMembers = $query->get();
@@ -53,7 +54,7 @@ class StaffController extends Controller
 
         // Safe auto-incrementing key sequencer for PostgreSQL
         $lastStaff = \App\Models\Staff::select('staff_id')
-            ->where('staff_id', 'LIKE', 'ST%')
+            ->where('staff_id', 'ILIKE', 'ST%')
             ->orderByRaw('CAST(SUBSTRING(staff_id FROM 3) AS INTEGER) DESC')
             ->first();
 

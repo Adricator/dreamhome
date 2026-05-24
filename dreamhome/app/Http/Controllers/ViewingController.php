@@ -18,10 +18,10 @@ class ViewingController extends Controller
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
-                $q->where('client_id', 'like', "%{$search}%")
-                    ->orWhere('property_id', 'like', "%{$search}%")
-                    ->orWhere('staff_id', 'like', "%{$search}%")
-                    ->orWhere('comments', 'like', "%{$search}%");
+                $q->where('client_id', 'ILIKE', "%{$search}%")
+                    ->orWhere('property_id', 'ILIKE', "%{$search}%")
+                    ->orWhere('staff_id', 'ILIKE', "%{$search}%")
+                    ->orWhere('comments', 'ILIKE', "%{$search}%");
             });
         }
 
