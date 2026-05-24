@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -26,12 +27,12 @@ return new class extends Migration
             $table->string('nin')->unique();
             $table->string('position');
             $table->decimal('salary', 10, 2);
-            $table->date('date_hired');
+            $table->date('date_hired')->default(DB::raw('CURRENT_DATE'));
             $table->decimal('car_allowance', 10, 2)->nullable();
             $table->decimal('performance_bonus', 10, 2)->nullable();
             $table->date('date_promoted')->nullable();
             $table->integer('typing_speed_wpm')->nullable();
-            $table->string('password');
+            $table->string('password')->default('dreamhome123');
             $table->rememberToken();
         });
 

@@ -517,8 +517,10 @@
 }
 
 .p-show-td-id {
-    font-family: monospace; /* font-mono */
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem; /* text-xs */
+    font-weight: 700;
+    letter-spacing:0.15;
     color: #22d3ee; /* text-cyan-400 */
     border-top-left-radius: 0.5rem; /* rounded-l-lg */
     border-bottom-left-radius: 0.5rem;
@@ -616,4 +618,397 @@
 
 .p-show-btn-remove:hover {
     color: #f87171; /* hover:text-red-400 */
+}
+
+/* CREATE */
+/* Base Canvas Sizing Frame bounds */
+.p-crt-container {
+    width: 100%;
+    max-width: 56rem; /* max-w-4xl */
+    margin: 0 auto;
+    padding: 4rem 1.5rem; /* py-16 px-6 */
+    box-sizing: border-box;
+}
+
+/* Master Glassmorphic Card Container Component */
+.p-crt-glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem; /* rounded-3xl */
+    padding: 2.5rem; /* p-10 */
+    box-sizing: border-box;
+}
+
+/* Header Text Alignments */
+.p-crt-header {
+    margin-bottom: 2.5rem; /* mb-10 */
+}
+
+.p-crt-main-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem;
+    color: #d1dcd5;
+    margin: 0;
+}
+
+.p-crt-sub-title {
+    color: #6b7280; /* text-gray-500 */
+    font-size: 0.75rem; /* text-xs */
+    line-height: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em; /* tracking-widest */
+    margin: 0.5rem 0 0 0; /* mt-2 */
+}
+
+/* Form Container Spatial Stack Layout */
+.p-crt-form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space-y-8 */
+}
+
+/* Core Structural Splitting Rules */
+.p-crt-grid-split {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem; /* gap-8 */
+}
+
+@media (min-width: 768px) {
+    .p-crt-grid-split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.p-crt-field-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* space-y-4 */
+}
+
+/* Label Component Declarations */
+.p-crt-field-label {
+    font-size: 10px; /* text-[10px] */
+    text-transform: uppercase;
+    letter-spacing: 0.1em; /* tracking-widest */
+    color: #22d3ee; /* text-cyan-400 */
+    font-weight: 700;
+}
+
+.p-crt-label-block {
+    display: block;
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+/* Layout Row Matrix Grids */
+.p-crt-grid-dual {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; /* gap-4 */
+}
+
+.p-crt-grid-triad {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem; /* gap-6 */
+}
+
+@media (min-width: 768px) {
+    .p-crt-grid-triad {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Input & Select Box Mechanics UI Base styling */
+.p-crt-input-text,
+.p-crt-select-menu {
+    width: 100%; /* w-full */
+    padding: 1rem; /* p-4 */
+    border-radius: 0.75rem; /* rounded-xl */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 0.875rem;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.p-crt-input-text:focus,
+.p-crt-select-menu:focus {
+    border-color: #22d3ee;
+    box-shadow: 0 0 0 1px #22d3ee;
+
+}
+
+/* Custom placeholder visibility metrics */
+.p-crt-input-text::placeholder {
+    color: #4b5563;
+}
+
+.p-crt-select-menu {
+    cursor: pointer;
+}
+
+.p-crt-select-menu option {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+/* Management Upper Separation Line Group */
+.p-crt-management-section {
+    padding-top: 2rem; /* pt-8 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* border-t border-white/10 */
+}
+
+/* Bottom Actions Panel Container */
+.p-crt-action-deck {
+    display: flex;
+    gap: 1rem; /* gap-4 */
+    padding-top: 1rem; /* pt-4 */
+}
+
+/* Button Foundation Classes */
+.p-crt-btn {
+    padding: 1rem 2.5rem; /* py-4 px-10 */
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em; /* tracking-widest */
+    border-radius: 0.5rem; /* rounded-lg */
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.p-crt-btn-submit {
+    background-color: #06b6d4; /* bg-cyan-500 */
+    color: #000000; /* text-black */
+    border: none;
+}
+
+.p-crt-btn-submit:hover {
+    background-color: #22d3ee; /* hover:bg-cyan-400 */
+}
+
+.p-crt-btn-cancel {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* border-white/20 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-crt-btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* hover:bg-white/5 */
+}
+
+/* EDIT */
+/* Base Canvas Sizing Frame bounds */
+.p-edt-container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 56rem;
+    padding: 2rem 1rem;
+}
+
+/* Master Glassmorphic Card Container Component */
+.p-edt-glass-card {
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 1.5rem;
+}
+
+/* Header Text Alignments */
+.p-edt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+}
+
+.p-edt-main-title {
+    font-family: 'Comfortaa', cursive ;
+    font-size: 2rem; /* text-4xl */
+    color: #d1dcd5;
+    margin: 0;
+    text-transform: lowercase; /* Matches the lowercased aesthetic of your headers */
+}
+
+.p-edt-sub-title {
+    margin-top: 0.5rem;
+    color: #f59e0b;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.p-id-pill {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.p-edt-highlight {
+    color: #22d3ee; /* text-cyan-400 marker */
+    font-family: monospace;
+}
+
+/* Form Container Spatial Stack Layout */
+.p-edt-form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space-y-8 */
+}
+
+/* Core Structural Splitting Rules */
+.p-edt-grid-split {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem; /* gap-8 */
+}
+
+@media (min-width: 768px) {
+    .p-edt-grid-split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.p-edt-field-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* space-y-4 */
+}
+
+/* Label Component Declarations */
+.p-edt-field-label {
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.p-edt-input-label{
+    margin-left: 0.5rem;
+    color: #6b7280;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+
+.p-edt-label-block {
+    display: block;
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+/* Layout Row Matrix Grids */
+.p-edt-grid-dual {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; /* gap-4 */
+}
+
+.p-edt-grid-triad {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem; /* gap-6 */
+}
+
+@media (min-width: 768px) {
+    .p-edt-grid-triad {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Input & Select Box Mechanics UI Base styling */
+.p-edt-input-text,
+.p-edt-select-menu {
+    width: 100%; /* w-full */
+    padding: 1rem; /* p-4 */
+    border-radius: 0.75rem; /* rounded-xl */
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.p-edt-input-text:focus,
+.p-edt-select-menu:focus {
+    border-color: #22d3ee;
+    box-shadow: 0 0 0 1px #22d3ee;
+}
+
+.p-edt-input-text::placeholder {
+    color: #4b5563;
+}
+
+.p-edt-select-menu {
+    cursor: pointer;
+}
+
+.p-edt-select-menu option {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+/* Management Upper Separation Line Group */
+.p-edt-management-section {
+    padding-top: 2rem; /* pt-8 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* border-t border-white/10 */
+}
+
+/* Bottom Actions Panel Container */
+.p-edt-action-deck {
+    display: flex;
+    gap: 1rem; /* gap-4 */
+    padding-top: 1rem; /* pt-4 */
+}
+
+/* Button Foundation Classes */
+.p-edt-btn {
+    padding: 1rem 2.5rem; /* py-4 px-10 */
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em; /* tracking-widest */
+    border-radius: 0.5rem; /* rounded-lg */
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.p-edt-btn-submit {
+    background-color: #f59e0b;
+    color: black; /* text-black */
+    border: none;
+}
+
+.p-edt-btn-submit:hover {
+    background-color: #22d3ee; /* hover:bg-cyan-400 */
+}
+
+.p-edt-btn-cancel {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* border-white/20 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-edt-btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* hover:bg-white/5 */
 }

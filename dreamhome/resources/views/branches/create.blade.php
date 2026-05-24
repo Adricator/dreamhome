@@ -6,7 +6,7 @@
     <title>Register Branch - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/branches.css') }}">
 </head>
 <body style="background-color: #0a1518; ">

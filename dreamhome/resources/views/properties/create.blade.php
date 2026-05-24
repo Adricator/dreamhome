@@ -6,85 +6,76 @@
     <title>Add New Property - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-    <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
-        .font-dream { font-family: 'Comfortaa', cursive; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        input, select { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; outline: none; }
-        input:focus { border-color: #22d3ee !important; }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/properties.css') }}">
 </head>
-<body>
-
-    <header class="w-full pt-8 flex justify-center sticky top-0 z-50">
-        <nav class="inline-flex items-center bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-12 py-3">
-            <div class="flex items-center gap-10 text-white uppercase font-bold text-[10px] tracking-[0.15em]">
-                <a href="{{ url('/') }}" class="hover:text-gray-400">Home</a>
-                <a href="{{ route('properties.index') }}" class="hover:text-gray-400">Properties</a>
-                <a href="{{ url('/branches') }}" class="hover:text-gray-400">Branches</a>
-                <a href="{{ url('/register') }}" class="hover:text-gray-400">Registration</a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="max-w-4xl mx-auto px-6 py-16">
-        <div class="glass-card rounded-3xl p-10">
-            <div class="mb-10">
-                <h1 class="font-dream text-4xl text-[#d1dcd5]">add new property</h1>
-                <p class="text-gray-500 text-xs uppercase tracking-widest mt-2">Enter the details to list a new estate</p>
-            </div>
-
-            <form action="{{ route('properties.store') }}" method="POST" class="space-y-8">
-                @csrf
-                
-                <!-- Primary Details -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <label class="text-[10px] uppercase tracking-widest text-cyan-400 font-bold">Location</label>
-                        <input type="text" name="street" placeholder="Street Address" class="w-full p-4 rounded-xl" required>
-                        <div class="grid grid-cols-2 gap-4">
-                            <input type="text" name="city" placeholder="City" class="w-full p-4 rounded-xl">
-                            <input type="text" name="postcode" placeholder="Postcode" class="w-full p-4 rounded-xl">
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <label class="text-[10px] uppercase tracking-widest text-cyan-400 font-bold">Specifications</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <select name="type" class="w-full p-4 rounded-xl">
-                                <option value="House">House</option>
-                                <option value="Flat">Flat</option>
-                                <option value="Bungalow">Bungalow</option>
-                            </select>
-                            <input type="number" name="rooms" placeholder="Rooms" class="w-full p-4 rounded-xl">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <input type="number" name="monthly_rent" placeholder="Rent (₱)" class="w-full p-4 rounded-xl">
-                            <input type="text" name="area" placeholder="Area" class="w-full p-4 rounded-xl">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Management IDs -->
-                <div class="pt-8 border-t border-white/10">
-                    <label class="text-[10px] uppercase tracking-widest text-cyan-400 font-bold block mb-4">Management Assignment</label>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <input type="text" name="owner_id" placeholder="Owner ID" class="w-full p-4 rounded-xl">
-                        <input type="text" name="staff_id" placeholder="Staff ID" class="w-full p-4 rounded-xl">
-                        <input type="text" name="branch_id" placeholder="Branch ID" class="w-full p-4 rounded-xl">
-                    </div>
-                </div>
-
-                <div class="flex gap-4 pt-4">
-                    <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-black px-10 py-4 text-xs font-bold uppercase tracking-widest transition-all rounded-lg">
-                        Publish Listing
-                    </button>
-                    <a href="{{ route('properties.index') }}" class="border border-white/20 hover:bg-white/5 px-10 py-4 text-xs font-bold uppercase tracking-widest transition-all rounded-lg flex items-center">
-                        Cancel
-                    </a>
-                </div>
-            </form>
+<body style="background-color: #0a1518;">
+<main class="p-crt-container">
+    <div class="p-crt-glass-card">
+        
+        <div class="p-crt-header">
+            <h1 class="p-crt-main-title">add new property</h1>
+            <p class="p-crt-sub-title">Enter the details to list a new estate</p>
         </div>
-    </main>
+
+        <form action="{{ route('properties.store') }}" method="POST" class="p-crt-form-layout">
+            @csrf
+            
+            <div class="p-crt-grid-split">
+                
+                <div class="p-crt-field-stack">
+                    <label class="p-crt-field-label">Location</label>
+                    <input type="text" name="street" placeholder="Street Address" class="p-crt-input-text" required>
+                    <div class="p-crt-grid-dual">
+                        <input type="text" name="city" placeholder="City" class="p-crt-input-text">
+                        <input type="text" name="postcode" placeholder="Postcode" class="p-crt-input-text">
+                    </div>
+                </div>
+
+                <div class="p-crt-field-stack">
+                    <label class="p-crt-field-label">Specifications</label>
+                    <div class="p-crt-grid-dual">
+                        <select name="type" class="p-crt-select-menu">
+                            <option value="house">House</option>
+                            <option value="flat">Flat</option>
+                            <option value="bungalow">Bungalow</option>
+                        </select>
+                        <input type="number" name="rooms" placeholder="Rooms" class="p-crt-input-text">
+                    </div>
+                    <div class="p-crt-grid-dual">
+                        <input type="number" name="monthly_rent" placeholder="Rent (₱)" class="p-crt-input-text">
+                        <input type="text" name="area" placeholder="Area" class="p-crt-input-text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-crt-management-section">
+                <label class="p-crt-field-label p-crt-label-block">Management Assignment</label>
+                <div class="p-crt-grid-triad">
+                <select name="owner_id" class="p-crt-input-text">
+                    <option value="">-- Choose an Owner --</option>
+                    @foreach($owners as $owner)
+                        <option value="{{ $owner->owner_id }}" 
+                            {{ old('owner_id', $selectedOwnerId) == $owner->owner_id ? 'selected' : '' }}>
+                            {{ $owner->owner_id }} - {{ $owner->first_name }} {{ $owner->last_name }}
+                        </option>
+                    @endforeach
+                </select>
+                    <input type="text" name="staff_id" placeholder="Staff ID" class="p-crt-input-text">
+                    <input type="text" name="branch_id" placeholder="Branch ID" class="p-crt-input-text">
+                </div>
+            </div>
+
+            <div class="p-crt-action-deck">
+                <button type="submit" class="p-crt-btn p-crt-btn-submit">
+                    Publish Listing
+                </button>
+                <a href="{{ route('properties.index') }}" class="p-crt-btn p-crt-btn-cancel">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

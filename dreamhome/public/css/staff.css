@@ -935,6 +935,12 @@
     border-color: rgba(6, 182, 212, 0.5); /* Soft cyan aura focus signature */
 }
 
+.staff-textarea{
+    resize: vertical;
+    min-height: 57.6px;
+    max-height: 155px;
+}
+
 .select-dropdown-native {
     background-color: #0f172a; /* Custom bg override specified from tailwind draft */
     appearance: none;
@@ -961,6 +967,13 @@
     flex-direction: column;
     gap: 0.25rem; /* space-y-1 elements spacing */
 }
+
+.conditional-field-group {
+    display: none; /* Hides all groups by default */
+}
+
+/* Optional: Smooth look when they appear */
+
 
 .meta-caption {
     font-size: 9px;
