@@ -18,9 +18,17 @@ class ClientAuthController extends Controller
             'address' => 'nullable|string|max:255',
             'telephone_no' => 'nullable|string|max:50',
             'email' => 'required|email|unique:clients,email',
-            'password' => 'required|string|min:6',
+            'password' => [
+                'required',
+                'string',
+                'min:6',
+                'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/',
+            ],
             'prefer_type' => 'nullable|string|max:50',
             'max_rent' => 'nullable|numeric',
+        ], [
+            'password.min' => 'Password must be at least 6 characters long.',
+            'password.regex' => 'Password must contain at least one letter, one number, and one special character.',
         ]);
 
         if ($validator->fails()) {

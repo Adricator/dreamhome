@@ -13,15 +13,17 @@ class Viewing extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = null;
+    protected $primaryKey = 'id';
 
-    public $incrementing = false;
+    public $incrementing = true;
 
     protected $fillable = [
         'client_id',
         'property_id',
         'view_date',
         'staff_id',
+        'status',
+        'comments',
     ];
 
     public function client()

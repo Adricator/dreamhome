@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Viewing;
-use App\Models\Staff;
 
 class ClientViewingController extends Controller
 {
@@ -13,7 +12,6 @@ class ClientViewingController extends Controller
     {
         $request->validate([
             'property_id' => 'required',
-            'view_date' => 'required|date',
         ]);
 
         $client = $request->user();
@@ -24,27 +22,16 @@ class ClientViewingController extends Controller
             ], 401);
         }
 
-        /*
-         * For now, automatically assign the first staff member.
-         * This avoids requiring the mobile app to manually send staff_id.
-         */
-        $staff = Staff::first();
-
-        if (!$staff) {
-            return response()->json([
-                'message' => 'No staff available to assign this viewing.',
-            ], 422);
-        }
-
         $viewing = Viewing::create([
             'client_id' => $client->client_id,
             'property_id' => $request->property_id,
-            'view_date' => $request->view_date,
-            'staff_id' => $staff->staff_id,
+            'view_date' => null,
+            'staff_id' => null,
+            'status' => 'Pending',
         ]);
 
         return response()->json([
-            'message' => 'Viewing request submitted successfully.',
+            'message' => 'Viewing request submitted. Please wait for admin approval.',
             'data' => $viewing,
         ], 201);
     }
@@ -61,7 +48,9 @@ class ClientViewingController extends Controller
 
         $viewings = Viewing::with(['property', 'staff'])
             ->where('client_id', $client->client_id)
+            ->orderByRaw('view_date IS NULL ASC')
             ->orderBy('view_date', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return response()->json([
