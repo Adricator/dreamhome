@@ -9,40 +9,38 @@ class InspectionController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Inspection::query();
+        $search = $request->search;
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('property_id', 'LIKE', "%{$search}%")
-                  ->orWhere('staff_id', 'LIKE', "%{$search}%")
-                  ->orWhere('comments', 'LIKE', "%{$search}%");
-        }
-
-        $inspections = $query->get();
+        $inspections = Inspection::when($search, function ($query, $search) {
+            $query->where('property_id', 'like', "%{$search}%")
+                  ->orWhere('staff_id', 'like', "%{$search}%")
+                  ->orWhere('comment', 'like', "%{$search}%");
+        })
+        ->orderBy('inspection_id', 'desc')
+        ->get();
 
         return view('inspections.index', compact('inspections'));
     }
 
-   public function create()
+    public function create()
     {
-        $properties = Property::all();
-        $staffMembers = Staff::all();
-
-        return view('inspections.create', compact('properties', 'staffMembers'));
+        return view('inspections.create');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'property_id'     => 'required|string|max:20',
-            'inspection_date' => 'required|date',
-            'staff_id'        => 'required|string|max:20',
-            'comments'        => 'nullable|string',
+            'property_id' => 'required|string|max:255',
+            'staff_id' => 'required|string|max:255',
+            'date' => 'required|date',
+            'comment' => 'nullable|string',
         ]);
 
         Inspection::create($validated);
 
-        return redirect()->route('inspections.index')->with('success', 'Inspection logged successfully.');
+        return redirect()
+            ->route('inspections.index')
+            ->with('success', 'Inspection created successfully.');
     }
 
     public function show(Inspection $inspection)
@@ -58,21 +56,25 @@ class InspectionController extends Controller
     public function update(Request $request, Inspection $inspection)
     {
         $validated = $request->validate([
-            'property_id'     => 'required|string|max:20',
-            'inspection_date' => 'required|date',
-            'staff_id'        => 'required|string|max:20',
-            'comments'        => 'nullable|string',
+            'property_id' => 'required|string|max:255',
+            'staff_id' => 'required|string|max:255',
+            'date' => 'required|date',
+            'comment' => 'nullable|string',
         ]);
 
         $inspection->update($validated);
 
-        return redirect()->route('inspections.index')->with('success', 'Inspection updated successfully.');
+        return redirect()
+            ->route('inspections.show', $inspection)
+            ->with('success', 'Inspection updated successfully.');
     }
 
     public function destroy(Inspection $inspection)
     {
         $inspection->delete();
 
-        return redirect()->route('inspections.index')->with('success', 'Inspection deleted successfully.');
+        return redirect()
+            ->route('inspections.index')
+            ->with('success', 'Inspection deleted successfully.');
     }
 }
