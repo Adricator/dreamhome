@@ -42,7 +42,7 @@
                             ],
                             'Rental Preferences' => [
                                 'Preferred Type' => $client->prefer_type,
-                                'Maximum Budget' => '$' . number_format($client->max_rent, 2),
+                                'Maximum Budget' => '₱' . number_format($client->max_rent, 2),
                             ]
                         ];
                     @endphp
