@@ -1,14 +1,14 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable; // FIX 1: Add missing notification management trait
 use Laravel\Sanctum\HasApiTokens;
 
 class Client extends Authenticatable
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory, HasApiTokens, Notifiable; // Include Notifiable here
 
     protected $table = 'clients';
 
@@ -36,6 +36,18 @@ class Client extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * FIX 2: Add the casts system to handle cryptographic password hashing
+     */
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
+
+    /* --- Relations Matrix --- */
 
     public function leases()
     {

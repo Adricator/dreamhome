@@ -68,7 +68,7 @@ class Staff extends Authenticatable
     {
         static::creating(function (Staff $staff) {
             if (empty($staff->password)) {
-                $staff->password = 'dreamhome123';
+                $staff->password = 'dreamhome123!';
             }
         });
     }

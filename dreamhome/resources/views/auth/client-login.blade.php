@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DreamHome - Staff Login</title>
+    <title>DreamHome - Client Portal</title>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-
 </head>
 <body>
 
     <div class="login-container">
         <div class="login-header">
-            <h2>DreamHome Portal</h2>
-            <p>Please sign in to access your dashboard</p>
+            <h2>Client Login</h2>
+            <p>Sign in to view matching leases and preferences</p>
         </div>
 
         @if ($errors->any())
@@ -24,13 +23,14 @@
             </ul>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('client.login.submit') }}">
             @csrf
 
             <div class="form-group">
-                <label Safe for="email">Email Address</label>
+                <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="name@email.com">
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required placeholder="••••••••">
@@ -42,18 +42,15 @@
                     <span>Remember me</span>
                 </label>
                 
-                @if (Route::has('password.request'))
-                    <a class="forgot-password" href="{{ route('password.request') }}">
-                        Forgot password?
-                    </a>
-                @endif
+                <a class="forgot-password" href="{{ route('client.register') }}">
+                    Need an account? Register
+                </a>
             </div>
 
-            <button type="submit" class="btn-submit">
+            <button type="submit" class="btn-submit" style="background-color: #3490dc;">
                 Log In
             </button>
         </form>
-
     </div>
 
 </body>

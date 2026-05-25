@@ -10,8 +10,31 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ClientAuthenticatedSessionController;
+use App\Http\Controllers\Auth\ClientRegisterController;
 
 Route::middleware('guest')->group(function () {
+    Route::get('portal-select', function () {
+        return view('auth.gateway');
+        })->name('login.gateway');
+
+    Route::get('client/login', function () {
+        return view('auth.client-login');
+    })->name('client.login');
+
+    Route::get('client/register', function () {
+        return view('auth.client-register');
+    })->name('client.register');
+
+    Route::get('client/login', [ClientAuthenticatedSessionController::class, 'create'])->name('client.login');
+
+    Route::post('client/login', [ClientAuthenticatedSessionController::class, 'store'])->name('client.login.submit');
+
+    Route::get('client/register', [ClientRegisterController::class, 'create'])->name('client.register');
+
+    // Client Process Submission Execution Post Method
+    Route::post('client/register', [ClientRegisterController::class, 'store'])->name('client.register.submit');
+
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

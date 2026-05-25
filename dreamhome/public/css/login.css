@@ -69,7 +69,8 @@ body {
 }
 
 .form-group input[type="email"],
-.form-group input[type="password"] {
+.form-group input[type="password"]
+.form-group input[type="text"] {
     width: 100%;
     padding: 12px;
     border: 1px solid #cccccc;
@@ -134,4 +135,158 @@ body {
     margin-bottom: 20px;
     list-style-position: inside;
     font-size: 14px;
+}
+
+
+
+/* public/css/register.css */
+
+/* Container footprint adjustments for registration layouts */
+.register-container {
+    max-width: 520px !important;
+    width: 100%;
+}
+
+/* Grid Structure for twin alignment blocks */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Explicit field declarations ensuring absolute visual consistency */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+/* Custom styled dropdown select element matching text inputs */
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+/* Interactive smooth highlighting feedback when actively typing/selecting */
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group select:focus {
+    border-color: #3490dc;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 144, 220, 0.2);
+}
+
+/* Multi-Step Form Management Rules */
+.form-step {
+    display: none; /* Hides the sections by default */
+}
+
+.form-step.active {
+    display: block; /* Reveals only the targeted active step group */
+}
+
+/* Twin Alignment Button Panel for Section 2 Navigation */
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+    width: 100%;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Progress Stepper Visual Element Rules */
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    position: relative;
+    padding: 0 8rem;
+}
+
+.stepper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.step-indicator {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1e293b;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #94a3b8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.step-indicator.active {
+    background: #0f172a;
+    border-color: #22d3ee;
+    color: #22d3ee;
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
+}
+
+.step-indicator.completed {
+    background: #0891b2;
+    border-color: #0891b2;
+    color: #ffffff;
+}
+
+/* Adaptive fluid sizing mechanics for mobile environments */
+@media (max-width: 480px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }

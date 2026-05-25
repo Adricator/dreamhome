@@ -10,6 +10,7 @@ use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ViewingController;
 use App\Http\Controllers\LeaseController;
+use App\Http\Controllers\Auth\ClientAuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,11 +47,17 @@ Route::get('/register-preferences', function () {
 |--------------------------------------------------------------------------
 */
 
+Route::get('/client/dashboard', function () {
+        return view('client.dashboard');
+    })->name('client.dashboard');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'role:admin,staff'])
   ->name('dashboard');
 
+Route::post('client/logout', [ClientAuthenticatedSessionController::class, 'destroy'])
+->name('client.logout');
 
 /*
 |--------------------------------------------------------------------------
@@ -90,17 +97,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('inspections', InspectionController::class);
         
+    Route::resource('viewings', ViewingController::class);
 
-   Route::resource('viewings', ViewingController::class);
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Read-Only System Tracker Routes
-    |--------------------------------------------------------------------------
-    | These pages are only for viewing records, not creating/editing/deleting.
-    |--------------------------------------------------------------------------
-    */
 
    
 
@@ -111,14 +109,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/branches/{branch_id}/staff', [PropertyController::class, 'getStaffByBranch']);
 
 });
-
-
-/*
-|--------------------------------------------------------------------------
-| Laravel Breeze Authentication Routes
-|--------------------------------------------------------------------------
-| This includes login, register, logout, forgot password, etc.
-|--------------------------------------------------------------------------
-*/
 
 require __DIR__ . '/auth.php';

@@ -1,0 +1,141 @@
+/* public/css/gateway.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0f172a; /* Your exact theme code background */
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    color: #ffffff;
+}
+
+.gw-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.05); /* Matching backdrop filter transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 680px; /* Wider footprint to cleanly balance twin layout slots */
+}
+
+.gw-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.gw-header h2 {
+    color: #22d3ee; /* Your exact branding accent colour */
+    font-family: 'Comfortaa', cursive;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.gw-header p {
+    color: #94a3b8; /* Cleaner look than plain charcoal */
+    font-size: 14px;
+}
+
+/* Dual Column Alignment Structure */
+.gw-options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+    .gw-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Individual Portal Card Elements */
+.gw-role-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 2rem 1.5rem;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.gw-role-card:hover {
+    transform: translateY(-4px);
+    border-color: #22d3ee;
+    background: rgba(34, 211, 238, 0.04);
+}
+
+/* Decorative Icon Enclosures */
+.gw-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background-color 0.2s;
+}
+
+.gw-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Custom Portal Identifiers */
+.gw-staff-accent {
+    color: #22d3ee;
+    border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.gw-client-accent {
+    color: #3490dc; /* Using your exact primary submission blue */
+    border: 1px solid rgba(52, 144, 220, 0.2);
+}
+
+.gw-role-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.gw-role-card p {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Aligns buttons identically regardless of text heights */
+}
+
+/* Prompt Links inside individual modules */
+.gw-action-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #22d3ee;
+    transition: letter-spacing 0.2s ease;
+}
+
+.gw-role-card:hover .gw-action-label {
+    letter-spacing: 0.14em;
+}

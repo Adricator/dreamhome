@@ -43,7 +43,7 @@
     <div class="flex-1 flex justify-end items-center gap-6">
      <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
     <!-- Log In Link -->
-    <x-nav-link :href="route('login')" :active="request()->routeIs('login')" class="!text-white !font-bold !text-xs !uppercase hover:!text-gray-300 hover:!border-transparent transition duration-150 ease-in-out">
+    <x-nav-link :href="route('login.gateway')" :active="request()->routeIs('login.gateway')" class="!text-white !font-bold !text-xs !uppercase hover:!text-gray-300 hover:!border-transparent transition duration-150 ease-in-out">
         {{ __('Log in') }}
     </x-nav-link>
 

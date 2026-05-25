@@ -13,6 +13,8 @@ return [
     | reset "broker" for your application. You may change these values
     | as required, but they're a perfect start for most applications.
     |
+    | Do not modify this unless you want clients or staff to be the global default.
+    |
     */
 
     'defaults' => [
@@ -40,7 +42,13 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users', // This handles your staff setup
+        ],
+
+        // MERGED CLIENT GUARD BLOCK HERE:
+        'client' => [
+            'driver' => 'session',
+            'provider' => 'clients',
         ],
     ],
 
@@ -64,9 +72,14 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Staff::class, // <--- Change this from App\Models\User::class
+            'model' => App\Models\Staff::class, // Link to your staff table model
         ],
 
+        // MERGED CLIENT PROVIDER BLOCK HERE:
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Client::class, // Link to your clients table model
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
