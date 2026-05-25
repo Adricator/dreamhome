@@ -103,7 +103,7 @@
     letter-spacing: 0.1em;
     border-radius: 0.5em;
     text-decoration: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .p-dir-btn-add:hover {
@@ -132,7 +132,7 @@
 
 /* Glassmorphic Panel UI Elements */
 .p-dir-glass-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -140,11 +140,12 @@
     padding: 1.5rem; /* p-6 */
     display: flex;
     flex-direction: column;
-    transition: border-color 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .p-dir-glass-card:hover {
-    border-color: rgba(255, 255, 255, 0.4); /* hover:border-white/40 */
+    border-color: rgb(34, 211, 238, 0.5);
+    transform: translateY(-2px);
 }
 
 /* Component Level Headers & Indicators */
@@ -574,7 +575,7 @@
     letter-spacing: 0.1em;
     text-decoration: none;
     border-radius: 0.5rem; /* rounded-lg */
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .p-show-btn-primary {
@@ -779,7 +780,7 @@
     text-decoration: none;
     cursor: pointer;
     box-sizing: border-box;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .p-crt-btn-submit {
@@ -940,7 +941,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #ffffff;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease, box-shadow 0.2s ease;
 }
 
 .p-edt-input-text:focus,
@@ -986,7 +987,7 @@
     text-decoration: none;
     cursor: pointer;
     box-sizing: border-box;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .p-edt-btn-submit {

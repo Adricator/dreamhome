@@ -131,7 +131,6 @@
 
 .viewing-search-button:hover {
     background-color: #06b6d4;
-    transform: translateY(-1px);
 }
 
 /* Session Alerts / Flash Messages (e.g., @if(session('success'))) */
@@ -164,7 +163,7 @@
 }
 
 .viewing-card:hover {
-    border-color: rgba(34, 211, 238, 0.45);
+    border-color: rgb(34, 211, 238, 0.5);
     transform: translateY(-2px);
 }
 

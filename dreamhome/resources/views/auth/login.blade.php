@@ -16,7 +16,6 @@
             <p>Please sign in to access your dashboard</p>
         </div>
 
-        <!-- Display Security Validation Errors if they occur -->
         @if ($errors->any())
             <ul class="error-list">
                 @foreach ($errors->all() as $error)
@@ -25,23 +24,18 @@
             </ul>
         @endif
 
-        <!-- Core Laravel Auth Processing Form -->
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email Field -->
             <div class="form-group">
                 <label Safe for="email">Email Address</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="name@email.com">
             </div>
-
-            <!-- Password Field -->
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required placeholder="••••••••">
             </div>
 
-            <!-- Extras: Remember Me & Forgot Password Links -->
             <div class="form-options">
                 <label class="remember-me">
                     <input type="checkbox" name="remember">
@@ -55,7 +49,6 @@
                 @endif
             </div>
 
-            <!-- Submit Action -->
             <button type="submit" class="btn-submit">
                 Log In
             </button>

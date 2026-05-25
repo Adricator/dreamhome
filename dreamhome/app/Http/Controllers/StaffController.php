@@ -51,8 +51,6 @@ class StaffController extends Controller
     public function store(StoreStaffRequest $request)
     {
         $validated = $request->validated();
-
-        // Safe auto-incrementing key sequencer for PostgreSQL
         $lastStaff = \App\Models\Staff::select('staff_id')
             ->where('staff_id', 'ILIKE', 'ST%')
             ->orderByRaw('CAST(SUBSTRING(staff_id FROM 3) AS INTEGER) DESC')

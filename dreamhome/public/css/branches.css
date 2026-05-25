@@ -130,7 +130,8 @@
 }
 
 .branch-card:hover {
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgb(34, 211, 238, 0.5);
+    transform: translateY(-2px);
 }
 
 /* ========================================
@@ -1113,7 +1114,7 @@
     font-size: 0.95rem;
     outline: none;
     box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease, box-shadow 0.2s ease;
 }
 
 .b-reg-control:focus {
@@ -1170,7 +1171,7 @@
     border-radius: 0.5rem; /* rounded-lg */
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
     box-sizing: border-box;
 }
 

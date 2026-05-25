@@ -75,7 +75,7 @@ body {
     border: 1px solid #cccccc;
     border-radius: 4px;
     font-size: 14px;
-    transition: border-color 0.2s;
+    transition: all 0.3s;
     font-family: 'Montserrat', sans-serif;
 }
 

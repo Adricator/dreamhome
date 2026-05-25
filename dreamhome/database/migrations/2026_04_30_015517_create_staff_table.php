@@ -32,7 +32,7 @@ return new class extends Migration
             $table->decimal('performance_bonus', 10, 2)->nullable();
             $table->date('date_promoted')->nullable();
             $table->integer('typing_speed_wpm')->nullable();
-            $table->string('password')->default('dreamhome123');
+            $table->string('password');
             $table->rememberToken();
         });
 

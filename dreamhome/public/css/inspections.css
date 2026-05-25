@@ -37,7 +37,7 @@
 }
 
 .inspection-search-input {
-    width: 18rem;
+    width: 16rem;
     line-height: 1.25rem;
     padding: 0.5rem 1rem;
     background: rgba(255, 255, 255, 0.1);
@@ -113,6 +113,7 @@
 
 .inspection-card:hover {
     border-color: rgba(34, 211, 238, 0.5);
+    transform: translateY(-2px);
 }
 
 .inspection-card-top {
@@ -360,7 +361,7 @@
     font-size: 0.95rem;
     outline: none;
     box-sizing: border-box;
-    transition: border-color 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .inspection-input-group textarea {
@@ -395,7 +396,7 @@
     letter-spacing: 0.1em;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .inspection-submit-btn {

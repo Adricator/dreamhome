@@ -43,7 +43,7 @@ class SearchController extends Controller
             'query',
             'properties',
             'staff',
-            'private-owners',
+            'owners',
             'branches',
             'clients'
         ));

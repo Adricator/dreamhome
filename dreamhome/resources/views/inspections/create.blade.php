@@ -15,28 +15,6 @@
 </head>
 
 <body>
-
-<header class="navbar-container">
-    <nav class="navbar">
-        <div class="navbar-links">
-            <a href="{{ url('/dashboard') }}">Home</a>
-            <a href="{{ route('branches.index') }}">Branches</a>
-            <a href="{{ route('staff.index') }}">Staff</a>
-            <a href="{{ route('properties.index') }}">Properties</a>
-            <a href="{{ route('owners.index') }}">Owners</a>
-            <a href="{{ route('inspections.index') }}" class="active">Inspections</a>
-            <a href="{{ url('/clients') }}">Clients</a>
-            <a href="{{ url('/viewings') }}">Viewings</a>
-            <a href="{{ url('/leases') }}">Leases</a>
-        </div>
-    </nav>
-
-    <form method="POST" action="{{ route('logout') }}" class="logout-form">
-        @csrf
-        <button type="submit" class="logout-link-btn">Log Out</button>
-    </form>
-</header>
-
 <main class="inspection-form-container">
 
     <div class="inspection-form-card">

@@ -41,7 +41,7 @@
 
     <div class="inspection-header">
         <div class="inspection-header-left">
-            <h1 class="inspection-title">Inspection Logs</h1>
+            <h1 class="inspection-title">inspection logs</h1>
 
             <form action="{{ route('inspections.index') }}" method="GET" class="inspection-search-form">
                 <input

@@ -60,7 +60,16 @@ class Staff extends Authenticatable
     protected function casts(): array
     {
         return [
-            'password' => 'hashed', // Ensures Laravel automatically handles secure password hashing
+            'password' => 'hashed',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(function (Staff $staff) {
+            if (empty($staff->password)) {
+                $staff->password = 'dreamhome123';
+            }
+        });
     }
 }

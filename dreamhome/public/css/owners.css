@@ -130,11 +130,12 @@
     border-radius: 1rem; /* rounded-2xl */
     padding: 1.5rem; /* p-6 */
     box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease, box-shadow 0.2s ease;
 }
 
 .od-dir-profile-card:hover {
-    border-color: rgba(34, 211, 238, 0.5); /* hover:border-cyan-500/50 */
+    border-color: rgba(34, 211, 238, 0.5);
+    transform: translateY(-2px);
 }
 
 .od-dir-badge-row {
@@ -448,7 +449,7 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-align: center;
 }
 

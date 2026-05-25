@@ -6,28 +6,10 @@
     <title>Client Profile - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+
 </head>
 <body class="text-white min-h-screen bg-[#0f172a]">
-
-    <header class="navbar-container">
-        <nav class="navbar">
-            <div class="navbar-links">
-                <a href="{{ route('dashboard') }}">Home</a>
-                <a href="{{ route('branches.index') }}" >Branches</a>
-                <a href="{{ route('staff.index') }}">Staff</a>
-                <a href="{{ route('properties.index') }}">Properties</a>
-                <a href="{{ route('owners.index') }}">Owners</a>
-                <a href="{{ url('/inspections') }}">Inspections</a>
-                <a href="{{ url('/clients') }}" class="active">Clients</a>
-                <a href="{{ url('/viewings') }}">Viewings</a>
-                <a href="{{ url('/leases') }}">Leases</a>
-            </div>
-        </nav>
-    </header>
-
-
     <main class="max-w-4xl mx-auto px-6 py-16">
         <div class="mb-8">
             <a href="{{ url('/clients') }}" class="group inline-flex items-center text-cyan-400 text-[10px] uppercase font-bold tracking-[0.2em] hover:text-white transition">
