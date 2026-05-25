@@ -290,3 +290,44 @@ body {
         gap: 0;
     }
 }
+
+/* Position anchor wrapper for input field layout matching */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure text doesn't overflow behind the icon button graphic */
+.password-wrapper input {
+    padding-right: 45px !important; 
+    width: 100%;
+}
+
+/* Button wrapper reset styling inside input element box context */
+.toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b; /* Slate grey icon fill tone matches system placeholders */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    z-index: 10;
+}
+
+/* Hover accent feedback highlighting glow state indicators */
+.toggle-password-btn:hover {
+    color: #22d3ee; /* Smooth shift to Cyan accent tracking layout style on hover */
+}
+
+/* Focus indicator override protection */
+.toggle-password-btn:focus {
+    outline: none;
+}
