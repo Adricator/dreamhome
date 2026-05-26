@@ -8,12 +8,8 @@
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 </head>
-<<<<<<< HEAD
 <body class="text-white min-h-screen bg-[#0f172a]">
 
-=======
-<body>
->>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
     <main class="max-w-3xl mx-auto px-6 py-16">
         <div class="mb-8">
             <a href="{{ url('/clients') }}" class="group inline-flex items-center text-gray-400 text-[10px] uppercase font-bold tracking-[0.2em] hover:text-cyan-400 transition">

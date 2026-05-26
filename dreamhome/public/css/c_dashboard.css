@@ -13,8 +13,9 @@ body {
 .dashboard-wrapper {
     display: grid;
     grid-template-columns: 260px 1fr;
-    min-height: 100vh;
+    height: 100vh; /* Force the wrapper to lock exactly to viewport height */
     width: 100vw;
+    overflow: hidden; /* Prevent the entire page body from scrolling */
 }
 
 /* ==========================================
@@ -26,6 +27,10 @@ body {
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
+    height: 100vh; /* Takes full height of window viewport */
+    box-sizing: border-box; /* Includes padding in height limits */
+    position: sticky;
+    top: 0;
 }
 
 .sidebar-brand h1 {
@@ -112,6 +117,9 @@ body {
 .main-content {
     padding: 40px;
     background-color: #0f172a;
+    height: 100vh; /* Matches layout height boundaries */
+    overflow-y: auto; /* FIXED: Enables scrolling ONLY inside the main panel */
+    box-sizing: border-box;
 }
 
 .content-header {

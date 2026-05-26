@@ -16,7 +16,6 @@
         body { font-family: 'montserrat', sans-serif; }
     </style>
 </head>
-<<<<<<< HEAD
 
 <body class="bg-[#0f1523] text-white min-h-screen p-8 flex justify-center items-start pt-16">
 
@@ -25,68 +24,6 @@
         <div class="mb-8">
             <a href="{{ route('inspections.index') }}" class="text-cyan-400 text-sm font-bold tracking-[0.15em] uppercase hover:text-cyan-300 transition-colors flex items-center gap-2">
                 <span>&larr;</span> Back to list
-=======
-<body>
-<main class="inspection-show-container">
-
-    <div class="inspection-show-header">
-        <div>
-            <h1 class="inspection-show-title">Inspection Details</h1>
-            <p class="inspection-show-subtitle">Inspection #{{ $inspection->inspection_id }}</p>
-        </div>
-
-        <span class="inspection-id-badge">
-            {{ $inspection->date
-                ? \Carbon\Carbon::parse($inspection->date)->format('M d, Y')
-                : 'No Date'
-            }}
-        </span>
-    </div>
-
-    @if(session('success'))
-        <div class="inspection-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="inspection-show-card">
-
-        <div class="inspection-show-grid">
-
-            <div class="inspection-show-item">
-                <span>Property ID</span>
-                <p>{{ $inspection->property_id }}</p>
-            </div>
-
-            <div class="inspection-show-item">
-                <span>Staff ID</span>
-                <p>{{ $inspection->staff_id }}</p>
-            </div>
-
-            <div class="inspection-show-item">
-                <span>Inspection Date</span>
-                <p>
-                    {{ $inspection->date
-                        ? \Carbon\Carbon::parse($inspection->date)->format('M d, Y')
-                        : 'No Date'
-                    }}
-                </p>
-            </div>
-
-        </div>
-
-        <hr class="inspection-divider">
-
-        <div class="inspection-show-comments">
-            <span>Comment</span>
-            <p>{{ $inspection->comment ?? 'No comment provided.' }}</p>
-        </div>
-
-        <div class="inspection-show-actions">
-
-            <a href="{{ route('inspections.index') }}" class="inspection-cancel-btn">
-                Back
->>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
             </a>
         </div>
 

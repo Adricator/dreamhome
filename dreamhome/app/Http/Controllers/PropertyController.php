@@ -30,7 +30,6 @@ class PropertyController extends Controller
             });
         }
 
-<<<<<<< HEAD
        // Inside your PropertyController.php
 
     $query = Property::query();
@@ -38,19 +37,6 @@ class PropertyController extends Controller
     // Filters
     if ($request->filled('type')) {
         $query->where('type', $request->type);
-=======
-        if ($request->filled('type')) {
-            $query->where('type', $request->input('type'));
-        }
-
-        if ($request->filled('status')) {
-            $query->where('status', $request->input('status'));
-        }
-
-        $properties = $query->get();
-
-        return view('properties.index', compact('properties'));
->>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
     }
     if ($request->filled('rooms')) {
         $query->where('rooms', $request->rooms);

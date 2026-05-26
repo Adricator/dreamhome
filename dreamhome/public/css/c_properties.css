@@ -1,0 +1,308 @@
+/* ==========================================
+   PROPERTIES SYSTEM GRID ARCHITECTURE
+   ========================================== */
+
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.property-card {
+    background-color: #1e293b; /* Matches Slate 800 background */
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    border-color: rgba(34, 211, 238, 0.1);
+}
+
+/* Update the Badge Colors for Status */
+.property-badge {
+    /* Fixes position to the top-most right corner */
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+    /* Aesthetics */
+    padding: 8px 16px;
+    border-bottom-left-radius: 8px; /* Optional: curves only the inner corner */
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    z-index: 10; /* Ensures it stays above images or content */
+}   
+
+/* Status: Available (Green) */
+.property-badge.status-available { 
+    background-color: #10b981; 
+}
+
+/* Status: Maintenance (Red) */
+.property-badge.status-maintenance { 
+    background-color: #ef4444; 
+}
+
+/* Status: Rented or Reserved (Yellow) */
+.property-badge.status-rented,
+.property-badge.status-reserved { 
+    background-color: #eab308; 
+    color: #000000; /* Darker text for better readability on yellow */
+}
+
+/* Optional: Clean up the old type-specific badges if no longer needed */
+/* Remove the .property-badge.studio, .house, etc., classes */
+
+/* Card Core Context Typography */
+.property-body {
+    padding: 25px 25px 15px 25px;
+    flex-grow: 1;
+}
+
+.property-id-tag {
+    font-size: 11px;
+    color: #0891b2; /* Cyan theme token string tracker */
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.property-address {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.property-location {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Internal Metric Subcomponents */
+.property-specs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.spec-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.spec-pill svg {
+    color: #64748b;
+}
+
+.spec-pill.status-available {
+    background-color: rgba(8, 145, 178, 0.1);
+    color: #22d3ee;
+}
+
+/* Card Bottom Footer Boundaries */
+.property-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.property-rent-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.rent-label {
+    font-size: 10px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.rent-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #22d3ee; /* Matches template system pricing accents */
+}
+
+/* Structural Interaction Actions Button */
+.btn-action-view {
+    background-color: transparent;
+    border: 1px solid rgba(8, 145, 178, 0.4);
+    color: #22d3ee;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-action-view:hover {
+    background-color: #0891b2;
+    color: #ffffff;
+    border-color: #0891b2;
+    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
+}
+
+/* Empty Collection View Fallback Display */
+.empty-state-card {
+    background-color: #1e293b;
+    border-radius: 8px;
+    padding: 60px;
+    text-align: center;
+    color: #64748b;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================
+   PROPERTY DETAILS SPECIFIC LAYOUT
+   ========================================== */
+
+.property-details-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.details-header {
+    margin-bottom: 2rem;
+}
+
+.back-nav {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+}
+
+.back-nav:hover { color: #22d3ee; }
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 2rem;
+}
+
+.header-content h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+}
+
+.main-info-card, .management-card {
+    background-color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.address-title { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; }
+.location-text { color: #94a3b8; margin-bottom: 2rem; }
+
+.specs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+}
+.spec-box .label {    font-size: 10px;
+    color: rgb(100, 116, 139);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;}
+.spec-box .value {    font-size: 20px;
+    font-weight: 700;
+    color: rgb(34, 211, 238);}
+
+.spec-box.rent-spec-box {
+    margin-left: auto; /* This pushes this specific box to the far right */
+    text-align: right;  /* Optional: Aligns the text inside the box to the right as well */
+}
+.rent-highlight { color: #22d3ee; }
+
+.contact-item { margin-bottom: 1.5rem; }
+.contact-item .label { font-size: 10px; color: #64748b; text-transform: uppercase; }
+.contact-item p { color: #e2e8f0; font-weight: 500; }
+
+.request-btn {
+    width: 100%;
+    background-color: #22d3ee;
+    color: #0f172a;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.request-btn:hover { background-color: #0891b2; color: #fff; }
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff; /* Default text color */
+}
+
+/* Status: Available (Emerald Green) */
+.status-badge.status-available { 
+    background-color: #10b981; 
+}
+
+/* Status: Maintenance (Rose Red) */
+.status-badge.status-maintenance { 
+    background-color: #ef4444; 
+}
+
+/* Status: Rented or Reserved (Amber Yellow) */
+.status-badge.status-rented,
+.status-badge.status-reserved { 
+    background-color: #eab308; 
+    color: #0f172a; /* Dark text for better contrast on yellow */
+}
