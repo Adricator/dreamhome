@@ -1,8 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Viewing;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,32 +14,40 @@ class ViewingSeeder extends Seeder
     {
         DB::table('viewings')->insert([
             [
-                'client_id'   => 'CL001', // Make sure this matches a client_id in your 'clients' table
-                'property_id' => 'PR001', // Make sure this matches a property_id in your 'properties' table
-                'view_date'   => '2026-05-10',
-                'staff_id'    => 'ST0016', // Matches John Doe from your staff data
-                'comments'    => 'Client liked the spacious living room, but wants a larger kitchen.',
-            ],
-            [
-                'client_id'   => 'CL002',
-                'property_id' => 'PR001', // Multiple clients can view the same property
-                'view_date'   => '2026-05-11',
-                'staff_id'    => 'ST0017', // Matches Jane Doe from your staff data
-                'comments'    => 'Found the neighborhood too noisy.',
-            ],
-            [
-                'client_id'   => 'CL001', // Same client viewing a different property
-                'property_id' => 'PR002',
-                'view_date'   => '2026-05-12',
+                'viewing_id'  => 'V001',
+                'client_id'   => 'CL001',
+                'property_id' => 'PR001',
+                'view_date'   => '2026-05-10 10:00:00',
                 'staff_id'    => 'ST0016',
-                'comments'    => null, // This is allowed because comments are ->nullable()
+                'comments'    => 'Client liked the spacious living room, but wants a larger kitchen.',
+                'status'      => 'pending',
             ],
             [
+                'viewing_id'  => 'V002',
+                'client_id'   => 'CL002',
+                'property_id' => 'PR001',
+                'view_date'   => '2026-05-11 11:00:00',
+                'staff_id'    => 'ST0017',
+                'comments'    => 'Found the neighborhood too noisy.',
+                'status'      => 'pending',
+            ],
+            [
+                'viewing_id'  => 'V003',
+                'client_id'   => 'CL001',
+                'property_id' => 'PR002',
+                'view_date'   => '2026-05-12 09:00:00',
+                'staff_id'    => 'ST0016',
+                'comments'    => null,
+                'status'      => 'pending',
+            ],
+            [
+                'viewing_id'  => 'V004',
                 'client_id'   => 'CL003',
                 'property_id' => 'PR003',
-                'view_date'   => '2026-05-14',
-                'staff_id'    => 'ST0018', // Matches Sam Smith from your staff data
-                'comments'   => 'Thinking about making an offer soon.',
+                'view_date'   => '2026-05-14 02:00:00',
+                'staff_id'    => 'ST0018',
+                'comments'    => 'Thinking about making an offer soon.',
+                'status'      => 'pending',
             ],
         ]);
     }

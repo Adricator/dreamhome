@@ -12,21 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('registrations', function (Blueprint $table) {
-            // Define client_id as the Primary Key
             $table->string('client_id')->primary();
-            
+
             $table->string('branch_id');
             $table->string('staff_id');
             $table->date('date_joined');
 
-            // Set up Foreign Key constraints
-            $table->foreign('client_id')->references('client_id')->on('clients')
+            $table->foreign('client_id')
+                ->references('client_id')
+                ->on('clients')
                 ->onDelete('cascade');
 
-            $table->foreign('branch_id')->references('branch_id')->on('branches')
+            $table->foreign('branch_id')
+                ->references('branch_id')
+                ->on('branches')
                 ->onDelete('cascade');
 
-            $table->foreign('staff_id')->references('staff_id')->on('staff')
+            $table->foreign('staff_id')
+                ->references('staff_id')
+                ->on('staff')
                 ->onDelete('cascade');
         });
     }
