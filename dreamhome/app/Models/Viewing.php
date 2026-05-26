@@ -7,15 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Viewing extends Model
 {
     protected $table = 'viewings';
-
-    protected $primaryKey = 'id';
-
-    public $incrementing = true;
-
-    protected $keyType = 'int';
-
     public $timestamps = false;
-
+    protected $primaryKey = 'viewing_id';
     protected $fillable = [
         'client_id',
         'property_id',

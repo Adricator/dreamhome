@@ -41,7 +41,7 @@
 
     <div class="inspection-header">
         <div class="inspection-header-left">
-            <h1 class="inspection-title">inspection logs</h1>
+            <h1 class="inspection-title">inspection directory</h1>
 
             <form action="{{ route('inspections.index') }}" method="GET" class="inspection-search-form">
                 <input
@@ -83,12 +83,12 @@
 
                 <div class="inspection-info">
                     <h3 class="inspection-name">
-                        Property: {{ $inspection->property_id }}
+                        Property ID: {{ $inspection->property_id }}
                     </h3>
 
                     <p class="inspection-position">
-                        {{ $inspection->date
-                            ? \Carbon\Carbon::parse($inspection->date)->format('M d, Y')
+                        {{ $inspection->inspection_date
+                            ? \Carbon\Carbon::parse($inspection->inspection_date)->format('M d, Y')
                             : 'No Date'
                         }}
                     </p>
@@ -107,7 +107,7 @@
                         <span class="inspection-detail-label">Comment</span>
 
                         <p>
-                            {{ $inspection->comment ?? 'No comment provided.' }}
+                            {{ $inspection->comments ?? 'No comment provided.' }}
                         </p>
                     </div>
 

@@ -113,7 +113,6 @@
 
 .inspection-card:hover {
     border-color: rgba(34, 211, 238, 0.5);
-    transform: translateY(-2px);
 }
 
 .inspection-card-top {
@@ -273,9 +272,11 @@
 /* ===============================
    CREATE, EDIT, SHOW PAGES
 ================================ */
+/* ==========================================================================
+   PRODUCTION FORM ENGINE CSS (CREATE & EDIT)
+   ========================================================================== */
 
-.inspection-form-container,
-.inspection-show-container {
+.inspection-form-container {
     width: 100%;
     max-width: 56rem;
     margin: 0 auto;
@@ -283,243 +284,428 @@
     box-sizing: border-box;
 }
 
-.inspection-form-card,
-.inspection-show-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(6, 182, 212, 0.2);
+.inspection-form-card {
+    background: #0f172a; /* Dark sleek aesthetic backdrop */
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 1.5rem;
     padding: 2.5rem;
 }
 
-.inspection-form-header,
-.inspection-show-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
+.inspection-form-header {
     margin-bottom: 2.5rem;
 }
 
-.inspection-form-title,
-.inspection-show-title {
+.inspection-form-title {
     font-family: 'Comfortaa', cursive;
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+    text-transform: lowercase; 
+    font-size: 3rem;           
+    line-height: 1;
     color: #d1dcd5;
     margin: 0;
 }
 
-.inspection-form-subtitle,
-.inspection-show-subtitle {
-    color: #22d3ee;
-    font-size: 10px;
+.inspection-form-subtitle {
+    color: #4b5563;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 0.5rem;
+    letter-spacing: 0.12em;
+    margin-top: 0.75rem;
     font-weight: 700;
 }
 
 .inspection-form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem; 
 }
 
-.inspection-form-grid,
-.inspection-show-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+.inspection-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 }
+
+/* Neon-Cyan Headers (e.g. MANAGEMENT ASSIGNMENT) */
+.inspection-section-label {
+    color: #00b4d8; 
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+/* 12-Column Layout Grid */
+.inspection-form-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.25rem;
+}
+
+.col-12 { grid-column: span 12; }
+.col-6  { grid-column: span 6; }
+.col-4  { grid-column: span 4; }
 
 .inspection-input-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 }
 
-.inspection-input-group label,
-.inspection-show-item span,
-.inspection-show-comments span {
-    color: #6b7280;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
-}
-
+/* Unified Text Inputs and Select Elements to match the visual mock */
 .inspection-input-group input,
+.inspection-input-group select,
 .inspection-input-group textarea {
     width: 100%;
-    padding: 1rem;
+    padding: 1.1rem 1.25rem; 
     border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.03);
     color: #ffffff;
     font-size: 0.95rem;
     outline: none;
     box-sizing: border-box;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+}
+
+/* Clean Custom Dropdown Arrow */
+.inspection-input-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1.25rem center;
+    background-size: 1rem;
+    padding-right: 3rem;
+}
+
+.inspection-input-group input[type="date"] {
+    color-scheme: dark;
+}
+
+.inspection-input-group input::placeholder,
+.inspection-input-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
 }
 
 .inspection-input-group textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 140px;
 }
 
 .inspection-input-group input:focus,
+.inspection-input-group select:focus,
 .inspection-input-group textarea:focus {
-    border-color: rgba(6, 182, 212, 0.5);
+    border-color: rgba(6, 182, 212, 0.6);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.inspection-form-actions,
-.inspection-show-actions {
+.inspection-divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 1rem 0;
+}
+
+/* Footer Control Setup */
+.inspection-form-actions {
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex-wrap: wrap;
 }
 
 .inspection-submit-btn,
-.inspection-cancel-btn,
-.inspection-danger-btn {
+.inspection-cancel-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2.5rem;
-    border-radius: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 700;
+    padding: 1.1rem 3rem;
+    border-radius: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
 .inspection-submit-btn {
-    background-color: #06b6d4;
+    background-color: #00b4d8; 
     color: #000000;
     border: none;
 }
 
 .inspection-submit-btn:hover {
     background-color: #22d3ee;
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.25);
 }
 
 .inspection-cancel-btn {
     background-color: transparent;
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .inspection-cancel-btn:hover {
     background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
-.inspection-danger-btn {
-    background: transparent;
-    color: #f87171;
-    border: 1px solid rgba(248, 113, 113, 0.4);
-}
-
-.inspection-danger-btn:hover {
-    background: rgba(248, 113, 113, 0.1);
-    color: #ef4444;
-}
-
-.inspection-error-box {
-    margin-bottom: 2rem;
-    padding: 1rem 1.25rem;
-    background: rgba(248, 113, 113, 0.1);
-    border: 1px solid rgba(248, 113, 113, 0.35);
-    color: #fecaca;
-    border-radius: 0.75rem;
-    font-size: 0.875rem;
-}
-
-.inspection-error-box ul {
-    margin-top: 0.5rem;
-}
-
-.inspection-show-item p {
-    color: #ffffff;
-    font-size: 1.125rem;
-    margin: 0.5rem 0 0;
-}
-
-.inspection-divider {
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 2rem 0;
-}
-
-.inspection-show-comments {
-    margin-bottom: 2rem;
-}
-
-.inspection-show-comments p {
-    color: #e5e7eb;
-    line-height: 1.7;
-    margin: 0.5rem 0 0;
-}
-
-/* ===============================
-   RESPONSIVE
-================================ */
-
-@media (max-width: 1200px) {
-    .inspection-grid {
-        grid-template-columns: repeat(3, 1fr);
+@media (max-width: 768px) {
+    .col-12, .col-6, .col-4 {
+        grid-column: span 12;
     }
-}
-
-@media (max-width: 900px) {
-    .inspection-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .inspection-header,
-    .inspection-form-header,
-    .inspection-show-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .inspection-form-grid,
-    .inspection-show-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 640px) {
-    .inspection-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .inspection-title {
-        font-size: 2.25rem;
-    }
-
-    .inspection-search-input {
-        width: 100%;
-    }
-
-    .inspection-form-card,
-    .inspection-show-card {
-        padding: 1.5rem;
-    }
-
-    .inspection-form-title,
-    .inspection-show-title {
-        font-size: 1.9rem;
-    }
-
     .inspection-submit-btn,
-    .inspection-cancel-btn,
-    .inspection-danger-btn {
+    .inspection-cancel-btn {
         width: 100%;
+    }
+}
+
+/* ==========================================================================
+   INSPECTION SHOW / VIEW SCENE ENGINE
+   ========================================================================== */
+/* ==========================================================================
+   PRODUCTION INSPECTION VISUAL COMPONENT STYLES
+   ========================================================================== */
+
+.inspection-show-container {
+    width: 100%;
+    max-width: 66rem;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.inspection-show-card {
+    position: relative;
+    background: #0f172a; /* Custom card backdrop fill */
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 1.5rem;
+    padding: 3.5rem;
+    overflow: hidden;
+}
+
+/* Accent ribbon tag styled cleanly to fit upper right container frame */
+.inspection-status-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #00b4d8;
+    color: #000000;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 0.85rem 3rem;
+    border-bottom-left-radius: 1.25rem;
+}
+
+.inspection-show-header {
+    margin-bottom: 3.5rem;
+}
+
+.inspection-meta-label {
+    color: #4b5563;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+}
+
+.inspection-show-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 3.8rem;
+    font-weight: 300;
+    color: #ffffff;
+    margin: 0.5rem 0;
+    line-height: 1.1;
+}
+
+.inspection-show-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin: 0;
+}
+
+/* Split Pane Grid Alignment Layout Engine */
+.inspection-show-content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.inspection-left-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.inspection-section-tag {
+    display: block;
+    color: #4b5563;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.inspection-primary-text {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 0.25rem 0;
+}
+
+.inspection-secondary-text {
+    color: #6b7280;
+    font-size: 13px;
+    margin: 0;
+}
+
+.inspection-bold-text {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.inspection-meta-row {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.inspection-meta-col {
+    flex: 1;
+}
+
+/* Nested Highlight Summary Pane Container Card Layout */
+.inspection-right-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.inspection-card-highlight-title {
+    color: #ffffff;
+    font-size: 1.85rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Comments Observation Layout Area Block */
+.inspection-comments-heading {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.inspection-comments-container {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 0.75rem;
+    padding: 1.75rem 2rem;
+}
+
+.inspection-comments-paragraph {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Divider Architecture Rule Sets */
+.inspection-divider-thin {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.inspection-divider-horizontal {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    margin: 3.5rem 0;
+}
+
+/* Action Control Systems Footer Links Layout Buttons styling */
+.inspection-show-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inspection-edit-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 1.1rem 2.5rem;
+    border-radius: 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.inspection-edit-action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.inspection-back-list-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 1.1rem 2.25rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.inspection-back-list-btn:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.inspection-delete-action-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 0.5rem 1rem;
+}
+
+.inspection-delete-action-btn:hover {
+    color: #f87171;
+}
+
+@media (max-width: 992px) {
+    .inspection-show-content-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .inspection-show-title {
+        font-size: 2.85rem;
     }
 }
