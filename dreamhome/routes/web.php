@@ -10,6 +10,7 @@ use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ViewingController;
 use App\Http\Controllers\LeaseController;
+use App\Models\Property;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,18 @@ use App\Http\Controllers\LeaseController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/properties', function () {
+    return view('welcome');
+})->name('properties.section');
+
+Route::get('/', function () {
+    // Fetch the properties from your database
+    $properties = Property::all(); 
+
+    // Pass the variable to the view
+    return view('welcome', compact('properties'));
+});
 
 // Search page
 Route::get('/search', [SearchController::class, 'index'])
@@ -88,13 +101,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clients', ClientController::class)
         ->parameters(['clients' => 'client_id']);
 
-    Route::resource('inspections', InspectionController::class);
-        
-
+    Route::resource('inspections', InspectionController::class)
+        ->parameters(['inspections' => 'inspection_id']);
+            
     Route::resource('viewings', ViewingController::class)
         ->parameters([
-            'viewings' => 'client_id,property_id,view_date'
-        ]);
+            'viewings' => 'client_id,property_id,view_date']);
+
+    Route::resource('leases', LeaseController::class)
+        ->parameters([
+            'leases' => 'client_id,property_id,lease_start_date']);
 
 
     /*
@@ -107,8 +123,7 @@ Route::middleware(['auth'])->group(function () {
 
    
 
-    Route::resource('leases', LeaseController::class)
-        ->only(['index']);
+  
 
     Route::get('/api/branches/{branch_id}/supervisors', [StaffController::class, 'getSupervisorsByBranch']);
     Route::get('/api/branches/{branch_id}/staff', [PropertyController::class, 'getStaffByBranch']);

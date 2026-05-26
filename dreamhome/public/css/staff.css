@@ -237,24 +237,44 @@
    ACTIONS
 ======================================== */
 
+
+/* Align action links on the same row */
+/* ========================================
+   ACTIONS
+======================================== */
+
+/* Container setup */
 .staff-actions {
     display: flex;
-    gap: 1rem;
+    gap: 1rem;            /* Space between VIEW and EDIT */
+    align-items: center;  /* Vertical alignment */
+    width: 100%;          /* Make sure container stretches full width */
 }
 
-.staff-view-link,
-.staff-edit-link {
-    text-decoration: none;
-
+/* Individual links and buttons */
+.staff-actions a,
+.staff-actions button {
+    display: inline-flex;  
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1;        
+    height: auto;          
+    
+    font-family: inherit; 
     font-size: 10px;
     font-weight: 700;
-
     text-transform: uppercase;
     letter-spacing: 0.15em;
-
+    
+    cursor: pointer;
+    text-decoration: none;
     transition: color 0.3s ease;
 }
 
+/* Specific colors */
 .staff-view-link {
     color: #22d3ee;
 }
@@ -264,12 +284,31 @@
 }
 
 .staff-edit-link {
-    color: rgba(255, 255, 255, 0.5);
+    color: white;
 }
 
 .staff-edit-link:hover {
-    color: white;
+    color: #22d3ee;
 }
+
+/* THE ALIGNMENT FIX:
+   Pushes the delete link (or the form wrapping it) 
+   all the way to the right side 
+*/
+.staff-delete-link,
+.staff-actions form {
+    margin-left: auto; 
+}
+
+.staff-delete-link {
+    color: #f87171;
+}
+
+.staff-delete-link:hover {
+    color: #dc2626;
+}
+
+
 
 /* ========================================
    RESPONSIVE

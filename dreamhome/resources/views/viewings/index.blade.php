@@ -121,10 +121,9 @@
                         </a>
                     </div>
 
-                    <form method="POST" action="{{ route('viewings.destroy', $viewing) }}">
-                        @csrf
-                        @method('DELETE')
-
+                   <form action="{{ route('viewings.destroy', $viewing->viewing_id) }}" method="POST">
+                     @csrf
+                    @method('DELETE')
                         <button
                             type="submit"
                             class="delete-link"

@@ -6,8 +6,8 @@
     max-width: 80rem;
     margin: 0 auto;
     padding: 3rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
 }
-
 
 /* ==========================================================================
    INDEX / DASHBOARD PAGE (e.g., index.blade.php)
@@ -24,10 +24,11 @@
 }
 
 .viewing-title {
-    margin-bottom: 0.5rem;
-    font-size: 3rem;
-    color: #d1dcd5;
+    margin-bottom: 0;
+    font-size: 2.5rem;
+    color: #f8fafc; /* Bright off-white to match the image */
     font-family: 'Comfortaa', cursive;
+    font-weight: 300;
     line-height: 1;
 }
 
@@ -56,30 +57,12 @@
     color: black;
 }
 
-.viewing-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1.5rem;
-
-    margin-bottom: 1.1rem; /* controls distance between title and search bar */
-    flex-wrap: wrap;
-}
-
-.viewing-title {
-    margin-bottom: 0;
-    font-size: 3rem;
-    color: #d1dcd5;
-    font-family: 'Comfortaa', cursive;
-    line-height: 1;
-}
-
+/* Search Bar Area */
 .viewing-search-form {
     display: flex;
     align-items: center;
-    gap: 0.9rem;
-
-    margin-top: 0;
+    gap: 12px;
+    margin-top: 1rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
 }
@@ -87,54 +70,49 @@
 .viewing-search-input {
     width: 320px;
     height: 48px;
-    padding: 0 1.25rem;
-
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(148, 163, 184, 0.25);
-    border-radius: 0.75rem;
-
-    color: #ffffff;
-    font-size: 1rem;
-
+    padding: 0 16px;
+    background-color: #172030; /* Dark inner background */
+    border: 1px solid #334155; /* Subtle border */
+    border-radius: 8px;
+    color: #f8fafc;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
     outline: none;
     transition: all 0.25s ease;
 }
 
 .viewing-search-input::placeholder {
-    color: #a8b3c7;
+    color: #64748b;
 }
 
 .viewing-search-input:focus {
-    border-color: rgba(34, 211, 238, 0.55);
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 1px #06b6d4;
 }
 
 .viewing-search-button {
     height: 48px;
-    padding: 0 1.35rem;
-
-    background-color: #0891b2;
-    color: white;
-
+    padding: 0 24px;
+    background-color: #06b6d4; /* Vibrant Cyan */
+    color: #ffffff;
     border: none;
-    border-radius: 0.75rem;
-
-    font-size: 0.9rem;
-    font-weight: 800;
-
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
-
-    transition: background-color 0.25s ease, transform 0.25s ease;
+    transition: background-color 0.25s ease, transform 0.1s ease;
 }
 
 .viewing-search-button:hover {
-    background-color: #06b6d4;
-    transform: translateY(-1px);
+    background-color: #0891b2;
+}
+.viewing-search-button:active {
+    transform: scale(0.98);
 }
 
-/* Session Alerts / Flash Messages (e.g., @if(session('success'))) */
+/* Session Alerts / Flash Messages */
 .viewing-alert {
     margin-bottom: 1.5rem;
     padding: 1rem;
@@ -144,7 +122,11 @@
     color: #67e8f9;
 }
 
-/* Main Grid Loop Container (e.g., @foreach($viewings as $viewing)) */
+/* ==========================================================================
+   GRID & CARD STYLES
+   ========================================================================== */
+
+/* Main Grid Loop Container */
 .viewing-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -155,16 +137,16 @@
 .viewing-card {
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
+    padding: 2rem;
+    background-color: #1a2130; /* Dark blue/grey card background */
+    border: 1px solid #2d3748; /* Subtle border matching the image */
+    border-radius: 16px;
     transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .viewing-card:hover {
-    border-color: rgba(34, 211, 238, 0.45);
+    border-color: rgba(6, 182, 212, 0.45);
     transform: translateY(-2px);
 }
 
@@ -172,62 +154,70 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .viewing-badge {
-    padding: 0.25rem 0.75rem;
-    background-color: rgba(6, 182, 212, 0.2);
-    color: #67e8f9;
-    border-radius: 999px;
-    font-size: 10px;
+    padding: 0.4rem 0.8rem;
+    background-color: rgba(13, 148, 136, 0.15);
+    color: #2dd4bf; /* Teal/Cyan text */
+    border-radius: 9999px;
+    font-size: 0.65rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
 }
 
+/* Adjusted for the larger price text in the top right */
 .viewing-date {
+    color: #f8fafc;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.viewing-date span {
+    font-size: 0.85rem;
     color: #9ca3af;
-    font-size: 11px;
-    font-weight: 700;
 }
 
 .viewing-card-title {
     font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0.25rem 0;
 }
 
 .viewing-card-subtitle {
-    margin-top: 0.25rem;
-    color: #22d3ee;
-    font-size: 0.75rem;
-    font-weight: 700;
+    color: #8b95a5;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
+    margin-bottom: 0;
 }
 
 /* Inner Property/Details Segment */
 .viewing-details {
     display: grid;
-    gap: 0.75rem;
-    margin: 1rem 0;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    grid-template-columns: 1fr 1fr; /* 2 Columns matching the image */
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid #2d3748;
+    border-bottom: 1px solid #2d3748;
 }
 
 .viewing-label {
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.4rem;
     color: #6b7280;
-    font-size: 11px;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
 }
 
 .viewing-value {
-    font-size: 0.9rem;
-    color: #e5e7eb;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e2e8f0;
 }
 
 /* Card Action Footer (View/Edit Inline Links & Delete Forms) */
@@ -236,12 +226,11 @@
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
-    padding-top: 1rem;
 }
 
 .viewing-links {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .view-link,
@@ -249,40 +238,36 @@
 .delete-link {
     background: none;
     border: none;
-    font-size: 10px;
+    padding: 0;
+    font-size: 0.8rem;
     font-weight: 700;
+    font-family: inherit;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.05em;
     cursor: pointer;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: opacity 0.2s ease;
+}
+
+.view-link:hover,
+.edit-link:hover,
+.delete-link:hover {
+    opacity: 0.8;
 }
 
 .view-link {
-    color: #22d3ee;
-}
-
-.view-link:hover {
-    color: white;
+    color: #06b6d4; /* Cyan */
 }
 
 .edit-link {
-    color: white;
-}
-
-.edit-link:hover {
-    color: #22d3ee;
+    color: #ffffff; /* White */
 }
 
 .delete-link {
-    color: #f87171;
+    color: #fb7185; /* Coral / Red */
 }
 
-.delete-link:hover {
-    color: #dc2626;
-}
-
-/* Empty State Message Block (e.g., @forelse / @empty) */
+/* Empty State Message Block */
 .viewing-empty {
     color: #9ca3af;
 }

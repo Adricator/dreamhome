@@ -111,12 +111,20 @@
                 <div class="staff-actions">
 
                     <a href="{{ route('staff.show', $person) }}" class="staff-view-link">
-                        View Profile
+                        View 
                     </a>
 
                     <a href="{{ route('staff.edit', $person) }}" class="staff-edit-link">
                         Edit
                     </a>
+
+                    <form action="{{ route('staff.destroy', $person) }}" method="POST" class="staff-delete-link">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="staff-delete-link" onclick="return confirm('Are you sure you want to delete this staff member?');">
+                            Delete
+                        </button>
+                    </form>
                 </div>
             </div>
             @endforeach

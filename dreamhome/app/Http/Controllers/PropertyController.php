@@ -31,22 +31,32 @@ class PropertyController extends Controller
             });
         }
 
-        // 2. Handle Status Filtering
-        if ($request->filled('type')) {
-            $query->where('type', $request->input('type'));
-        }
+       // Inside your PropertyController.php
 
-        // 3. Handle Type Filtering
-        if ($request->filled('status')) {
-            $query->where('status', $request->input('status'));
-        }
+    $query = Property::query();
 
-        // Get results with pagination (10 per page)
-        // withQueryString ensures filters stay active when clicking page 2, 3, etc.
-        $properties = $query->get();
-
-        return view('properties.index', compact('properties'));
+    // Filters
+    if ($request->filled('type')) {
+        $query->where('type', $request->type);
     }
+    if ($request->filled('rooms')) {
+        $query->where('rooms', $request->rooms);
+    }
+    if ($request->filled('price_range')) {
+        $prices = explode('-', $request->price_range);
+        if (count($prices) === 2) {
+            $query->whereBetween('monthly_rent', [(int)$prices[0], (int)$prices[1]]);
+        }
+    }
+    if ($request->filled('location')) {
+        $query->where('city', $request->location);
+    }
+
+    $properties = $query->get();
+
+    // Ensure the name here matches the exact blade filename you are editing
+    return view('properties.index', compact('properties'));
+}
 
     public function create(Request $request)
     {

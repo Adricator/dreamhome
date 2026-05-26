@@ -74,39 +74,42 @@ class ViewingController extends Controller
         $clients = Client::orderBy('client_id')->get();
         $properties = Property::orderBy('property_id')->get();
         $staff = Staff::orderBy('staff_id')->get();
-
+        
         return view('viewings.edit', compact('viewing', 'clients', 'properties', 'staff'));
     }
 
-    public function update(Request $request, Viewing $viewing)
-    {
-        $request->validate([
-            'client_id' => 'required|string|max:20|exists:clients,client_id',
-            'property_id' => 'required|string|max:20|exists:properties,property_id',
-            'view_date' => 'required|date',
-            'staff_id' => 'nullable|string|max:20|exists:staff,staff_id',
-            'comments' => 'nullable|string',
-        ]);
+    public function update(Request $request, $client_id)
+{
+    // Retrieve the other two parts of your composite key from the query string
+    $property_id = $request->query('property_id');
+    $view_date = $request->query('view_date');
 
-        $viewing->update($request->only([
-            'client_id',
-            'property_id',
-            'view_date',
-            'staff_id',
-            'comments',
-        ]));
+    $request->validate([
+        'client_id' => 'required',
+        'property_id' => 'required',
+        'view_date' => 'required|date',
+    ]);
 
-        return redirect()
-            ->route('viewings.index')
-            ->with('success', 'Viewing record updated successfully.');
-    }
+    // Find the exact record
+    $viewing = Viewing::where('client_id', $client_id)
+                      ->where('property_id', $property_id)
+                      ->where('view_date', $view_date)
+                      ->firstOrFail();
+    $viewing->update($request->only([
+        'client_id',
+        'property_id',
+        'view_date',
+        'staff_id',
+        'comments',
+    ]));
+
+    return redirect()->route('viewings.index')->with('success', 'Viewing updated successfully.');
+}
 
     public function destroy(Viewing $viewing)
-    {
-        $viewing->delete();
+{
+    $viewing->delete();
 
-        return redirect()
-            ->route('viewings.index')
-            ->with('success', 'Viewing record deleted successfully.');
-    }
+    return redirect()->route('viewings.index')->with('success', 'Viewing deleted successfully');
 }
+    }
