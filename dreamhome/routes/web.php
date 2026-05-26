@@ -31,7 +31,7 @@ Route::get('/properties', function () {
     return view('welcome');
 })->name('properties.section');
 
-// 3. The Gateway Selection Screen (Points to views/auth/gateway.blade.php)
+// 3. The Gateway Selection Screen
 Route::get('/portal-select', function () {
     return view('auth.gateway'); 
 })->name('portal.select');
@@ -52,49 +52,43 @@ Route::get('/register-preferences', function () {
 |--------------------------------------------------------------------------
 */
 
-// Staff & Admin Login Page (Handled by your standard form)
-// 1. Display the login page to the user (GET)
+// Staff & Admin Login Page Processing
 Route::get('/staff-login', function () {
     return view('auth.login'); 
 })->name('login');
 
 Route::post('/staff-login', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'store']);
 
-// Global Redirect: Outward bounce if unauthenticated users sneak in
+// Global Redirect Fallback
 Route::get('/login-redirect', function() {
     return redirect()->route('portal.select');
 });
 
-Route::prefix('client')->name('client.')->group(function () {
-    
-    Route::get('/dashboard', function () {
-        return view('client.dashboard');
-    })->name('dashboard');
-
-    Route::get('/properties', [ClientPropertyController::class, 'index'])->name('properties.index');
-    Route::get('/properties/{property_id}', [ClientPropertyController::class, 'show'])->name('properties.show');
-
-    // FIXED: Added the missing profile edit and update routes inside the group
-    Route::get('/profile/edit', [App\Http\Controllers\Client\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile/update', [App\Http\Controllers\Client\ProfileController::class, 'update'])->name('profile.update');
-
-    Route::post('/logout', [ClientAuthenticatedSessionController::class, 'destroy'])->name('logout');
-});
 
 /*
 |--------------------------------------------------------------------------
-| Client Portal Routes (Protected / Authenticated)
+| Client Portal Routes (Authenticated / Prefixed)
 |--------------------------------------------------------------------------
+| Consolidated into a single clean group block to eliminate duplicate code 
+| overwriting issues.
+|
 */
 Route::prefix('client')->name('client.')->group(function () {
     
+    // Core Dashboard Layout
     Route::get('/dashboard', function () {
         return view('client.dashboard');
     })->name('dashboard');
 
+    // Property Catalog Browsing Sub-module
     Route::get('/properties', [ClientPropertyController::class, 'index'])->name('properties.index');
     Route::get('/properties/{property_id}', [ClientPropertyController::class, 'show'])->name('properties.show');
 
+    // Profile Management System Actions
+    Route::get('/profile/edit', [App\Http\Controllers\Client\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [App\Http\Controllers\Client\ProfileController::class, 'update'])->name('profile.update');
+
+    // Logout Terminal Call
     Route::post('/logout', [ClientAuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
@@ -149,4 +143,5 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+// Standard Authentication Scaffolding Import
 require __DIR__ . '/auth.php';
