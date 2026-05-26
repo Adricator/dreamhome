@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Branch;
 use App\Models\Staff;
-use App\Models\PrivateOwner;
+use App\Models\Owner;
 use App\Models\Property;
 use App\Models\Client;
 
@@ -20,30 +20,30 @@ class SearchController extends Controller
     {
         $query = $request->search;
 
-        $properties = Property::where('street', 'LIKE', "%{$query}%")
-            ->orWhere('city', 'LIKE', "%{$query}%")
+        $properties = Property::where('street', 'ILIKE', "%{$query}%")
+            ->orWhere('city', 'ILIKE', "%{$query}%")
             ->get();
 
-        $branches = Branch::where('city', 'LIKE', "%{$query}%")
+        $branches = Branch::where('city', 'ILIKE', "%{$query}%")
             ->get();
 
-        $staff = Staff::where('first_name', 'LIKE', "%{$query}%")
-            ->orWhere('last_name', 'LIKE', "%{$query}%")
+        $staff = Staff::where('first_name', 'ILIKE', "%{$query}%")
+            ->orWhere('last_name', 'ILIKE', "%{$query}%")
             ->get();
 
-        $privateOwners = PrivateOwner::where('first_name', 'LIKE', "%{$query}%")
-            ->orWhere('last_name', 'LIKE', "%{$query}%")
+        $privateOwners = Owner::where('first_name', 'ILIKE', "%{$query}%")
+            ->orWhere('last_name', 'ILIKE', "%{$query}%")
             ->get();
 
-        $clients = Client::where('first_name', 'LIKE', "%{$query}%")
-            ->orWhere('last_name', 'LIKE', "%{$query}%")
+        $clients = Client::where('first_name', 'ILIKE', "%{$query}%")
+            ->orWhere('last_name', 'ILIKE', "%{$query}%")
             ->get();
 
         return view('search-results', compact(
             'query',
             'properties',
             'staff',
-            'private-owners',
+            'owners',
             'branches',
             'clients'
         ));

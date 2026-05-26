@@ -106,10 +106,14 @@
 }
 
 .viewing-search-button:hover {
+<<<<<<< HEAD
     background-color: #0891b2;
 }
 .viewing-search-button:active {
     transform: scale(0.98);
+=======
+    background-color: #06b6d4;
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
 }
 
 /* Session Alerts / Flash Messages */
@@ -146,7 +150,11 @@
 }
 
 .viewing-card:hover {
+<<<<<<< HEAD
     border-color: rgba(6, 182, 212, 0.45);
+=======
+    border-color: rgb(34, 211, 238, 0.5);
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
     transform: translateY(-2px);
 }
 

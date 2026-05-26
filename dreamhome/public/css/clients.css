@@ -1,134 +1,296 @@
-/*WELCOME PAGE*/
-.font-dream { font-family: 'Comfortaa', cursive; }
-        .font-home { font-family: 'Montserrat', sans-serif; }
-        
-.nav-link {
-            letter-spacing: 0.15em;
-            font-size: 10px;
-        }
+/* INDEX */
 
-.bg-overlay {
-            background-color: #2d4a53;
-            mix-blend-mode: multiply;
-            opacity: 0.55;
-        }
-
-body { 
-    font-family: 'Montserrat', sans-serif; 
-    background-color: #0a1518; 
-    color: white; 
+.client-directory-scope {
+    box-sizing: border-box;
 }
-        
-.font-dream { 
-    font-family: 'Comfortaa', cursive; }
-        
-.glass-card {
-     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px); 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
+
+.client-directory-scope *, 
+.client-directory-scope *::before, 
+.client-directory-scope *::after {
+    box-sizing: inherit;
+}
+
+/* Layout Containers */
+.cd-container {
+    max-width: 80rem; /* 7xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem 1.5rem; /* py-12 px-6 */
+}
+
+/* Header Flex Box */
+.cd-header-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .cd-header-block {
+        flex-direction: row;
+        align-items: flex-end;
     }
-.data-label { 
-    text-transform: uppercase; 
-    letter-spacing: 0.15em; 
-    font-size: 10px; 
-    color: #6b7280; 
-    margin-bottom: 4px; 
-    display: block; }
-        /* Fixed "aerial" typo to "rem" */
-.data-value { 
-    font-size: 1.125rem; 
-    font-weight: 500; 
-    color: #d1dcd5; }
-/* Update your input and select block with these additions */
-input, select { 
-    background: rgba(255, 255, 255, 0.05) !important; 
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
-    color: white !important; 
-    outline: none;
-    
-    /* ADD THESE LINES */
-    appearance: none;           /* Removes default browser styling (arrows, boxes) */
-    -webkit-appearance: none;    /* For Safari/Chrome */
-    -moz-appearance: none;       /* For Firefox */
-    border-radius: 8px;          /* Optional: fits the glass look better */
-    padding: 10px 15px;         /* Gives the text some breathing room */
 }
 
-/* Fix for the dropdown options specifically */
-select option {
-    background-color: #0a1518; /* Matches your body background */
-    color: white;
-}
-
-
-        body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
-        .font-dream { font-family: 'Comfortaa', cursive; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .data-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; font-weight: 700; }
-        .data-value { font-size: 1.1rem; color: #f8fafc; font-weight: 400; }
-
-
-         body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
-        .font-dream { font-family: 'Comfortaa', cursive; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        input, select, textarea { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; outline: none; }
-        input:focus, select:focus { border-color: #fbbf24 !important; }
-
-
-         body { font-family: 'Montserrat', sans-serif; background-color: #0a1518; color: white; }
-        .font-dream { font-family: 'Comfortaa', cursive; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        input, select { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; outline: none; }
-        input:focus { border-color: #fbbf24 !important; }
-
-          .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .font-dream { font-family: 'Comfortaa', cursive; }
-        body { background-color: #0f172a; color: white; font-family: 'Montserrat', sans-serif; }
-
-.header {
-    position: relative;
-    z-index: 50;
-    width: 100%;
-    padding-top: 2rem;
+.cd-title-search {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.navbar {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(16px);
+.cd-main-title {
+    font-family: 'Comfortaa', cursive; /* Fallbacks safely */
+    font-size: 3rem; /* text-5xl */
+    line-height: 1;
+    color: #d1dcd5;
+    margin: 0 0 1rem 0;
+}
+
+/* Search Bar Component */
+.cd-search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.cd-search-input {
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 9999px;
-    padding: 0.75rem 3rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 16rem; /* w-64 */
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s, box-shadow 0.2s;
 }
 
-.nav-links {
-    display: flex;
-    align-items: left;
-    gap: 2.5rem;
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
+.cd-search-input::placeholder {
+    color: #9ca3af;
+}
+
+.cd-search-input:focus {
+    border-color: #22d3ee;
+    box-shadow: 0 0 0 1px #22d3ee;
+}
+
+.cd-btn-search {
+    background-color: #0891b2; /* cyan-600 */
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
     font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    line-height: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.nav-item {
-    color: white;
+.cd-btn-search:hover {
+    background-color: #06b6d4; /* cyan-500 */
+}
+
+/* Action Button Top Right */
+.cd-btn-register {
+    display: inline-block;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5em;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
     text-decoration: none;
-    transition: 0.3s;
+    letter-spacing: 0.1em;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-.nav-item:hover {
+.cd-btn-register:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Cards Responsive Grid Architecture */
+.cd-card-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .cd-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .cd-card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Individual Glassmorphic Card Elements */
+.cd-client-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+}
+
+.cd-client-card:hover {
+    border-color: rgb(34, 211, 238, 0.5);
+    transform: translateY(-2px);
+}
+
+.cd-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.cd-badge-id {
+    font-size: 10px;
+    background-color: rgba(6, 182, 212, 0.2);
+    color: #67e8f9; /* cyan-300 */
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+}
+
+/* Card Identity Blocks */
+.cd-card-identity {
+    margin-bottom: 1rem;
+}
+
+.cd-client-name {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    margin: 0 0 0.25rem 0;
+}
+
+.cd-preference-tag {
+    color: #22d3ee; /* cyan-400 */
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Dynamic Field Matrix Split Layout */
+.cd-info-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: #d1d5db;
 }
 
-.nav-item.active {
+.cd-matrix-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.cd-matrix-label {
+    color: #6b7280; /* gray-500 */
+    margin-bottom: 0.25rem;
+}
+
+.cd-matrix-value {
+    font-size: 0.875rem;
+    color: #ffffff;
+}
+
+/* Utility Helpers within Scope */
+.cd-normal-case {
+    text-transform: none;
+}
+
+.cd-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.cd-price-highlight {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Footer Card Operations Panel */
+.cd-card-actions {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cd-action-group-left {
+    display: flex;
+    gap: 1rem;
+}
+
+.cd-link-details, 
+.cd-link-edit, 
+.cd-btn-delete {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.cd-link-details {
     color: #22d3ee;
+}
+
+.cd-link-details:hover {
+    color: #ffffff;
+}
+
+.cd-link-edit {
+    color: #ffffff;
+}
+
+.cd-link-edit:hover {
+    color: #22d3ee;
+}
+
+.cd-btn-delete {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #ef4444;
+}
+
+.cd-btn-delete:hover {
+    color: #f87171; /* red-400 */
 }

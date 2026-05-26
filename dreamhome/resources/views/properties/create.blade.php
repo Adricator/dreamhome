@@ -62,31 +62,24 @@
                         if (branchSelect && staffSelect) {
                             branchSelect.addEventListener('change', function () {
                                 const branchId = this.value;
-
-                                // Reset dropdown with a loading state hint
                                 staffSelect.innerHTML = '<option value="">Loading assigned staff...</option>';
 
                                 if (!branchId) {
                                     staffSelect.innerHTML = '<option value="">-- Select a Branch First --</option>';
                                     return;
                                 }
-
-                                // Fetch staff assigned to the selected branch route
                                 fetch(`/api/branches/${branchId}/staff`)
                                     .then(response => {
                                         if (!response.ok) throw new Error('Network error fetching staff elements');
                                         return response.json();
                                     })
                                     .then(data => {
-                                        // Initialize drop options back to default baseline choice
                                         staffSelect.innerHTML = '<option value="">-- Choose Staff Member --</option>';
 
                                         if (data.length === 0) {
                                             staffSelect.innerHTML = '<option value="">No staff members found here</option>';
                                             return;
                                         }
-
-                                        // Build and inject option tags dynamically
                                         data.forEach(staff => {
                                             const option = document.createElement('option');
                                             option.value = staff.staff_id;

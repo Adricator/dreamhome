@@ -17,14 +17,14 @@ class BranchController extends Controller
 
         if (!empty($search)) {
             $query->where(function($q) use ($search) {
-                // Adjust 'branch_id' and 'city' to match your actual column names
                 $q->where('branch_id', 'ILIKE', "%{$search}%")
-                ->orWhere('city', 'ILIKE', "%{$search}%");
+                ->orWhere('city', 'ILIKE', "%{$search}%")
+                ->orWhere('street', 'ILIKE', "%{$search}%")
+                ->orWhere('area', 'ILIKE', "%{$search}%")
+                ->orWhere('postcode', 'ILIKE', "%{$search}%");
             });
         }
-
         $branches = $query->get();
-
         return view('branches.index', compact('branches')); 
     }
     public function create()
@@ -34,7 +34,7 @@ class BranchController extends Controller
 
     public function store(Request $request)
     {
-        // 1. Validate incoming form metrics (excluding branch_id)
+
         $validatedData = $request->validate([
             'street'       => 'required|string',
             'city'         => 'required|string|max:255',
@@ -44,7 +44,6 @@ class BranchController extends Controller
             'fax_no'       => 'nullable|string|max:50',
         ]);
 
-        // 2. Fetch the absolute latest branch key out of the sequence
         $latestBranch = Branch::orderBy('branch_id', 'desc')->first();
 
         if (!$latestBranch) {

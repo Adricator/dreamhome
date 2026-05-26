@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="{{ asset('css/inspections.css') }}">
 </head>
 <body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
 <main class="inspection-form-container">
     <div class="inspection-form-card">
 

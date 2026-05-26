@@ -63,6 +63,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div class="select-wrapper">
                     <select name="price_range" class="custom-select">
                         <option value="" class="select-option">Price Range</option>
@@ -74,6 +75,14 @@
                         <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
                 </div>
+=======
+    <div class="flex-1 flex justify-end items-center gap-6">
+     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+    <!-- Log In Link -->
+    <x-nav-link :href="route('login.gateway')" :active="request()->routeIs('login.gateway')" class="!text-white !font-bold !text-xs !uppercase hover:!text-gray-300 hover:!border-transparent transition duration-150 ease-in-out">
+        {{ __('Log in') }}
+    </x-nav-link>
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
 
                 <div class="select-wrapper">
                     <select name="city" class="custom-select">

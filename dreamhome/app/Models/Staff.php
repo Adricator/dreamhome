@@ -24,7 +24,7 @@ class Staff extends Authenticatable
 
     public function nextOfKin()
     {
-        return $this->hasOne(NextOfKin::class, 'staff_id');
+        return $this->hasOne(NextOfKin::class, 'staff_id', 'staff_id');
     }
 
     public function properties()
@@ -60,7 +60,16 @@ class Staff extends Authenticatable
     protected function casts(): array
     {
         return [
-            'password' => 'hashed', // Ensures Laravel automatically handles secure password hashing
+            'password' => 'hashed',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(function (Staff $staff) {
+            if (empty($staff->password)) {
+                $staff->password = 'dreamhome123!';
+            }
+        });
     }
 }

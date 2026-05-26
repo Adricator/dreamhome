@@ -20,12 +20,12 @@ class ClientController extends Controller
 
     $clients = Client::query()
         ->when($searchTerm, function ($query, $searchTerm) {
-            return $query->where('first_name', 'LIKE', "%{$searchTerm}%")
-                         ->orWhere('last_name', 'LIKE', "%{$searchTerm}%")
-                         ->orWhere('client_id', 'LIKE', "%{$searchTerm}%")
-                         ->orWhere('email', 'LIKE', "%{$searchTerm}%");
+            return $query->where('first_name', 'ILIKE', "%{$searchTerm}%")
+                         ->orWhere('last_name', 'ILIKE', "%{$searchTerm}%")
+                         ->orWhere('client_id', 'ILIKE', "%{$searchTerm}%")
+                         ->orWhere('email', 'ILIKE', "%{$searchTerm}%");
         })
-        ->get(); // or ->paginate(9) if you want pages
+        ->get();
 
     return view('clients.index', compact('clients'));
 

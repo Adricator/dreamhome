@@ -61,30 +61,14 @@
     </div>
 </header>
 
-
-
-        <!-- Main Content -->
-
         <main class="relative z-10 flex-1 flex flex-col justify-center px-12 md:px-32 lg:px-48">
-
             <div class="flex flex-col">
-
                 <h1 class="font-dream text-[#d1dcd5] text-[120px] md:text-[170px] leading-[0.75] font-light">
-
                     dream
-
                 </h1>
-
-                
-
                 <h2 class="font-home text-white text-[65px] md:text-[105px] font-light uppercase tracking-[0.45em] leading-tight">
-
                     home
-
                 </h2>
-
-
-
                 <div class="mt-8">
 
                     <a href="{{ route('branches.index') }}" class="inline-block border border-white px-5 py-2 text-white text-[11px] font-semibold uppercase tracking-[0.1em] hover:bg-white hover:text-cyan-900 transition-all duration-300">

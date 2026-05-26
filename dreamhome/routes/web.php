@@ -10,12 +10,16 @@ use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ViewingController;
 use App\Http\Controllers\LeaseController;
+<<<<<<< HEAD
 use App\Models\Property;
+=======
+use App\Http\Controllers\Auth\ClientAuthenticatedSessionController;
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
 
 /*
 |--------------------------------------------------------------------------
 | Public Frontend Routes
-|--------------------------------------------------------------------------
+|-------------------------  -------------------------------------------------
 | These routes can be accessed without logging in.
 |--------------------------------------------------------------------------
 */
@@ -59,11 +63,17 @@ Route::get('/register-preferences', function () {
 |--------------------------------------------------------------------------
 */
 
+Route::get('/client/dashboard', function () {
+        return view('client.dashboard');
+    })->name('client.dashboard');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'role:admin,staff'])
   ->name('dashboard');
 
+Route::post('client/logout', [ClientAuthenticatedSessionController::class, 'destroy'])
+->name('client.logout');
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +111,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clients', ClientController::class)
         ->parameters(['clients' => 'client_id']);
 
+<<<<<<< HEAD
     Route::resource('inspections', InspectionController::class)
         ->parameters(['inspections' => 'inspection_id']);
             
@@ -120,6 +131,12 @@ Route::middleware(['auth'])->group(function () {
     | These pages are only for viewing records, not creating/editing/deleting.
     |--------------------------------------------------------------------------
     */
+=======
+    Route::resource('inspections', InspectionController::class);
+        
+    Route::resource('viewings', ViewingController::class);
+
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
 
    
 
@@ -129,14 +146,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/branches/{branch_id}/staff', [PropertyController::class, 'getStaffByBranch']);
 
 });
-
-
-/*
-|--------------------------------------------------------------------------
-| Laravel Breeze Authentication Routes
-|--------------------------------------------------------------------------
-| This includes login, register, logout, forgot password, etc.
-|--------------------------------------------------------------------------
-*/
 
 require __DIR__ . '/auth.php';

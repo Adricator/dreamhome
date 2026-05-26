@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Viewings - Dream Home</title>
+    <title>Add Viewing - Dream Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.bunny.net/css?family=comfortaa:300|montserrat:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewings.css') }}">
-    </head>
+</head>
 <body>
 
 <main class="viewing-form-main">
@@ -42,7 +42,7 @@
                         <option value="">Select Client</option>
                         @foreach($clients as $client)
                             <option value="{{ $client->client_id }}" {{ old('client_id') == $client->client_id ? 'selected' : '' }}>
-                                {{ $client->client_id }}
+                                {{ $client->client_id }} - {{ $client->first_name ?? '' }} {{ $client->last_name ?? '' }}
                             </option>
                         @endforeach
                     </select>
@@ -54,7 +54,7 @@
                         <option value="">Select Property</option>
                         @foreach($properties as $property)
                             <option value="{{ $property->property_id }}" {{ old('property_id') == $property->property_id ? 'selected' : '' }}>
-                                {{ $property->property_id }}
+                                {{ $property->property_id }} - {{ $property->street ?? '' }} {{ $property->city ?? '' }}
                             </option>
                         @endforeach
                     </select>
@@ -74,12 +74,22 @@
                 <div class="viewing-input-group">
                     <label class="viewing-input-label">Staff</label>
                     <select name="staff_id" class="viewing-input">
-                        <option value="">Select Staff</option>
+                        <option value="">Not assigned</option>
                         @foreach($staff as $employee)
                             <option value="{{ $employee->staff_id }}" {{ old('staff_id') == $employee->staff_id ? 'selected' : '' }}>
-                                {{ $employee->staff_id }}
+                                {{ $employee->staff_id }} - {{ $employee->first_name ?? '' }} {{ $employee->last_name ?? '' }}
                             </option>
                         @endforeach
+                    </select>
+                </div>
+
+                <div class="viewing-input-group">
+                    <label class="viewing-input-label">Status</label>
+                    <select name="status" class="viewing-input" required>
+                        <option value="Pending" {{ old('status', 'Pending') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="Approved" {{ old('status') == 'Approved' ? 'selected' : '' }}>Approved</option>
+                        <option value="Completed" {{ old('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
+                        <option value="Cancelled" {{ old('status') == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                     </select>
                 </div>
 
@@ -110,3 +120,5 @@
 
 </main>
 
+</body>
+</html>

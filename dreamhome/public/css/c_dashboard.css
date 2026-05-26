@@ -1,0 +1,242 @@
+/* public/css/dashboard.css */
+
+/* Global Wrapper Reset Layout */
+body {
+    background-color: #0f172a; /* Slate 900 Background */
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #f8fafc;
+    overflow-x: hidden;
+}
+
+.dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* ==========================================
+   SIDEBAR COMPONENT STYLES
+   ========================================== */
+.sidebar {
+    background-color: #1e293b; /* Slate 800 */
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+}
+
+.sidebar-brand h1 {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 22px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.sidebar-brand span {
+    font-size: 11px;
+    color: #0891b2; /* Cyan Accent text indicator */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.sidebar-menu {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-item svg {
+    transition: transform 0.2s;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+}
+
+.menu-item:hover svg {
+    transform: translateX(2px);
+}
+
+.menu-item.active {
+    background-color: #0891b2;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.25);
+}
+
+.logout-btn {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(244, 63, 94, 0.2); /* Rose warning accent border */
+    color: #f43f5e;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #f43f5e;
+    color: #ffffff;
+}
+
+/* ==========================================
+   MAIN CONTENT AREA STYLES
+   ========================================== */
+.main-content {
+    padding: 40px;
+    background-color: #0f172a;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+}
+
+.user-greeting h2 {
+    margin: 0 0 5px 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.user-greeting p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.text-cyan {
+    color: #22d3ee;
+}
+
+.avatar-box {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #0891b2, #3490dc);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+/* Overview Data Grid Layout */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.metric-card {
+    background-color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.metric-card h3 {
+    margin: 0 0 12px 0;
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.metric-value {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Detailed Information Cards Layout */
+.dashboard-details {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.details-card {
+    background-color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.card-title-bar h3 {
+    margin: 0 0 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+    color: #ffffff;
+}
+
+.profile-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    font-size: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.info-label {
+    color: #64748b;
+    font-weight: 600;
+}
+
+.info-data {
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+/* Component scaling updates for small screens */
+@media (max-width: 900px) {
+    .dashboard-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: none; /* Add responsive mobile layout toggle if required */
+    }
+    .info-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}

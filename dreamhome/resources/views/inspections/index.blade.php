@@ -41,7 +41,11 @@
 
     <div class="inspection-header">
         <div class="inspection-header-left">
+<<<<<<< HEAD
             <h1 class="inspection-title">inspection directory</h1>
+=======
+            <h1 class="inspection-title">inspection logs</h1>
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
 
             <form action="{{ route('inspections.index') }}" method="GET" class="inspection-search-form">
                 <input
@@ -107,7 +111,11 @@
                         <span class="inspection-detail-label">Comment</span>
 
                         <p>
+<<<<<<< HEAD
                             {{ $inspection->comments ?? 'No comment provided.' }}
+=======
+                            {{ $inspection->comment ?? 'No comment provided.' }}
+>>>>>>> 16cb75eea5500eace47c0e997143c6b567fb5520
                         </p>
                     </div>
 

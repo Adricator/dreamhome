@@ -21,6 +21,4 @@ class NextOfKin extends Model
         'telephone_no',
         'address'
     ];
-
-
 }
