@@ -22,7 +22,7 @@
                 <a href="{{ url('/inspections') }}">Inspections</a>
                 <a href="{{ url('/clients') }}" class="active">Clients</a>
                 <a href="{{ url('/viewings') }}">Viewings</a>
-                <a href="{{ url('/leases') }}">Leases</a>
+                
             </div>
         </nav>
         <form method="POST" action="{{ route('logout') }}" class="logout-form">

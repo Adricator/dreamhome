@@ -101,7 +101,7 @@
     <div class="auth-links">
     <div class="auth-links-container">
     <a href="{{ url('/portal-select') }}" class="nav-link">Log in</a>
-        <a href="{{ route('register') }}" class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}">Register</a>
+    <a href="{{ url('/client/register') }}" class="nav-link {{ request()->is('client/register') ? 'active' : '' }}">Register</a>
     </div>
     </div>
 </header>
