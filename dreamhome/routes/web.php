@@ -69,9 +69,6 @@ Route::get('/login-redirect', function() {
 |--------------------------------------------------------------------------
 | Client Portal Routes (Authenticated / Prefixed)
 |--------------------------------------------------------------------------
-| Consolidated into a single clean group block to eliminate duplicate code 
-| overwriting issues.
-|
 */
 Route::prefix('client')->name('client.')->group(function () {
     
@@ -108,30 +105,46 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     | Main CRUD Resources
     |--------------------------------------------------------------------------
+    | Standard singular primary key models handle Route::resource smoothly.
     */
-    Route::resource('properties', PropertyController::class)
-        ->parameters(['properties' => 'property_id']);
-
-    Route::resource('branches', BranchController::class)
-        ->parameters(['branches' => 'branch_id']);
-
-    Route::resource('staff', StaffController::class)
-        ->parameters(['staff' => 'staff_id']);
-
-    Route::resource('owners', OwnerController::class)
-        ->parameters(['owners' => 'owner_id']);
-
-    Route::resource('clients', ClientController::class)
-        ->parameters(['clients' => 'client_id']);
-
-    Route::resource('inspections', InspectionController::class)
-        ->parameters(['inspections' => 'inspection_id']);
+    Route::resource('properties', PropertyController::class)->parameters(['properties' => 'property_id']);
+    Route::resource('branches', BranchController::class)->parameters(['branches' => 'branch_id']);
+    Route::resource('staff', StaffController::class)->parameters(['staff' => 'staff_id']);
+    Route::resource('owners', OwnerController::class)->parameters(['owners' => 'owner_id']);
+    Route::resource('clients', ClientController::class)->parameters(['clients' => 'client_id']);
+    Route::resource('inspections', InspectionController::class)->parameters(['inspections' => 'inspection_id']);
             
-    Route::resource('viewings', ViewingController::class)
-        ->parameters(['viewings' => 'client_id,property_id,view_date']);
+    /*
+    |--------------------------------------------------------------------------
+    | Composite Key Fix: Viewings Resource Splitting
+    |--------------------------------------------------------------------------
+    | Non-parameter routes remain clean, while individual record routes 
+    | explicitly outline separate URL token keys.
+    */
+    Route::get('/viewings', [ViewingController::class, 'index'])->name('viewings.index');
+    Route::get('/viewings/create', [ViewingController::class, 'create'])->name('viewings.create');
+    Route::post('/viewings', [ViewingController::class, 'store'])->name('viewings.store');
+    
+    // Multi-parameter explicit identifiers
+    Route::get('/viewings/{client_id}/{property_id}/{view_date}', [ViewingController::class, 'show'])->name('viewings.show');
+    Route::get('/viewings/{client_id}/{property_id}/{view_date}/edit', [ViewingController::class, 'edit'])->name('viewings.edit');
+    Route::put('/viewings/{client_id}/{property_id}/{view_date}', [ViewingController::class, 'update'])->name('viewings.update');
+    Route::delete('/viewings/{client_id}/{property_id}/{view_date}', [ViewingController::class, 'destroy'])->name('viewings.destroy');
 
-    Route::resource('leases', LeaseController::class)
-        ->parameters(['leases' => 'client_id,property_id,lease_start_date']);
+    /*
+    |--------------------------------------------------------------------------
+    | Composite Key Fix: Leases Resource Splitting
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/leases', [LeaseController::class, 'index'])->name('leases.index');
+    Route::get('/leases/create', [LeaseController::class, 'create'])->name('leases.create');
+    Route::post('/leases', [LeaseController::class, 'store'])->name('leases.store');
+    
+    // Multi-parameter explicit identifiers
+    Route::get('/leases/{client_id}/{property_id}/{lease_start_date}', [LeaseController::class, 'show'])->name('leases.show');
+    Route::get('/leases/{client_id}/{property_id}/{lease_start_date}/edit', [LeaseController::class, 'edit'])->name('leases.edit');
+    Route::put('/leases/{client_id}/{property_id}/{lease_start_date}', [LeaseController::class, 'update'])->name('leases.update');
+    Route::delete('/leases/{client_id}/{property_id}/{lease_start_date}', [LeaseController::class, 'destroy'])->name('leases.destroy');
 
     /*
     |--------------------------------------------------------------------------

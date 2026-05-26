@@ -18,6 +18,7 @@ return new class extends Migration
              $table->date('view_date');
              $table->string('staff_id', 20)->nullable();
              $table->text('comments')->nullable();
+             $table->string('status', 20)->default('pending');
 
             $table->primary(['client_id', 'property_id', 'view_date']);
 

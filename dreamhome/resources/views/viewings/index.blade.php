@@ -112,26 +112,38 @@
 
                <div class="viewing-actions">
                     <div class="viewing-links">
-                        <a href="{{ route('viewings.show', $viewing) }}" class="view-link">
+                        <a href="{{ route('viewings.show', [
+    'client_id'   => $viewing->client_id, 
+    'property_id' => $viewing->property_id, 
+    'view_date'   => $viewing->view_date
+]) }}" class="view-link">
                             View
                         </a>
 
-                        <a href="{{ route('viewings.edit', $viewing) }}" class="edit-link">
+                        <a href="{{ route('viewings.edit', [
+    'client_id'   => $viewing->client_id,
+    'property_id' => $viewing->property_id,
+    'view_date'   => $viewing->view_date
+]) }}" class="edit-link">
                             Edit
                         </a>
                     </div>
 
-                   <form action="{{ route('viewings.destroy', $viewing->viewing_id) }}" method="POST">
-                     @csrf
-                    @method('DELETE')
-                        <button
-                            type="submit"
-                            class="delete-link"
-                            onclick="return confirm('Delete this viewing record?')"
-                        >
-                            Delete
-                        </button>
-                    </form>
+                    <form action="{{ route('viewings.destroy', [
+    'client_id'   => $viewing->client_id ?? $viewing['client_id'],
+    'property_id' => $viewing->property_id ?? $viewing['property_id'],
+    'view_date'   => $viewing->view_date ?? $viewing['view_date']
+]) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button
+        type="submit"
+        class="delete-link"
+        onclick="return confirm('Delete this viewing record?')"
+    >
+        Delete
+    </button>
+</form>
                 </div>
 
             </div>
