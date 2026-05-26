@@ -24,6 +24,11 @@ class ClientRegisterController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if ($request->has('prefer_type')) {
+            $request->merge([
+                'prefer_type' => strtolower($request->prefer_type)
+            ]);
+        }
         // 1. Server-Side Data Validation
         $request->validate([
             'first_name'   => ['required', 'string', 'max:255'],
@@ -32,7 +37,7 @@ class ClientRegisterController extends Controller
             'password'     => ['required', 'confirmed', Rules\Password::defaults()],
             'address'      => ['required', 'string'],
             'telephone_no' => ['required', 'string', 'max:20'],
-            'prefer_type'  => ['required', 'string', 'in:Flat,Studio,Apartment,Condo,House'],
+            'prefer_type'  => ['required', 'string', 'in:flat,studio,apartment,condo,house'],
             'max_rent'     => ['required', 'numeric', 'min:0'],
         ]);
 
@@ -64,8 +69,9 @@ class ClientRegisterController extends Controller
      */
     private function generateClientId(): string
     {
-        // Grabs the last record based on sorting the alphanumeric primary key descending
-        $lastClient = Client::orderBy('client_id', 'desc')->first();
+        // FIX 2: Explicitly cast substring to integer for true numeric sorting in PostgreSQL
+        $lastClient = Client::orderByRaw('CAST(SUBSTRING(client_id FROM 3) AS INTEGER) DESC')
+            ->first();
 
         if (!$lastClient) {
             return 'CL0001'; // Fallback seed for the very first entry

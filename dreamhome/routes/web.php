@@ -54,7 +54,7 @@ Route::get('/register-preferences', function () {
 
 // Staff & Admin Login Page Processing
 Route::get('/staff-login', function () {
-    return view('auth.login'); 
+    return view('auth.staff-login'); 
 })->name('login');
 
 Route::post('/staff-login', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'store']);
