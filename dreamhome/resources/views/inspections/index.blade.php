@@ -74,13 +74,6 @@
         @forelse($inspections as $inspection)
 
             <div class="inspection-card">
-
-                <div class="inspection-card-top">
-                    <span class="inspection-id-badge">
-                        Inspection #{{ $inspection->inspection_id }}
-                    </span>
-                </div>
-
                 <div class="inspection-info">
                     <h3 class="inspection-name">
                         Property ID: {{ $inspection->property_id }}

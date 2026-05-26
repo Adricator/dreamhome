@@ -16,46 +16,53 @@ class PropertyController extends Controller
 {
     public function index(Request $request)
     {
-        // Start a query builder instance
+        // 1. Start a single query builder instance
         $query = Property::query();
 
+        // 2. Global Text Search Block (Maintained correctly now!)
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
                 $q->where('street', 'ILIKE', "%{$search}%")
-                  ->orWhere('city', 'ILIKE', "%{$search}%")
-                  ->orWhere('area', 'ILIKE', "%{$search}%")
-                  ->orWhere('postcode', 'ILIKE', "%{$search}%")
-                  ->orWhere('property_id', 'ILIKE', "%{$search}%");
+                ->orWhere('city', 'ILIKE', "%{$search}%")
+                ->orWhere('area', 'ILIKE', "%{$search}%")
+                ->orWhere('postcode', 'ILIKE', "%{$search}%")
+                ->orWhere('property_id', 'ILIKE', "%{$search}%");
             });
         }
 
-       // Inside your PropertyController.php
+        // REMOVED: The duplicate $query = Property::query() that was wiping your search!
 
-    $query = Property::query();
-
-    // Filters
-    if ($request->filled('type')) {
-        $query->where('type', $request->type);
-    }
-    if ($request->filled('rooms')) {
-        $query->where('rooms', $request->rooms);
-    }
-    if ($request->filled('price_range')) {
-        $prices = explode('-', $request->price_range);
-        if (count($prices) === 2) {
-            $query->whereBetween('monthly_rent', [(int)$prices[0], (int)$prices[1]]);
+        // 3. Dropdown & Property Type Filters
+        if ($request->filled('type')) {
+            // Using ILIKE ensures 'condo', 'Condo', or 'CONDO' all match flawlessly in PostgreSQL
+            $query->where('type', 'ILIKE', $request->type);
         }
-    }
-    if ($request->filled('location')) {
-        $query->where('city', $request->location);
-    }
+        
+        if ($request->filled('status')) {
+        $query->where('status', 'ILIKE', $request->status);
+        }
+        
+        if ($request->filled('rooms')) {
+            $query->where('rooms', $request->rooms);
+        }
+        
+        if ($request->filled('price_range')) {
+            $prices = explode('-', $request->price_range);
+            if (count($prices) === 2) {
+                $query->whereBetween('monthly_rent', [(int)$prices[0], (int)$prices[1]]);
+            }
+        }
+        
+        if ($request->filled('location')) {
+            $query->where('city', 'ILIKE', $request->location);
+        }
 
-    $properties = $query->get();
+        // 4. Fetch the filtered results
+        $properties = $query->get();
 
-    // Ensure the name here matches the exact blade filename you are editing
-    return view('properties.index', compact('properties'));
-}
+        return view('properties.index', compact('properties'));
+    }
 
     public function create(Request $request)
     {

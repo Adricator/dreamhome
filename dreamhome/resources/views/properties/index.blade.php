@@ -58,7 +58,6 @@
                     <option value="available" @selected(request('status') == 'available')>Available</option>
                     <option value="rented" @selected(request('status') == 'rented')>Rented</option>
                     <option value="maintenance" @selected(request('status') == 'maintenance')>Maintenance</option>
-                    <option value="reserved" @selected(request('status') == 'reserved')>Reserved</option>
                 </select>
             </form>
         </div>
