@@ -29,9 +29,9 @@ Empowers management to handle full-scale business operations, including adding n
 
 TO LOG IN AS STAFF:
   EMAIL: 
-      jdiaz@email.com
-      addianne.alforque@email.com
-      joshmarc@email.com
+      jdiaz@email.com,
+      addianne.alforque@email.com,
+      joshmarc@email.com,
 
   PASSWORD:
       dreamhome123
