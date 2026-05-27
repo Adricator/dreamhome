@@ -23,6 +23,7 @@ class Client extends Authenticatable
     protected $fillable = [
         'client_id',
         'branch_id',
+        'staff_id',
         'first_name',
         'last_name',
         'address',
@@ -63,5 +64,10 @@ class Client extends Authenticatable
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'branch_id');
+    }
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class, 'staff_id', 'staff_id');
     }
 }

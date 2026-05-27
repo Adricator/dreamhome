@@ -32,6 +32,11 @@ class Staff extends Authenticatable
         return $this->hasMany(Property::class, 'staff_id');
     }
 
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'staff_id', 'staff_id');
+    }
+
     protected $fillable = [
         'staff_id',
         'first_name',

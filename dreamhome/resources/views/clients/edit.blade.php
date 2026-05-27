@@ -85,6 +85,17 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Assigned Staff</label>
+                        <select name="staff_id" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition appearance-none">
+                            <option value="" {{ old('staff_id', $client->staff_id) == '' ? 'selected' : '' }} class="bg-[#0f172a]">Unassigned</option>
+                            @foreach($staff as $staffMember)
+                                <option value="{{ $staffMember->staff_id }}" {{ old('staff_id', $client->staff_id) == $staffMember->staff_id ? 'selected' : '' }} class="bg-[#0f172a]">
+                                    {{ $staffMember->staff_id }} - {{ $staffMember->first_name }} {{ $staffMember->last_name }} ({{ $staffMember->branch_id }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="pt-8 flex justify-end gap-4 border-t border-white/10 mt-8">

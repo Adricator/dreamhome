@@ -16,6 +16,8 @@ return new class extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS assign_branch_to_client(text, text) CASCADE;');
         DB::unprepared('DROP PROCEDURE IF EXISTS assign_staff_to_client(varchar, varchar) CASCADE;');
         DB::unprepared('DROP PROCEDURE IF EXISTS assign_staff_to_client(text, text) CASCADE;');
+        DB::unprepared('DROP TRIGGER IF EXISTS before_client_insert_assign_staff ON clients CASCADE;');
+        DB::unprepared('DROP FUNCTION IF EXISTS auto_assign_staff_to_client() CASCADE;');
 
         // Create function: get_client_info
         DB::unprepared(<<<'SQL'
@@ -28,7 +30,8 @@ RETURNS TABLE (
     email text,
     prefer_type text,
     max_rent numeric,
-    branch_id varchar
+    branch_id varchar,
+    staff_id varchar
 )
 AS $$
 BEGIN
@@ -41,7 +44,8 @@ BEGIN
         c.email::text,
         c.prefer_type::text,
         c.max_rent::numeric,
-        c.branch_id::varchar
+        c.branch_id::varchar,
+        c.staff_id::varchar
     FROM clients c
     WHERE c.client_id = TRIM(client_id_input);
 END;
@@ -70,7 +74,8 @@ BEGIN
     END IF;
 
     UPDATE clients
-    SET branch_id = normalized_branch_id
+    SET branch_id = normalized_branch_id,
+        staff_id = NULL
     WHERE client_id = normalized_client_id;
 
     IF NOT FOUND THEN
@@ -81,43 +86,64 @@ $$;
 SQL
         );
 
-        // Procedure: Assign staff branch to client
+        // Trigger function: Auto-assign staff when a client is created
         DB::unprepared(<<<'SQL'
-CREATE OR REPLACE PROCEDURE assign_staff_to_client(
-    client_id_input varchar,
-    staff_id_input varchar
-)
+CREATE OR REPLACE FUNCTION auto_assign_staff_to_client()
+RETURNS trigger
 LANGUAGE plpgsql
 AS $$
 DECLARE
-    staff_branch_id varchar;
+    selected_staff_id varchar;
+    selected_branch_id varchar;
 BEGIN
-    -- Check if staff exists
-    SELECT s.branch_id
-    INTO staff_branch_id
+    IF NEW.staff_id IS NOT NULL THEN
+        SELECT s.staff_id, s.branch_id
+        INTO selected_staff_id, selected_branch_id
+        FROM staff s
+        WHERE s.staff_id = TRIM(NEW.staff_id);
+
+        IF selected_staff_id IS NULL THEN
+            RAISE EXCEPTION 'Staff does not exist';
+        END IF;
+
+        NEW.staff_id := selected_staff_id;
+        NEW.branch_id := selected_branch_id;
+
+        RETURN NEW;
+    END IF;
+
+    SELECT s.staff_id, s.branch_id
+    INTO selected_staff_id, selected_branch_id
     FROM staff s
-    WHERE s.staff_id = TRIM(staff_id_input);
+    LEFT JOIN clients c ON c.staff_id = s.staff_id
+    WHERE NEW.branch_id IS NULL OR s.branch_id = NEW.branch_id
+    GROUP BY s.staff_id, s.branch_id
+    ORDER BY COUNT(c.client_id), s.staff_id
+    LIMIT 1;
 
-    IF staff_branch_id IS NULL THEN
-        RAISE EXCEPTION 'Staff does not exist';
+    IF selected_staff_id IS NULL THEN
+        RAISE EXCEPTION 'No staff available to assign to client';
     END IF;
 
-    -- Assign the client to the staff member's branch
-    UPDATE clients
-    SET branch_id = staff_branch_id
-    WHERE client_id = TRIM(client_id_input);
+    NEW.staff_id := selected_staff_id;
+    NEW.branch_id := selected_branch_id;
 
-    IF NOT FOUND THEN
-        RAISE EXCEPTION 'Client does not exist';
-    END IF;
+    RETURN NEW;
 END;
 $$;
+
+CREATE TRIGGER before_client_insert_assign_staff
+BEFORE INSERT ON clients
+FOR EACH ROW
+EXECUTE FUNCTION auto_assign_staff_to_client();
 SQL
         );
     }
 
     public function down(): void
     {
+        DB::unprepared('DROP TRIGGER IF EXISTS before_client_insert_assign_staff ON clients CASCADE;');
+        DB::unprepared('DROP FUNCTION IF EXISTS auto_assign_staff_to_client() CASCADE;');
         DB::unprepared('DROP PROCEDURE IF EXISTS assign_branch_to_client(varchar, varchar) CASCADE;');
         DB::unprepared('DROP PROCEDURE IF EXISTS assign_branch_to_client(text, text) CASCADE;');
         DB::unprepared('DROP PROCEDURE IF EXISTS assign_staff_to_client(varchar, varchar) CASCADE;');

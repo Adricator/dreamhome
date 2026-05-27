@@ -49,6 +49,12 @@
                                 'Branch Location' => $client->branch
                                     ? $client->branch->city . ', ' . $client->branch->area
                                     : 'Unassigned',
+                            ],
+                            'Staff Assignment' => [
+                                'Staff ID' => $client->staff_id ?? 'Unassigned',
+                                'Staff Name' => $client->staff
+                                    ? $client->staff->first_name . ' ' . $client->staff->last_name
+                                    : 'Unassigned',
                             ]
                         ];
                     @endphp

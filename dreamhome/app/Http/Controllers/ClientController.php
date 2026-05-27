@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Client;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -15,13 +16,14 @@ class ClientController extends Controller
     {
         $searchTerm = $request->input('search');
 
-        $clients = Client::with('branch')
+        $clients = Client::with(['branch', 'staff'])
             ->when($searchTerm, function ($query, $searchTerm) {
                 return $query->where('first_name', 'ILIKE', "%{$searchTerm}%")
                     ->orWhere('last_name', 'ILIKE', "%{$searchTerm}%")
                     ->orWhere('client_id', 'ILIKE', "%{$searchTerm}%")
                     ->orWhere('email', 'ILIKE', "%{$searchTerm}%")
-                    ->orWhere('branch_id', 'ILIKE', "%{$searchTerm}%");
+                    ->orWhere('branch_id', 'ILIKE', "%{$searchTerm}%")
+                    ->orWhere('staff_id', 'ILIKE', "%{$searchTerm}%");
             })
             ->get();
 
@@ -31,8 +33,9 @@ class ClientController extends Controller
     public function create()
     {
         $branches = Branch::orderBy('branch_id')->get();
+        $staff = Staff::orderBy('staff_id')->get();
 
-        return view('clients.create', compact('branches'));
+        return view('clients.create', compact('branches', 'staff'));
     }
 
     public function store(Request $request)
@@ -48,7 +51,12 @@ class ClientController extends Controller
             'prefer_type'  => 'nullable|string',
             'max_rent'     => 'nullable|numeric', // Validated as numeric for logic
             'branch_id'    => 'nullable|exists:branches,branch_id',
+            'staff_id'     => 'nullable|exists:staff,staff_id',
         ]);
+
+        if (!empty($validated['staff_id'])) {
+            $validated['branch_id'] = Staff::findOrFail($validated['staff_id'])->branch_id;
+        }
 
         Client::create($validated);
 
@@ -57,7 +65,7 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        $client = Client::with('branch')->findOrFail($id);
+        $client = Client::with(['branch', 'staff'])->findOrFail($id);
         return view('clients.show', compact('client'));
     }
 
@@ -65,8 +73,9 @@ class ClientController extends Controller
     {
         $client = Client::findOrFail($id);
         $branches = Branch::orderBy('branch_id')->get();
+        $staff = Staff::orderBy('staff_id')->get();
 
-        return view('clients.edit', compact('client', 'branches'));
+        return view('clients.edit', compact('client', 'branches', 'staff'));
     }
 
 
@@ -83,7 +92,12 @@ class ClientController extends Controller
             'prefer_type'  => 'nullable|string',
             'max_rent'     => 'nullable|numeric', // Validated as numeric for logic
             'branch_id'    => 'nullable|exists:branches,branch_id',
+            'staff_id'     => 'nullable|exists:staff,staff_id',
         ]);
+
+        if (!empty($validated['staff_id'])) {
+            $validated['branch_id'] = Staff::findOrFail($validated['staff_id'])->branch_id;
+        }
 
         $client->update($validated);
 
