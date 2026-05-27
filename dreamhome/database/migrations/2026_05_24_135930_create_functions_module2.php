@@ -50,6 +50,8 @@ BEGIN
     WHERE c.client_id = TRIM(client_id_input);
 END;
 $$ LANGUAGE plpgsql;
+-- SELECT *
+-- FROM get_client_info('client number');
 SQL
         );
 
@@ -83,6 +85,11 @@ BEGIN
     END IF;
 END;
 $$;
+-- CALL assign_branch_to_client('Client', 'Branch');
+
+-- SELECT client_id, branch_id, staff_id
+-- FROM clients
+-- WHERE client_id = 'Client';
 SQL
         );
 
@@ -139,6 +146,35 @@ EXECUTE FUNCTION auto_assign_staff_to_client();
 SQL
         );
     }
+// INSERT INTO clients (
+//     client_id,
+//     first_name,
+//     last_name,
+//     address,
+//     telephone_no,
+//     email,
+//     prefer_type,
+//     max_rent,
+//     password,
+//     branch_id
+// )
+// VALUES (
+//     'CL999',
+//     'Test',
+//     'Trigger',
+//     'Test Address',
+//     '0000000000',
+//     'trigger-test@example.com',
+//     'House',
+//     1000,
+//     'temporary-password',
+//     'BR001'
+// );
+// CHECKING
+// SELECT client_id, branch_id, staff_id
+// FROM clients
+// WHERE client_id = 'CL999';
+
 
     public function down(): void
     {

@@ -12,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // 1. Create the table structure first
+        
         Schema::create('staff', function (Blueprint $table) {
-            $table->string('staff_id')->primary(); // Ensure this is definitely here
+            $table->string('staff_id')->primary(); 
             $table->string('first_name');
             $table->string('last_name');
             $table->string('branch_id'); 
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->rememberToken();
         });
 
-        // 2. Now add the foreign keys in a separate block
+        
         Schema::table('staff', function (Blueprint $table) {
             $table->foreign('branch_id')->references('branch_id')->on('branches');
             $table->foreign('supervised_by')->references('staff_id')->on('staff');

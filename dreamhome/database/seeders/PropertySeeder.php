@@ -64,7 +64,7 @@ class PropertySeeder extends Seeder
                 'property_id' => 'PR004',
                 'owner_id' => 'OWN003',
                 'branch_id' => 'BR003',
-                'staff_id' => null, // Testing your nullable staff constraint
+                'staff_id' => null,
                 'street' => '12 Grimmauld Place',
                 'area' => 'Islington',
                 'city' => 'London',

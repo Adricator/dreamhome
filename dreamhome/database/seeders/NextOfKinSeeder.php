@@ -33,7 +33,7 @@ class NextOfKinSeeder extends Seeder
                 'telephone_no' => '0770-033-9903'
             ],
 
-            // Branch 1 Supervisors (London)
+            
             [
                 'staff_id' => 'ST0004', 
                 'full_name' => 'Mark Jenkins', 
@@ -49,7 +49,7 @@ class NextOfKinSeeder extends Seeder
                 'telephone_no' => '0770-011-9905'
             ],
 
-            // Branch 2 Supervisors (Glasgow)
+            
             [
                 'staff_id' => 'ST0006', 
                 'full_name' => 'Callum McLeod', 
@@ -65,7 +65,7 @@ class NextOfKinSeeder extends Seeder
                 'telephone_no' => '0770-011-9907'
             ],
 
-            // Branch 3 Supervisors (Manchester)
+            
             [
                 'staff_id' => 'ST0008', 
                 'full_name' => 'Min-Jun Kim', 
@@ -81,7 +81,7 @@ class NextOfKinSeeder extends Seeder
                 'telephone_no' => '0770-011-9909'
             ],
 
-            // Secretaries (London, Glasgow, Manchester Flats)
+            
             [
                 'staff_id' => 'ST0010', 
                 'full_name' => 'Thomas Smyth', 
@@ -125,7 +125,7 @@ class NextOfKinSeeder extends Seeder
                 'telephone_no' => '0770-022-9915'
             ],
 
-            // General Staff (London Streets)
+            
             [
                 'staff_id' => 'ST0016', 
                 'full_name' => 'Richard Doe', 

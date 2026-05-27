@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
          
         ]);
 
-        // Step C: Now that the staff exists, assign the managers to the branches
+        
         Branch::where('branch_id', 'BR001')->update(['manager_id' => 'ST0001']);
         Branch::where('branch_id', 'BR002')->update(['manager_id' => 'ST0002']);
         Branch::where('branch_id', 'BR003')->update(['manager_id' => 'ST0003']);

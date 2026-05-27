@@ -16,7 +16,7 @@ class StaffSeeder extends Seeder
     public function run(): void
     {
         DB::table('staff')->insert([
-            // Managers
+            
             [
                 'staff_id' => 'ST0001', 'first_name' => 'Joshua', 'last_name' => 'Diaz', 'branch_id' => 'BR001', 'supervised_by' => null,
                 'address' => '12 High St, London', 'telephone_no' => '0770-011-1001', 'email' => 'jdiaz@email.com', 'sex' => 'male',
@@ -36,7 +36,7 @@ class StaffSeeder extends Seeder
                 'car_allowance' => 2000.00, 'performance_bonus' => 5000.00, 'date_promoted' => null, 'typing_speed_wpm' => null , 'password' => Hash::make('dreamhome123!')
             ],
 
-            // Branch 1 Supervisors
+            
             [
                 'staff_id' => 'ST0004', 'first_name' => 'Sarah', 'last_name' => 'Jenkins', 'branch_id' => 'BR001', 'supervised_by' => 'ST0001',
                 'address' => '12 Abbey Rd, London', 'telephone_no' => '0770-011-4004', 'email' => 'sjenk@email.com', 'sex' => 'female',
@@ -50,7 +50,7 @@ class StaffSeeder extends Seeder
                 'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null , 'password' => Hash::make('dreamhome123!')
             ],
 
-            // Branch 2 Supervisors
+            
             [
                 'staff_id' => 'ST0006', 'first_name' => 'Fiona', 'last_name' => 'McLeod', 'branch_id' => 'BR002', 'supervised_by' => 'ST0002',
                 'address' => '10 Sauchiehall St, Glasgow', 'telephone_no' => '0770-011-6006', 'email' => 'fmcleod@email.com', 'sex' => 'female',
@@ -64,7 +64,7 @@ class StaffSeeder extends Seeder
                 'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
             ],
 
-            // Branch 3 Supervisors
+            
             [
                 'staff_id' => 'ST0008', 'first_name' => 'Grace', 'last_name' => 'Kim', 'branch_id' => 'BR003', 'supervised_by' => 'ST0003',
                 'address' => '15 Deansgate, Manchester', 'telephone_no' => '0770-011-8008', 'email' => 'gkim@email.com', 'sex' => 'female',
@@ -78,7 +78,7 @@ class StaffSeeder extends Seeder
                 'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
             ],
 
-            // Secretaries
+            
             [
                 'staff_id' => 'ST0010', 'first_name' => 'Alice', 'last_name' => 'Smyth', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
                 'address' => 'London Flat 1', 'telephone_no' => '0770-022-1010', 'email' => 'asmyth@email.com', 'sex' => 'female',
@@ -116,7 +116,7 @@ class StaffSeeder extends Seeder
                 'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => 72, 'password' => Hash::make('dreamhome123!')
             ],
 
-            // General Staff
+            
             [
                 'staff_id' => 'ST0016', 'first_name' => 'John', 'last_name' => 'Doe', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
                 'address' => 'Street 1, London', 'telephone_no' => '0770-033-0016', 'email' => 'jdoe@email.com', 'sex' => 'male',

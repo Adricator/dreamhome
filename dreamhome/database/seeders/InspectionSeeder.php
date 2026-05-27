@@ -15,7 +15,7 @@ class InspectionSeeder extends Seeder
     {
         DB::table('inspections')->insert([
             [
-                'inspection_id'   => (string) Str::uuid(), // Generates string formatted UUID
+                'inspection_id'   => (string) Str::uuid(), 
                 'property_id'     => 'PR001',
                 'staff_id'        => 'ST0001',
                 'inspection_date' => '2024-05-01',

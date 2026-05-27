@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('client_id', 20);
             $table->string('property_id', 20);
 
-            // Staff/web side will set this later
+            
             $table->dateTime('view_date')->nullable();
             $table->string('staff_id', 20)->nullable();
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('client_id');
             $table->string('staff_id');
 
-            $table->string('payment_method'); // Changed from date to string
+            $table->string('payment_method'); 
             $table->decimal('deposit', 10, 2);
             $table->boolean('deposit_paid')->default(false);
 
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->integer('duration_months');
 
-            // Foreign Key Constraints
+            
             $table->foreign('property_id')
                 ->references('property_id')
                 ->on('properties')

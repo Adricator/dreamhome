@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('advertisements', function (Blueprint $table) {
     $table->string('ad_id', 20)->primary();
-    // Correcting property_id to match your Property table PK type
+    
     $table->string('property_id', 20); 
-    // Correcting media_source to accept text
+    
     $table->string('media_source', 50); 
-    // Correcting date_advertised to actual date type
+    
     $table->date('date_advertised'); 
     $table->decimal('cost', 10, 2);
     $table->timestamps();
 
-    // Set up the foreign key constraint
+    
     $table->foreign('property_id')->references('property_id')->on('properties');
 });
     }

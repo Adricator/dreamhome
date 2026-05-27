@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->string('property_id')->primary();
 
-            // Change foreignId to string to match the 'private_owners' table
+            
             $table->string('owner_id');
             $table->foreign('owner_id')->references('owner_id')->on('owners')->onDelete('cascade');
 
-            // Do the same for branch_id and staff_id if they are also strings in their respective tables
+            
             $table->string('branch_id');
             $table->foreign('branch_id')->references('branch_id')->on('branches')->onDelete('cascade');
 
