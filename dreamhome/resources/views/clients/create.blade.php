@@ -28,48 +28,72 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
+                        <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Client ID</label>
+                        <input type="text" name="client_id" value="{{ old('client_id') }}" placeholder="e.g. CL008" required
+                            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Temporary Password</label>
+                        <input type="password" name="password" required
+                            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition">
+                    </div>
+
+                    <div class="space-y-2">
                         <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">First Name</label>
-                        <input type="text" name="first_name" placeholder="e.g. John" required
+                        <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="e.g. John" required
                             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition">
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Last Name</label>
-                        <input type="text" name="last_name" placeholder="e.g. Doe" required
+                        <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="e.g. Doe" required
                             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition">
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Telephone</label>
-                        <input type="text" name="telephone_no" placeholder="0123-456-789" required
+                        <input type="text" name="telephone_no" value="{{ old('telephone_no') }}" placeholder="0123-456-789" required
                             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition">
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Email Address</label>
-                        <input type="email" name="email" placeholder="john.doe@example.com" required
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="john.doe@example.com" required
                             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition">
                     </div>
 
                     <div class="md:col-span-2 space-y-2">
                         <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Residential Address</label>
-                        <input type="text" name="address" placeholder="123 Dream Lane, City, Postcode" required
+                        <input type="text" name="address" value="{{ old('address') }}" placeholder="123 Dream Lane, City, Postcode" required
                             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition">
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Preferred Property Type</label>
                         <select name="prefer_type" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition appearance-none">
-                            <option value="" disabled selected class="bg-[#0f172a]">Select Type...</option>
-                            <option value="House" class="bg-[#0f172a]">House</option>
-                            <option value="Flat" class="bg-[#0f172a]">Flat</option>
+                            <option value="" disabled {{ old('prefer_type') ? '' : 'selected' }} class="bg-[#0f172a]">Select Type...</option>
+                            <option value="House" {{ old('prefer_type') == 'House' ? 'selected' : '' }} class="bg-[#0f172a]">House</option>
+                            <option value="Flat" {{ old('prefer_type') == 'Flat' ? 'selected' : '' }} class="bg-[#0f172a]">Flat</option>
                         </select>
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Max Monthly Budget ($)</label>
-                        <input type="number" name="max_rent" step="0.01" placeholder="0.00" required
+                        <input type="number" name="max_rent" step="0.01" value="{{ old('max_rent') }}" placeholder="0.00" required
                             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition font-bold text-emerald-400">
+                    </div>
+
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Assigned Branch</label>
+                        <select name="branch_id" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition appearance-none">
+                            <option value="" class="bg-[#0f172a]">Unassigned</option>
+                            @foreach($branches as $branch)
+                                <option value="{{ $branch->branch_id }}" {{ old('branch_id') == $branch->branch_id ? 'selected' : '' }} class="bg-[#0f172a]">
+                                    {{ $branch->branch_id }} - {{ $branch->city }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 

@@ -80,6 +80,10 @@
                         <span class="cd-matrix-value cd-normal-case cd-truncate">{{ $client->email }}</span>
                     </div>
                     <div class="cd-matrix-row">
+                        <span class="cd-matrix-label">Branch ID:</span>
+                        <span class="cd-matrix-value cd-normal-case">{{ $client->branch_id ?? 'Unassigned' }}</span>
+                    </div>
+                    <div class="cd-matrix-row">
                         <span class="cd-matrix-label">Max Budget:</span> 
                         <span class="cd-matrix-value cd-price-highlight">₱{{ number_format($client->max_rent, 0) }}</span>
                     </div>

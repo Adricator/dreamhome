@@ -24,6 +24,11 @@ class Branch extends Model
         return $this->hasMany(Property::class, 'branch_id');
     }
 
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'branch_id', 'branch_id');
+    }
+
     public function manager()
     {
         // Adjust 'manager_id' to your actual foreign key column name 
@@ -41,4 +46,3 @@ class Branch extends Model
         'fax_no'
         ];
 }
-

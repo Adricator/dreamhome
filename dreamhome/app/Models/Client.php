@@ -22,6 +22,7 @@ class Client extends Authenticatable
 
     protected $fillable = [
         'client_id',
+        'branch_id',
         'first_name',
         'last_name',
         'address',
@@ -59,8 +60,8 @@ class Client extends Authenticatable
         return $this->hasMany(Viewing::class, 'client_id', 'client_id');
     }
 
-    public function registrations()
+    public function branch()
     {
-        return $this->hasMany(Registration::class, 'client_id', 'client_id');
+        return $this->belongsTo(Branch::class, 'branch_id', 'branch_id');
     }
 }

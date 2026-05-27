@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             BranchSeeder::class,        
             StaffSeeder::class,
             ClientSeeder::class,
-            RegistrationSeeder::class,
             OwnerSeeder::class,
             NextOfKinSeeder::class,
             PropertySeeder::class,

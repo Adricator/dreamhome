@@ -17,6 +17,7 @@ class ClientSeeder extends Seeder
 
             [
                 'client_id' => 'CL001',
+                'branch_id' => 'BR001',
                 'first_name' => 'Emily',
                 'last_name' => 'Davis',
                 'address' => '34 High Street, London',
@@ -28,6 +29,7 @@ class ClientSeeder extends Seeder
             ],
             [
                 'client_id' => 'CL002',
+                'branch_id' => 'BR002',
                 'first_name' => 'James',
                 'last_name' => 'Miller',
                 'address' => '56 Market Street, Manchester',
@@ -39,6 +41,7 @@ class ClientSeeder extends Seeder
             ],
             [
                 'client_id' => 'CL003',
+                'branch_id' => 'BR003',
                 'first_name' => 'Olivia',
                 'last_name' => 'Wilson',
                 'address' => '78 Princes Street, Edinburgh',
@@ -50,6 +53,7 @@ class ClientSeeder extends Seeder
             ],
             [
                 'client_id' => 'CL004',
+                'branch_id' => 'BR003',
                 'first_name' => 'Liam',
                 'last_name' => 'Johnson',
                 'address' => '12 Broad Street, Birmingham',
@@ -61,6 +65,7 @@ class ClientSeeder extends Seeder
             ],
             [
                 'client_id' => 'CL005',
+                'branch_id' => null,
                 'first_name' => 'Sophia',
                 'last_name' => 'Brown',
                 'address' => '90 Park Lane, Leeds',
@@ -73,6 +78,7 @@ class ClientSeeder extends Seeder
 
             [
                 'client_id' => 'CL006',
+                'branch_id' => null,
                 'first_name' => 'Noah',
                 'last_name' => 'Smith',
                 'address' => '102 George Street, Glasgow',
@@ -84,6 +90,7 @@ class ClientSeeder extends Seeder
             ],
             [
                 'client_id' => 'CL007',
+                'branch_id' => null,
                 'first_name' => 'Ava',
                 'last_name' => 'Jones',
                 'address' => '15 Queen Square, Bristol',

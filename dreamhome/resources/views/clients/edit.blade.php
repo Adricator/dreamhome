@@ -73,6 +73,18 @@
                         <input type="number" name="max_rent" step="0.01" value="{{ old('max_rent', $client->max_rent) }}" 
                             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition font-bold text-emerald-400">
                     </div>
+
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-[10px] text-cyan-400 uppercase font-bold tracking-widest ml-1">Assigned Branch</label>
+                        <select name="branch_id" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition appearance-none">
+                            <option value="" {{ old('branch_id', $client->branch_id) == '' ? 'selected' : '' }} class="bg-[#0f172a]">Unassigned</option>
+                            @foreach($branches as $branch)
+                                <option value="{{ $branch->branch_id }}" {{ old('branch_id', $client->branch_id) == $branch->branch_id ? 'selected' : '' }} class="bg-[#0f172a]">
+                                    {{ $branch->branch_id }} - {{ $branch->city }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="pt-8 flex justify-end gap-4 border-t border-white/10 mt-8">

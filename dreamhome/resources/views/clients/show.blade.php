@@ -43,6 +43,12 @@
                             'Rental Preferences' => [
                                 'Preferred Type' => $client->prefer_type,
                                 'Maximum Budget' => '₱' . number_format($client->max_rent, 2),
+                            ],
+                            'Branch Assignment' => [
+                                'Branch ID' => $client->branch_id ?? 'Unassigned',
+                                'Branch Location' => $client->branch
+                                    ? $client->branch->city . ', ' . $client->branch->area
+                                    : 'Unassigned',
                             ]
                         ];
                     @endphp
