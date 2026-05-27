@@ -1,6 +1,7 @@
------SEEDERS-----
+-----------SEEDERS--------
 
-----ADVERTISEMENTS----
+------ADVERTISEMENTS---------
+
  public function run(): void
     {
         Advertisement::create([
