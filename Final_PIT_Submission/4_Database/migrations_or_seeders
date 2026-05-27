@@ -1,0 +1,711 @@
+-----------SEEDERS--------
+
+------ADVERTISEMENTS---------
+
+ public function run(): void
+    {
+        Advertisement::create([
+            'ad_id' => 'AD001',
+            'property_id' => 'PR001',
+            'media_source' => 'Online',
+            'date_advertised' => '2024-06-01',
+            'cost' => 500.00
+        ]);
+        Advertisement::create([
+            'ad_id' => 'AD002',
+            'property_id' => 'PR002',
+            'media_source' => 'Newspaper',
+            'date_advertised' => '2024-06-05',
+            'cost' => 300.00
+        ]);
+        Advertisement::create([
+            'ad_id' => 'AD003',
+            'property_id' => 'PR001',
+            'media_source' => 'Online',
+            'date_advertised' => '2024-06-10',
+            'cost' => 450.00                        
+        ]);
+
+------CLIENTS-------
+}
+public function run(): void
+    {
+        DB::table('clients')->insert([
+
+            [
+                'client_id' => 'CL001',
+                'branch_id' => 'BR001',
+                'staff_id' => 'ST0001',
+                'first_name' => 'Emily',
+                'last_name' => 'Davis',
+                'address' => '34 High Street, London',
+                'telephone_no' => '+447911987654',
+                'email' => 'emily.davis@example.com',
+                'prefer_type' => 'apartment',
+                'max_rent' => 1200.00,
+                'password' => Hash::make('dreamhome123!'),
+            ],
+            [
+                'client_id' => 'CL002',
+                'branch_id' => 'BR002',
+                'staff_id' => 'ST0002',
+                'first_name' => 'James',
+                'last_name' => 'Miller',
+                'address' => '56 Market Street, Manchester',
+                'telephone_no' => '+447922876543',
+                'email' => 'james.miller@example.com',
+                'prefer_type' => 'house',
+                'max_rent' => 1500.00,
+                'password' => Hash::make('dreamhome123!'),
+            ],
+            [
+                'client_id' => 'CL003',
+                'branch_id' => 'BR003',
+                'staff_id' => 'ST0003',
+                'first_name' => 'Olivia',
+                'last_name' => 'Wilson',
+                'address' => '78 Princes Street, Edinburgh',
+                'telephone_no' => '+447933765432',
+                'email' => 'olivia.wilson@example.com',
+                'prefer_type' => 'apartment',
+                'max_rent' => 1000.00,
+                'password' => Hash::make('dreamhome123!'),
+            ],
+            [
+                'client_id' => 'CL004',
+                'branch_id' => 'BR003',
+                'staff_id' => 'ST0009',
+                'first_name' => 'Liam',
+                'last_name' => 'Johnson',
+                'address' => '12 Broad Street, Birmingham',
+                'telephone_no' => '+447944654321',
+                'email' => 'liam.johnson@example.com',
+                'prefer_type' => 'house',
+                'max_rent' => 1800.00,
+                'password' => Hash::make('dreamhome123!'),
+            ],
+            [
+                'client_id' => 'CL005',
+                'branch_id' => null,
+                'staff_id' => null,
+                'first_name' => 'Sophia',
+                'last_name' => 'Brown',
+                'address' => '90 Park Lane, Leeds',
+                'telephone_no' => '+447955543210',
+                'email' => 'sophia.brown@example.com',
+                'prefer_type' => 'apartment',
+                'max_rent' => 1100.00,
+                'password' => Hash::make('dreamhome123!'),
+            ],
+
+            [
+                'client_id' => 'CL006',
+                'branch_id' => null,
+                'staff_id' => null,
+                'first_name' => 'Noah',
+                'last_name' => 'Smith',
+                'address' => '102 George Street, Glasgow',
+                'telephone_no' => '+447966432109',
+                'email' => 'noah.smith@example.com',
+                'prefer_type' => 'house',
+                'max_rent' => 1650.00,
+                'password' => Hash::make('dreamhome123!'),
+            ],
+            [
+                'client_id' => 'CL007',
+                'branch_id' => null,
+                'staff_id' => null,
+                'first_name' => 'Ava',
+                'last_name' => 'Jones',
+                'address' => '15 Queen Square, Bristol',
+                'telephone_no' => '+447977321098',
+                'email' => 'ava.jones@example.com',
+                'prefer_type' => 'apartment',
+                'max_rent' => 1350.00,
+                'password' => Hash::make('dreamhome123!!'),
+            ],
+        ]);
+    }
+
+------INSPECTIONS--------
+public function run(): void
+    {
+        DB::table('inspections')->insert([
+            [
+                'inspection_id'   => (string) Str::uuid(), 
+                'property_id'     => 'PR001',
+                'staff_id'        => 'ST0001',
+                'inspection_date' => '2024-05-01',
+                'comments'        => 'No comments provided',
+            ],
+            [
+                'inspection_id'   => (string) Str::uuid(),
+                'property_id'     => 'PR002',
+                'staff_id'        => 'ST0002',
+                'inspection_date' => '2024-05-02',
+                'comments'        => 'Minor wear on kitchen counters. Scratches near the main basin area require polishing. Cabinet doors alignment checked.',
+            ],
+            [
+                'inspection_id'   => (string) Str::uuid(),
+                'property_id'     => 'PR003',
+                'staff_id'        => 'ST0003',
+                'inspection_date' => '2024-05-03',
+                'comments'        => 'No comments provided',
+            ],
+            [
+                'inspection_id'   => (string) Str::uuid(),
+                'property_id'     => 'PR004',
+                'staff_id'        => 'ST0004',
+                'inspection_date' => '2024-05-04',
+                'comments'        => 'HVAC filter needs immediate replacement. Master bathroom exhaust fan making grinding noise. Recommendations left with tenant.',
+            ],
+        ]);
+    }
+
+-----PAYMENTS-----
+
+public function run(): void
+    {
+        Payment::create([
+            'payment_no' => '1',
+            'lease_id' => 'LE001',
+            'payment_date' => '2023-01-01',
+            'amount' => 1200.00,
+            'payment_method' => 'credit_card'
+        ]);
+        Payment::create([
+            'payment_no' => '2',
+            'lease_id' => 'LE002',
+            'payment_date' => '2023-02-01',
+            'amount' => 1300.00,
+            'payment_method' => 'debit_card'
+        ]); 
+    }
+
+-------PROPERTIES--------
+public function run(): void
+    {
+        DB::table('properties')->insert([
+            [
+                'property_id' => 'PR001',
+                'owner_id' => 'OWN001',
+                'branch_id' => 'BR001',
+                'staff_id' => 'ST0001',
+                'street' => '221B Baker Street',
+                'area' => 'Marylebone',
+                'city' => 'London',
+                'postcode' => 'NW1 6XE',
+                'type' => 'apartment',
+                'rooms' => 3,
+                'monthly_rent' => 112000.00,
+                'status' => 'available',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR002',
+                'owner_id' => 'OWN002',
+                'branch_id' => 'BR001',
+                'staff_id' => 'ST0002',
+                'street' => '42 Wallaby Way',
+                'area' => 'Sydney CBD',
+                'city' => 'Sydney',
+                'postcode' => '2000',
+                'type' => 'studio',
+                'rooms' => 1,
+                'monthly_rent' => 29000.00,
+                'status' => 'rented',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR003',
+                'owner_id' => 'OWN001',
+                'branch_id' => 'BR002',
+                'staff_id' => 'ST0003',
+                'street' => '742 Evergreen Terrace',
+                'area' => 'Springfield',
+                'city' => 'Oregon',
+                'postcode' => '97477',
+                'type' => 'house',
+                'rooms' => 4,
+                'monthly_rent' => 50000.00,
+                'status' => 'available',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR004',
+                'owner_id' => 'OWN003',
+                'branch_id' => 'BR003',
+                'staff_id' => null,
+                'street' => '12 Grimmauld Place',
+                'area' => 'Islington',
+                'city' => 'London',
+                'postcode' => 'N1 9AA',
+                'type' => 'house',
+                'rooms' => 5,
+                'monthly_rent' => 90000.00,
+                'status' => 'maintenance',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR005',
+                'owner_id' => 'OWN004',
+                'branch_id' => 'BR001',
+                'staff_id' => 'ST0001',
+                'street' => '32 Windsor Gardens',
+                'area' => 'Notting Hill',
+                'city' => 'London',
+                'postcode' => 'W11 2JG',
+                'type' => 'apartment',
+                'rooms' => 2,
+                'monthly_rent' => 21000.00,
+                'status' => 'reserved',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR006',
+                'owner_id' => 'OWN002',
+                'branch_id' => 'BR002',
+                'staff_id' => 'ST0004',
+                'street' => '124 Conch Street',
+                'area' => 'Bikini Bottom',
+                'city' => 'Pacific',
+                'postcode' => '00001',
+                'type' => 'condo',
+                'rooms' => 2,
+                'monthly_rent' => 30000.00,
+                'status' => 'available',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR007',
+                'owner_id' => 'OWN005',
+                'branch_id' => 'BR003',
+                'staff_id' => 'ST0005',
+                'street' => '1600 Pennsylvania Ave',
+                'area' => 'Downtown',
+                'city' => 'Washington DC',
+                'postcode' => '20500',
+                'type' => 'condo',
+                'rooms' => 6,
+                'monthly_rent' => 8500.00,
+                'status' => 'rented',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR008',
+                'owner_id' => 'OWN003',
+                'branch_id' => 'BR001',
+                'staff_id' => 'ST0002',
+                'street' => '56B Abbey Road',
+                'area' => 'St Johns Wood',
+                'city' => 'London',
+                'postcode' => 'NW8 9AY',
+                'type' => 'apartment',
+                'rooms' => 3,
+                'monthly_rent' => 28000.00,
+                'status' => 'available',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR009',
+                'owner_id' => 'OWN005',
+                'branch_id' => 'BR003',
+                'staff_id' => 'ST0006',
+                'street' => '710 Ashbury Street',
+                'area' => 'Haight-Ashbury',
+                'city' => 'San Francisco',
+                'postcode' => '94117',
+                'type' => 'studio',
+                'rooms' => 4,
+                'monthly_rent' => 100000.00,
+                'status' => 'maintenance',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'property_id' => 'PR010',
+                'owner_id' => 'OWN004',
+                'branch_id' => 'BR002',
+                'staff_id' => null,
+                'street' => '21 Jump Street',
+                'area' => 'Metro',
+                'city' => 'Los Angeles',
+                'postcode' => '90001',
+                'type' => 'condo',
+                'rooms' => 1,
+                'monthly_rent' => 39000.00,
+                'status' => 'available',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ]);
+    }
+
+-------STAFF------
+public function run(): void
+    {
+        DB::table('staff')->insert([
+            
+            [
+                'staff_id' => 'ST0001', 'first_name' => 'Joshua', 'last_name' => 'Diaz', 'branch_id' => 'BR001', 'supervised_by' => null,
+                'address' => '12 High St, London', 'telephone_no' => '0770-011-1001', 'email' => 'jdiaz@email.com', 'sex' => 'male',
+                'dob' => '1980-05-15', 'nin' => 'AB4567ER', 'position' => 'manager', 'salary' => 45000.00, 'date_hired' => '2015-01-10',
+                'car_allowance' => 2000.00, 'performance_bonus' => 5000.00, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0002', 'first_name' => 'Alforque', 'last_name' => 'Adrianne', 'branch_id' => 'BR002', 'supervised_by' => null,
+                'address' => '45 Baker St, Glasgow', 'telephone_no' => '0770-022-2002', 'email' => 'addianne.alforque@email.com', 'sex' => 'female',
+                'dob' => '1985-08-22', 'nin' => 'CD8901IT', 'position' => 'manager', 'salary' => 45000.00, 'date_hired' => '2016-03-12',
+                'car_allowance' => 2000.00, 'performance_bonus' => 5000.00, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0003', 'first_name' => 'Joshua Marc', 'last_name' => 'Layong', 'branch_id' => 'BR003', 'supervised_by' => null,
+                'address' => '88 Deansgate, Manchester', 'telephone_no' => '0770-033-3003', 'email' => 'joshmarc@email.com', 'sex' => 'male',
+                'dob' => '1978-11-30', 'nin' => 'EF2345UK', 'position' => 'manager', 'salary' => 45000.00, 'date_hired' => '2014-06-01',
+                'car_allowance' => 2000.00, 'performance_bonus' => 5000.00, 'date_promoted' => null, 'typing_speed_wpm' => null , 'password' => Hash::make('dreamhome123!')
+            ],
+
+            
+            [
+                'staff_id' => 'ST0004', 'first_name' => 'Sarah', 'last_name' => 'Jenkins', 'branch_id' => 'BR001', 'supervised_by' => 'ST0001',
+                'address' => '12 Abbey Rd, London', 'telephone_no' => '0770-011-4004', 'email' => 'sjenk@email.com', 'sex' => 'female',
+                'dob' => '1990-01-05', 'nin' => 'GH5566AA', 'position' => 'supervisor', 'salary' => 32000.00, 'date_hired' => '2018-03-01',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null , 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0005', 'first_name' => 'David', 'last_name' => 'Okonkwo', 'branch_id' => 'BR001', 'supervised_by' => 'ST0001',
+                'address' => '45 Baker St, London', 'telephone_no' => '0770-011-5005', 'email' => 'dokon@email.com', 'sex' => 'male',
+                'dob' => '1988-07-19', 'nin' => 'IJ7788BB', 'position' => 'supervisor', 'salary' => 32000.00, 'date_hired' => '2018-04-10',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null , 'password' => Hash::make('dreamhome123!')
+            ],
+
+            
+            [
+                'staff_id' => 'ST0006', 'first_name' => 'Fiona', 'last_name' => 'McLeod', 'branch_id' => 'BR002', 'supervised_by' => 'ST0002',
+                'address' => '10 Sauchiehall St, Glasgow', 'telephone_no' => '0770-011-6006', 'email' => 'fmcleod@email.com', 'sex' => 'female',
+                'dob' => '1992-12-12', 'nin' => 'KL9900CC', 'position' => 'supervisor', 'salary' => 31000.00, 'date_hired' => '2019-01-20',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null , 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0007', 'first_name' => 'Ian', 'last_name' => 'Wright', 'branch_id' => 'BR002', 'supervised_by' => 'ST0002',
+                'address' => '31 Buchanan St, Glasgow', 'telephone_no' => '0770-011-7007', 'email' => 'iwright@email.com', 'sex' => 'male',
+                'dob' => '1991-05-25', 'nin' => 'MN1122DD', 'position' => 'supervisor', 'salary' => 31000.00, 'date_hired' => '2019-02-15',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+
+            
+            [
+                'staff_id' => 'ST0008', 'first_name' => 'Grace', 'last_name' => 'Kim', 'branch_id' => 'BR003', 'supervised_by' => 'ST0003',
+                'address' => '15 Deansgate, Manchester', 'telephone_no' => '0770-011-8008', 'email' => 'gkim@email.com', 'sex' => 'female',
+                'dob' => '1993-09-09', 'nin' => 'OP3344EE', 'position' => 'supervisor', 'salary' => 31500.00, 'date_hired' => '2019-06-05',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0009', 'first_name' => 'Liam', 'last_name' => 'Gallagher', 'branch_id' => 'BR003', 'supervised_by' => 'ST0003',
+                'address' => '20 Wilmslow Rd, Manchester', 'telephone_no' => '0770-011-9009', 'email' => 'lgall@email.com', 'sex' => 'male',
+                'dob' => '1989-02-14', 'nin' => 'QR5566FF', 'position' => 'supervisor', 'salary' => 31500.00, 'date_hired' => '2019-08-12',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+
+            
+            [
+                'staff_id' => 'ST0010', 'first_name' => 'Alice', 'last_name' => 'Smyth', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
+                'address' => 'London Flat 1', 'telephone_no' => '0770-022-1010', 'email' => 'asmyth@email.com', 'sex' => 'female',
+                'dob' => '1995-04-10', 'nin' => 'ST1111AA', 'position' => 'secretary', 'salary' => 25000.00, 'date_hired' => '2020-01-05',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => 65, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0011', 'first_name' => 'Bob', 'last_name' => 'Miller', 'branch_id' => 'BR001', 'supervised_by' => 'ST0005',
+                'address' => 'London Flat 2', 'telephone_no' => '0770-022-1011', 'email' => 'bmiller@email.com', 'sex' => 'male',
+                'dob' => '1996-06-15', 'nin' => 'ST2222BB', 'position' => 'secretary', 'salary' => 25000.00, 'date_hired' => '2020-02-10',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => 70, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0012', 'first_name' => 'Chloe', 'last_name' => 'Tan', 'branch_id' => 'BR002', 'supervised_by' => 'ST0006',
+                'address' => 'Glasgow Flat 1', 'telephone_no' => '0770-022-1012', 'email' => 'ctan@email.com', 'sex' => 'female',
+                'dob' => '1994-08-20', 'nin' => 'ST3333CC', 'position' => 'secretary', 'salary' => 24500.00, 'date_hired' => '2020-03-15',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => 80, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0013', 'first_name' => 'Dan', 'last_name' => 'Lee', 'branch_id' => 'BR002', 'supervised_by' => 'ST0007',
+                'address' => 'Glasgow Flat 2', 'telephone_no' => '0770-022-1013', 'email' => 'dlee@email.com', 'sex' => 'male',
+                'dob' => '1997-10-25', 'nin' => 'ST4444DD', 'position' => 'secretary', 'salary' => 24500.00, 'date_hired' => '2020-04-20',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => 75, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0014', 'first_name' => 'Eve', 'last_name' => 'White', 'branch_id' => 'BR003', 'supervised_by' => 'ST0008',
+                'address' => 'Manchester Flat 1', 'telephone_no' => '0770-022-1014', 'email' => 'ewhite@email.com', 'sex' => 'female',
+                'dob' => '1998-12-30', 'nin' => 'ST5555EE', 'position' => 'secretary', 'salary' => 24800.00, 'date_hired' => '2020-05-25',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => 68, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0015', 'first_name' => 'Frank', 'last_name' => 'Black', 'branch_id' => 'BR003', 'supervised_by' => 'ST0009',
+                'address' => 'Manchester Flat 2', 'telephone_no' => '0770-022-1015', 'email' => 'fblack@email.com', 'sex' => 'male',
+                'dob' => '1999-01-05', 'nin' => 'ST6666FF', 'position' => 'secretary', 'salary' => 24800.00, 'date_hired' => '2020-06-30',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => 72, 'password' => Hash::make('dreamhome123!')
+            ],
+
+            
+            [
+                'staff_id' => 'ST0016', 'first_name' => 'John', 'last_name' => 'Doe', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
+                'address' => 'Street 1, London', 'telephone_no' => '0770-033-0016', 'email' => 'jdoe@email.com', 'sex' => 'male',
+                'dob' => '2000-01-01', 'nin' => 'AA0016ZZ', 'position' => 'staff', 'salary' => 20000.00, 'date_hired' => '2023-01-01',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0017', 'first_name' => 'Jane', 'last_name' => 'Doe', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
+                'address' => 'Street 2, London', 'telephone_no' => '0770-033-0017', 'email' => 'jadoe@email.com', 'sex' => 'female',
+                'dob' => '2001-02-02', 'nin' => 'BB0017YY', 'position' => 'staff', 'salary' => 20000.00, 'date_hired' => '2023-01-01',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0018', 'first_name' => 'Sam', 'last_name' => 'Smith', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
+                'address' => 'Street 3, London', 'telephone_no' => '0770-033-0018', 'email' => 'ssmith@email.com', 'sex' => 'male',
+                'dob' => '2002-03-03', 'nin' => 'CC0018XX', 'position' => 'staff', 'salary' => 20000.00, 'date_hired' => '2023-01-01',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0019', 'first_name' => 'Pam', 'last_name' => 'Bee', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
+                'address' => 'Street 4, London', 'telephone_no' => '0770-033-0019', 'email' => 'pbee@email.com', 'sex' => 'female',
+                'dob' => '2000-04-04', 'nin' => 'DD0019WW', 'position' => 'staff', 'salary' => 20000.00, 'date_hired' => '2023-01-01',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+            [
+                'staff_id' => 'ST0020', 'first_name' => 'Tim', 'last_name' => 'Cook', 'branch_id' => 'BR001', 'supervised_by' => 'ST0004',
+                'address' => 'Street 5, London', 'telephone_no' => '0770-033-0020', 'email' => 'tcook@email.com', 'sex' => 'male',
+                'dob' => '2001-05-05', 'nin' => 'EE0020VV', 'position' => 'staff', 'salary' => 20000.00, 'date_hired' => '2023-01-01',
+                'car_allowance' => null, 'performance_bonus' => null, 'date_promoted' => null, 'typing_speed_wpm' => null, 'password' => Hash::make('dreamhome123!')
+            ],
+        ]); 
+    }
+
+------VIEWINGS---------
+public function run(): void
+    {
+        DB::table('viewings')->insert([
+            [
+                'viewing_id'  => 'V001',
+                'client_id'   => 'CL001',
+                'property_id' => 'PR001',
+                'view_date'   => '2026-05-10 10:00:00',
+                'staff_id'    => 'ST0016',
+                'comments'    => 'Client liked the spacious living room, but wants a larger kitchen.',
+                'status'      => 'pending',
+            ],
+            [
+                'viewing_id'  => 'V002',
+                'client_id'   => 'CL002',
+                'property_id' => 'PR001',
+                'view_date'   => '2026-05-11 11:00:00',
+                'staff_id'    => 'ST0017',
+                'comments'    => 'Found the neighborhood too noisy.',
+                'status'      => 'pending',
+            ],
+            [
+                'viewing_id'  => 'V003',
+                'client_id'   => 'CL001',
+                'property_id' => 'PR002',
+                'view_date'   => '2026-05-12 09:00:00',
+                'staff_id'    => 'ST0016',
+                'comments'    => null,
+                'status'      => 'pending',
+            ],
+            [
+                'viewing_id'  => 'V004',
+                'client_id'   => 'CL003',
+                'property_id' => 'PR003',
+                'view_date'   => '2026-05-14 02:00:00',
+                'staff_id'    => 'ST0018',
+                'comments'    => 'Thinking about making an offer soon.',
+                'status'      => 'pending',
+            ],
+        ]);
+    }
+
+------DATABASE CALL-----
+public function run(): void
+    {
+        $this->call([
+            BranchSeeder::class,        
+            StaffSeeder::class,
+            ClientSeeder::class,
+            OwnerSeeder::class,
+            NextOfKinSeeder::class,
+            PropertySeeder::class,
+            InspectionSeeder::class,
+            AdvertisementSeeder::class,
+            LeaseSeeder::class,
+            PaymentSeeder::class,
+            ViewingSeeder::class,
+         
+        ]);
+
+        
+        Branch::where('branch_id', 'BR001')->update(['manager_id' => 'ST0001']);
+        Branch::where('branch_id', 'BR002')->update(['manager_id' => 'ST0002']);
+        Branch::where('branch_id', 'BR003')->update(['manager_id' => 'ST0003']);
+    }
+
+---------MIGRATION------
+public function up(): void
+    {
+        Schema::create('branches', function (Blueprint $table) {
+        $table->string('branch_id')->primary();
+        $table->text('street');
+        $table->text('area');
+        $table->text('city');
+        $table->text('postcode');
+        $table->string('telephone_no');
+        $table->string('fax_no')->nullable();
+        $table->string('manager_id')->nullable();
+
+
+ public function up(): void
+    {
+        
+        Schema::create('staff', function (Blueprint $table) {
+            $table->string('staff_id')->primary(); 
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('branch_id'); 
+            $table->string('supervised_by')->nullable();
+            $table->text('address');
+            $table->string('telephone_no')->unique();
+            $table->string('email')->unique();
+            $table->enum('sex', ['male', 'female']);
+            $table->date('dob');
+            $table->string('nin')->unique();
+            $table->string('position');
+            $table->decimal('salary', 10, 2);
+            $table->date('date_hired')->default(DB::raw('CURRENT_DATE'));
+            $table->decimal('car_allowance', 10, 2)->nullable();
+            $table->decimal('performance_bonus', 10, 2)->nullable();
+            $table->date('date_promoted')->nullable();
+            $table->integer('typing_speed_wpm')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+        });
+
+        
+        Schema::table('staff', function (Blueprint $table) {
+            $table->foreign('branch_id')->references('branch_id')->on('branches');
+            $table->foreign('supervised_by')->references('staff_id')->on('staff');
+        });
+    }
+
+
+public function up(): void
+    {
+        Schema::create('clients', function (Blueprint $table) {
+            $table->string('client_id')->primary();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->text('address');
+            $table->string('telephone_no');
+            $table->text('email')->nullable();
+            $table->string('prefer_type')->nullable();
+            $table->decimal('max_rent',10,2)->nullable();
+            $table->string('password');
+            $table->rememberToken();
+        });
+    }
+
+
+public function up(): void
+    {
+        Schema::create('viewings', function (Blueprint $table) {
+            $table->string('viewing_id', 20)->primary();
+
+            $table->string('client_id', 20);
+            $table->string('property_id', 20);
+
+            
+            $table->dateTime('view_date')->nullable();
+            $table->string('staff_id', 20)->nullable();
+
+            $table->text('comments')->nullable();
+            $table->string('status', 20)->default('pending');
+
+            $table->foreign('client_id')
+                ->references('client_id')
+                ->on('clients')
+                ->onDelete('cascade');
+
+            $table->foreign('property_id')
+                ->references('property_id')
+                ->on('properties')
+                ->onDelete('cascade');
+
+            $table->foreign('staff_id')
+                ->references('staff_id')
+                ->on('staff')
+                ->nullOnDelete();
+        });
+    }
+
+
+public function up(): void
+    {
+        Schema::create('advertisements', function (Blueprint $table) {
+    $table->string('ad_id', 20)->primary();
+    
+    $table->string('property_id', 20); 
+    
+    $table->string('media_source', 50); 
+    
+    $table->date('date_advertised'); 
+    $table->decimal('cost', 10, 2);
+    $table->timestamps();
+    $table->foreign('property_id')->references('property_id')->on('properties');
+});
+    }
+
+
+public function up(): void
+    {
+        Schema::create('inspections', function (Blueprint $table) {
+        
+        $table->uuid('inspection_id')->primary()
+        $table->string('property_id');
+        $table->string('staff_id');
+        $table->date('inspection_date');
+        $table->text('comments')->nullable();
+        $table->timestamps();
+
+       
+        $table->foreign('property_id')
+            ->references('property_id')
+            ->on('properties')
+            ->onDelete('cascade');
+
+        $table->foreign('staff_id')
+            ->references('staff_id')
+            ->on('staff')
+            ->onDelete('cascade');
+        $table->unique(['property_id', 'inspection_date']);
+    });
+    }
+
+
+public function up(): void
+    {
+        Schema::create('next_of_kin', function (Blueprint $table) {
+            $table->string('staff_id');
+            $table->string('full_name');
+            $table->string('relationship');
+            $table->text('address');
+            $table->string('telephone_no')->unique();
+        });
+
+        Schema::table('staff', function (Blueprint $table) {
+            $table->foreign('staff_id')->references('staff_id')->on('staff');
+        });
+    }
