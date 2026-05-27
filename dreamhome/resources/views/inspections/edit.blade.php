@@ -18,9 +18,6 @@
                 <h1 class="inspection-form-title">modify inspection</h1>
                 <p class="inspection-form-subtitle">UPDATE RECORDS AND RETROFIT ACCOUNTABILITY LOGS</p>
             </div>
-            <div>
-                <span class="inspection-id-badge">ID: #{{ $inspection->inspection_id }}</span>
-            </div>
         </div>
 
         @if ($errors->any())
@@ -34,7 +31,7 @@
             </div>
         @endif
 
-        <form action="{{ route('inspections.update', ['inspection_id' => $inspection->inspection_id]) }}" method="POST" class="inspection-form">
+        <form action="{{ route('inspections.update', $inspection) }}" method="POST" class="inspection-form">
             @csrf
             @method('PUT')
 
@@ -54,7 +51,7 @@
 
                     <div class="inspection-input-group col-6">
                         <select name="staff_id" id="staff_id" required>
-                            @foreach($staffs as $staff)
+                            @foreach($staff as $staff)
                                 <option value="{{ $staff->staff_id }}" {{ (old('staff_id', $inspection->staff_id) == $staff->staff_id) ? 'selected' : '' }}>
                                     {{ $staff->staff_id }}
                                 </option>

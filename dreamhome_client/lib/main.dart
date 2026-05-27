@@ -30,7 +30,7 @@ class DreamHomeApp extends StatelessWidget {
 }
 
 class ApiConfig {
-  // For Android Emulator, use 10.0.2.2 instead of 127.0.0.1.
+  
   static const String baseUrl = 'http://10.0.2.2:8000/api';
 }
 
@@ -222,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     CircleAvatar(
                       radius: 42,
                       backgroundColor:
-                          DreamHomeColors.primary.withOpacity(0.12),
+                          DreamHomeColors.primary.withValues(alpha: 0.12),
                       child: const Icon(
                         Icons.home_work_rounded,
                         size: 46,
@@ -639,7 +639,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 CircleAvatar(
                   radius: 38,
-                  backgroundColor: DreamHomeColors.primary.withOpacity(0.12),
+                  backgroundColor: DreamHomeColors.primary.withValues(alpha: 0.12),
                   child: const Icon(
                     Icons.person_add_alt_1_rounded,
                     size: 42,
@@ -726,7 +726,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 14),
                 DropdownButtonFormField<String>(
-                  value: selectedPreferType,
+                  initialValue: selectedPreferType,
                   decoration: inputDecoration(
                     label: 'Preferred Type',
                     icon: Icons.apartment_outlined,
@@ -964,7 +964,7 @@ class DashboardButton extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.all(18),
         leading: CircleAvatar(
-          backgroundColor: DreamHomeColors.primary.withOpacity(0.12),
+          backgroundColor: DreamHomeColors.primary.withValues(alpha: 0.12),
           child: Icon(icon, color: DreamHomeColors.primary),
         ),
         title: Text(
@@ -1373,7 +1373,7 @@ class _MyViewingsScreenState extends State<MyViewingsScreen> {
                                 children: [
                                   CircleAvatar(
                                     backgroundColor: DreamHomeColors.primary
-                                        .withOpacity(0.12),
+                                        .withValues(alpha: 0.12),
                                     child: const Icon(
                                       Icons.calendar_month,
                                       color: DreamHomeColors.primary,
@@ -1400,7 +1400,7 @@ class _MyViewingsScreenState extends State<MyViewingsScreen> {
                                 ),
                                 decoration: BoxDecoration(
                                   color:
-                                      getStatusColor(status).withOpacity(0.12),
+                                      getStatusColor(status).withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(

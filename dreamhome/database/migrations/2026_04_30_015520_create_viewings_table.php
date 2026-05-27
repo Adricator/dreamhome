@@ -12,25 +12,32 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('viewings', function (Blueprint $table) {
-            
-             $table->string('client_id', 20);
-             $table->string('property_id', 20);
-             $table->date('view_date');
-             $table->string('staff_id', 20)->nullable();
-             $table->text('comments')->nullable();
+            $table->string('viewing_id', 20)->primary();
 
-            $table->primary(['client_id', 'property_id', 'view_date']);
+            $table->string('client_id', 20);
+            $table->string('property_id', 20);
+
+            // Staff/web side will set this later
+            $table->dateTime('view_date')->nullable();
+            $table->string('staff_id', 20)->nullable();
+
+            $table->text('comments')->nullable();
+            $table->string('status', 20)->default('pending');
 
             $table->foreign('client_id')
                 ->references('client_id')
                 ->on('clients')
                 ->onDelete('cascade');
 
-            $table->foreign('property_id')->references('property_id')->on('properties') // Ensure table name is 'properties'
+            $table->foreign('property_id')
+                ->references('property_id')
+                ->on('properties')
                 ->onDelete('cascade');
-                
-            $table->foreign('staff_id')->references('staff_id')->on('staff')
-                ->onDelete('cascade');
+
+            $table->foreign('staff_id')
+                ->references('staff_id')
+                ->on('staff')
+                ->nullOnDelete();
         });
     }
 

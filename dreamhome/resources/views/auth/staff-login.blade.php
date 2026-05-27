@@ -10,7 +10,7 @@
 <body>
     <div class="login-container">
         <div class="login-header">
-            <h2>DreamHome Portal</h2>
+            <h2>Staff Login</h2>
             <p>Please sign in to access your dashboard</p>
         </div>
 

@@ -48,7 +48,7 @@
                 <a href="{{ url('/inspections') }}">Inspections</a>
                 <a href="{{ url('/clients') }}">Clients</a>
                 <a href="{{ url('/viewings') }}">Viewings</a>
-                <a href="{{ url('/leases') }}">Leases</a>
+                
             </div>
         </nav>
 
